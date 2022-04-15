@@ -8,7 +8,7 @@ vector<string> keywords;
 vector<string> opt;
 vector<string> limiter;
 
-/**************************************初始化涉及的操作 **********************************/
+/************************************  初始化涉及的操作   *********************************/
 //  1.加载VT终结符
 void load_inchar()
 {
@@ -80,7 +80,7 @@ void init(){
 }
 
 
-/**************************************正规文法→NFA涉及的操作 ****************************/
+/************************************  正规文法 → NFA涉及的操作 ****************************/
 // 判断是否是终结符VT
 bool isVT(char a)
 {
@@ -176,6 +176,22 @@ void printNFA()
     cout << endl;
 }
 
-void initial()
-{
+/************************************   NFA → DFA涉及的操作   ****************************/
+// 求状态集T的闭包，闭包也是一个集合
+set<char> e_closure(set<char> T){
+    set<char> temp;
+    // 对每一个状态点，求其闭包
+    for(int i=0;i<nfa.f.size();i++){
+        if(T.find(nfa.f[i].startPoint)!=T.end()){
+            if(nfa.f[i].input=='$'){
+                temp.insert(nfa.f[i].endPoint);
+            }
+        }
+    }
+    if(temp.size()==0) return T;
+    else return e_closure(temp);
 }
+// 求move集
+
+
+// NFA转换为DFA
