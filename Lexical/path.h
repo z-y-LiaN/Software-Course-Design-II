@@ -5,5 +5,6 @@
 #define LIMITER_FILE_PATH "./TXT/LIMITER.txt"
 #define SOURCE_FILE_PATH "./TXT/SOURCE.txt" 
 #define TOKEN_FILE_PATH "./TXT/TOKEN.txt"
+#define TOKEN_TRIAD_FILE_PATH "./TXT/TOKEN_TRIAD.txt"
 #define ROW_FILE_PATH "./TXT/ROW.txt"
 #define WRONG_FILE_PATH "./TXT/WRONG.txt"

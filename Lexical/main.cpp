@@ -1,14 +1,14 @@
 #include "lexical.h"
 int main() {
   // 初始化
-  // init();
+  init();
   // 创建NFA
-  // createNFA();
+  createNFA();
   // 打印NFA
   // printNFA();
-  // NFA_TO_DFA();
+  NFA_TO_DFA();
   // printDFA();
-  spilitSourceCode();
+  // spilitSourceCode();
+  scanSourceCode();
   return 0;
-
 }

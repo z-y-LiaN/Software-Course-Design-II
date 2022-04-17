@@ -1,4 +1,7 @@
+#include <string.h>
+
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <set>
 #include <vector>
@@ -20,11 +23,12 @@ typedef struct NFA {
   vector<Triad> f;
 } NFA;
 
-typedef struct DFA{
-	char initialState;
-	vector<char> finalState;
-	int f[MAX_NODES][MAX_NODES];             //用char隐式转化int作数组下标 实现O(1)的查找 
-}DFA;
+typedef struct DFA {
+  char initialState;
+  vector<char> finalState;
+  int f[MAX_NODES][MAX_NODES];  //用char隐式转化int作数组下标 实现O(1)的查找
+  // f[state][input] = nextState;
+} DFA;
 
 extern NFA nfa;                  //保存正规文法 转换成 的NFA
 extern char str_file[1000];      //保存文件里读出的内容
@@ -34,9 +38,12 @@ extern vector<string> opt;       //保存操作符
 extern vector<string> limiter;   //保存界符
 
 extern DFA dfa;
-extern bool Final[MAX_NODES];						//保存DFA状态集中哪些是终结符，便于O(1)查找  
+extern bool Final[MAX_NODES];  //保存DFA状态集中哪些是终结符，便于O(1)查找
 
-extern vector<vector<string> > sourceCode; 	            //保存源程序 
+extern vector<vector<string> > sourceCode;  //保存源程序
+extern vector<pair<string, string> > token;  //保存扫描源程序后得到的token表
+extern vector<pair<pair<int, int>, int> > wrong;  //保存错误信息
+extern vector<int> row;  //保存每行有多少个token
 
 //初始化
 void load_inchar();    //加载终结符
@@ -53,13 +60,14 @@ void printNFA();
 // NFA→DFA
 // 1、set中的元素都是排好序的
 // 2、set集合中没有重复的元素
-
-
 set<char> e_closure(set<char> T);         //求闭包
 set<char> move(set<char> I, char input);  //求move集
-char change(int a);//状态重命名
+char change(int a);                       //状态重命名
 void NFA_TO_DFA();                        // NFA转换成DFA
 void printDFA();                          // 打印DFA
 
-//
+//源代码处理
 void spilitSourceCode();
+bool isKeywords(string str);
+void scanSourceCode();
+bool isLimiter(string str);

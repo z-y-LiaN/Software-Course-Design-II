@@ -11,7 +11,8 @@ main         KEYWORDS
 double         KEYWORDS
 a         ID
 =         OPERATOR
-3.1415         CONST
+3.141         CONST
+x5         ID
 +         OPERATOR
 2         CONST
 ;         LIMITER
@@ -34,7 +35,6 @@ if         KEYWORDS
 (         LIMITER
 i         ID
 >         OPERATOR
-<         OPERATOR
 2         CONST
 (         LIMITER
 )         LIMITER
