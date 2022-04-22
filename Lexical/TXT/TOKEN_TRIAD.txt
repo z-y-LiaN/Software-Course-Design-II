@@ -11,8 +11,7 @@
 3       double      KEYWORDS
 3       a           ID      
 3       =           OPERATOR
-3       3.141       CONST   
-3       x5          ID      
+3       3.1415      CONST   
 3       +           OPERATOR
 3       2           CONST   
 3       ;           LIMITER 

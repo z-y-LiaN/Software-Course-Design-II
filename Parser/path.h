@@ -2,3 +2,5 @@
 #define WRONG_FILE_PATH "../Lexical/TXT/WRONG.txt"
 #define ROW_FILE_PATH "../Lexical/TXT/ROW.txt"
 #define TOKEN_FILE_PATH "../Lexical/TXT/TOKEN.txt"
+#define ANALYSIS_FILE_PATH "./TXT/ANALYSIS.txt"
+#define AG_PATH "./TXT/ACTION_GOTO.txt"

@@ -2,20 +2,22 @@
 
 #include "path.h"
 
+vector<Grammar>
+    grammar;  //´æ·ÅÎÄ·¨,ÎÄ·¨ÖĞ²»µÃ³öÏÖ¿ÕĞĞÒª²»È»»á³öÏÖÄÚ´æ·ÃÎÊÔ½½çÎÊÌâ
+set<Item> Itemset[1000];  //´æ·ÅLR(1)µÄÏîÄ¿¼¯
+int totalNodes;           //×îÖÕµÄ×´Ì¬¼¯µÄ¸öÊı
+set<char> VT;  //´æ·ÅÎÄ·¨ÖĞµÄÖÕ½á·û,ÆäÖĞ²»°üÀ¨epsilon£¬epsilonµ¥¶À´¦Àí
+set<char> VN;                   //´æ·ÅÎÄ·¨ÖĞµÄ·ÇÖÕ½á·û
+set<char> toEpsilon;            //´æ·ÅÄÜ¹»ÍÆµ½epsilonµÄ·ÇÖÕ½á·û
+map<char, set<char> > FirstVT;  //´æÎÄ·¨ÖĞµÄ·ÇÖÕ½á·û¶ÔÓ¦µÄFirst¼¯
 
-vector<Grammar> grammar;               //å­˜æ”¾æ–‡æ³•,æ–‡æ³•ä¸­ä¸å¾—å‡ºç°ç©ºè¡Œè¦ä¸ç„¶ä¼šå‡ºç°å†…å­˜è®¿é—®è¶Šç•Œé—®é¢˜ 
-set<Item> Itemset[1000];               //å­˜æ”¾LR(1)çš„é¡¹ç›®é›† 
-int totalNodes;                       //æœ€ç»ˆçš„çŠ¶æ€é›†çš„ä¸ªæ•° 
-set<char> VT;                         //å­˜æ”¾æ–‡æ³•ä¸­çš„ç»ˆç»“ç¬¦,å…¶ä¸­ä¸åŒ…æ‹¬epsilonï¼Œepsilonå•ç‹¬å¤„ç† 
-set<char> VN;                      //å­˜æ”¾æ–‡æ³•ä¸­çš„éç»ˆç»“ç¬¦ 
-set<char> toEpsilon;                  //å­˜æ”¾èƒ½å¤Ÿæ¨åˆ°epsilonçš„éç»ˆç»“ç¬¦ 
-map<char,set<char> > FirstVT;             //å­˜æ–‡æ³•ä¸­çš„éç»ˆç»“ç¬¦å¯¹åº”çš„Firsté›† 
+bool is_wrong = false;  //ÅĞ¶Ï´Ê·¨·ÖÎöÆ÷ÊÇ·ñÓĞ´í
+string token = "";      //´æ·Å´Ó´Ê·¨·ÖÎöÆ÷Àï¶ÁÀ´µÄtokenĞòÁĞ
+vector<int> row;        //´æ·ÅÃ¿ĞĞÓĞ¶àÉÙ¸ötoken
 
-bool is_wrong = false;                          //åˆ¤æ–­è¯æ³•åˆ†æå™¨æ˜¯å¦æœ‰é”™ 
-string token = "";                       //å­˜æ”¾ä»è¯æ³•åˆ†æå™¨é‡Œè¯»æ¥çš„tokenåºåˆ— 
-vector<int> row;                        //å­˜æ”¾æ¯è¡Œæœ‰å¤šå°‘ä¸ªtoken 
-/******************* é¢„å¤„ç†  **********************/
-// å°†è¯æ³•åˆ†æå™¨å¾—åˆ°çš„tokenè½¬æ¢ä¸ºè¯­æ³•åˆ†æå™¨æ‰€éœ€çš„token
+int AG[300][300];                     //Action-GOTO±í
+/******************* Ô¤´¦Àí  **********************/
+// ½«´Ê·¨·ÖÎöÆ÷µÃµ½µÄtoken×ª»»ÎªÓï·¨·ÖÎöÆ÷ËùĞèµÄtoken
 
 char token_from_lex_to_grammar(string str, string type) {
   if (type == "KEYWORDS") {
@@ -96,211 +98,627 @@ char token_from_lex_to_grammar(string str, string type) {
   }
 }
 
-// åè½¬æ¢
-string token_from_grammar_to_lex(char c){
-
-    if(c == 'a') return "include";
-	else if(c == 'b') return "iostream";
-	else if(c == 'c') return "CONST";
-	else if(c == 'd') return "int";
-	else if(c == 'e') return "main";
-	else if(c == 'f') return "double";
-	else if(c == 'g') return "float";
-	else if(c == 'h') return "char";
-	else if(c == 'i') return "ID";
-	else if(c == 'j') return "case";
-	else if(c == 'k') return "do";
-	else if(c == 'l') return "default";
-	else if(c == 'm') return "if";
-	else if(c == 'o') return "OPERATOR";
-	else if(c == 'n') return "else";
-	else if(c == 'p') return "for";
-	else if(c == 'r') return "switch";
-	else if(c == 's') return "while";
-	else if(c == 'w') return "+=";
-	else if(c == 'x') return "-=";
-	else if(c == 't') return "++";
-	else if(c == 'u') return "--";
-	else if(c == 'v') return "==";
-	else if(c == '{') return "{";
-	else if(c == '}') return "}";
-	else if(c == '(') return "(";
-	else if(c == ')') return ")";
-	else if(c == ';') return ";";
-	else if(c == ':') return ":";
-	else if(c == '+') return "+";
-	else if(c == '-') return "-";
-	else if(c == '*') return "*";
-	else if(c == '/') return "/";
-	else if(c == '!') return "#";
-	else if(c == '>') return ">";
-	else if(c == '<') return "<";
-	else if(c == '=') return "=";
+// ·´×ª»»
+string token_from_grammar_to_lex(char c) {
+  if (c == 'a')
+    return "include";
+  else if (c == 'b')
+    return "iostream";
+  else if (c == 'c')
+    return "CONST";
+  else if (c == 'd')
+    return "int";
+  else if (c == 'e')
+    return "main";
+  else if (c == 'f')
+    return "double";
+  else if (c == 'g')
+    return "float";
+  else if (c == 'h')
+    return "char";
+  else if (c == 'i')
+    return "ID";
+  else if (c == 'j')
+    return "case";
+  else if (c == 'k')
+    return "do";
+  else if (c == 'l')
+    return "default";
+  else if (c == 'm')
+    return "if";
+  else if (c == 'o')
+    return "OPERATOR";
+  else if (c == 'n')
+    return "else";
+  else if (c == 'p')
+    return "for";
+  else if (c == 'r')
+    return "switch";
+  else if (c == 's')
+    return "while";
+  else if (c == 'w')
+    return "+=";
+  else if (c == 'x')
+    return "-=";
+  else if (c == 't')
+    return "++";
+  else if (c == 'u')
+    return "--";
+  else if (c == 'v')
+    return "==";
+  else if (c == '{')
+    return "{";
+  else if (c == '}')
+    return "}";
+  else if (c == '(')
+    return "(";
+  else if (c == ')')
+    return ")";
+  else if (c == ';')
+    return ";";
+  else if (c == ':')
+    return ":";
+  else if (c == '+')
+    return "+";
+  else if (c == '-')
+    return "-";
+  else if (c == '*')
+    return "*";
+  else if (c == '/')
+    return "/";
+  else if (c == '!')
+    return "#";
+  else if (c == '>')
+    return ">";
+  else if (c == '<')
+    return "<";
+  else if (c == '=')
+    return "=";
 }
 
-// è¯»å–æ–‡æ³•æ–‡ä»¶
-void readGrammarFile(){
-  // æš‚å­˜æ–‡æ³•ï¼Œä¾¿äºå¤šæ¬¡éå†
-    vector<string>temp;
-    fstream file;
-    file.open(GRAMMAR_FILE_PATH);
-    char str_file[100];;
-    while (file.getline(str_file, 100)) {
-        string str(str_file);
-        temp.push_back(str);
+// ¶ÁÈ¡ÎÄ·¨ÎÄ¼ş
+void readGrammarFile() {
+  // Ôİ´æÎÄ·¨£¬±ãÓÚ¶à´Î±éÀú
+  vector<string> temp;
+  fstream file;
+  file.open(GRAMMAR_FILE_PATH);
+  char str_file[100];
+  ;
+  while (file.getline(str_file, 100)) {
+    string str(str_file);
+    temp.push_back(str);
+  }
+  for (int i = 0; i < temp.size(); i++) {
+    VN.insert(temp[i][0]);  //×ó±ßµÚÒ»¸ö×Ö·ûÎª·ÇÖÕ½á·û
+    Grammar g;
+    g.left = temp[i][0];
+    g.right = temp[i].substr(3, temp[i].size() - 3);
+    grammar.push_back(g);
+    if (g.right == "$") toEpsilon.insert(g.left);
+    // ¶ÁÖÕ½á·û
+    for (int j = 3; j < temp[i].size(); j++) {
+      if ((temp[i][j] < 'A' || temp[i][j] > 'Z') && temp[i][j] != '$')
+        VT.insert(temp[i][j]);
     }
-    for(int i=0;i<temp.size();i++){
-      VN.insert(temp[i][0]);//å·¦è¾¹ç¬¬ä¸€ä¸ªå­—ç¬¦ä¸ºéç»ˆç»“ç¬¦
-      Grammar g;
-      g.left=temp[i][0];
-      g.right=temp[i].substr(3,temp[i].size()-3);
-      grammar.push_back(g);
-      if(g.right=="$") toEpsilon.insert(g.left);
-      // è¯»ç»ˆç»“ç¬¦
-      for(int j=3;j<temp[i].size();j++){
-        if((temp[i][j]<'A'||temp[i][j]>'Z')&&temp[i][j]!='$')
-          VT.insert(temp[i][j]);
+  }
+  // ²¹³äÍêtoEpsilonµÄ¼¯ºÏ
+  int before_count = -1;
+  int next_count = toEpsilon.size();
+  while (next_count != before_count) {
+    for (int i = 0; i < grammar.size(); i++) {
+      bool flag = true;
+      for (int j = 0; j < grammar[i].right.size(); j++) {
+        if (grammar[i].right[j] == '$' ||
+            toEpsilon.find(grammar[i].right[j]) != toEpsilon.end())
+          continue;
+        else
+          flag = false;
       }
+      if (flag) toEpsilon.insert(grammar[i].left);
     }
-    // è¡¥å……å®ŒtoEpsilonçš„é›†åˆ
-    int before_count=-1;
-    int next_count=toEpsilon.size();
-    while(next_count!=before_count){
-      for(int i=0;i<grammar.size();i++){
-        bool flag=true;
-        for(int j=0;j<grammar[i].right.size();j++){
-          if(grammar[i].right[j]=='$'||toEpsilon.find(grammar[i].right[j])!=toEpsilon.end())
-            continue;
-          else flag=false;
-        }
-        if(flag) toEpsilon.insert(grammar[i].left);
+    before_count = next_count;
+    next_count = toEpsilon.size();
+  }
+  file.close();
+  // ·ÖÎö´Ê·¨·ÖÎöÆ÷ÀïÊÇ·ñÓĞ´íÎóĞÅÏ¢
+  file.open(WRONG_FILE_PATH);
+  char c = file.get();
+  if (!file.eof()) {
+    is_wrong = true;
+  }
+  file.close();
+  // ¶ÁtokenĞòÁĞ
+  file.open(TOKEN_FILE_PATH);
+  while (file.getline(str_file, 100)) {
+    string s = str_file;
+    string str = "";
+    string type = "";
+    int i = 0;
+    bool flag = false;
+    for (int i = 0; i < s.length(); i++) {
+      if (s[i] == ' ') {
+        flag = true;
+        i += 9;
       }
-      before_count=next_count;
-      next_count=toEpsilon.size();
+      if (!flag)
+        str += s[i];
+      else
+        type += s[i];
     }
-    file.close();
-    // åˆ†æè¯æ³•åˆ†æå™¨é‡Œæ˜¯å¦æœ‰é”™è¯¯ä¿¡æ¯
-    file.open(WRONG_FILE_PATH);
-    char c=file.get();
-    if(!file.eof()){
-      is_wrong=true;
-    }
-    file.close();
-    // è¯»tokenåºåˆ—
-    file.open(TOKEN_FILE_PATH);
-    while(file.getline(str_file,100)){
-      string s=str_file;
-      string str="";
-      string type="";
-      int i=0;
-      bool flag =false;
-      for(int i=0;i<s.length();i++){
-        if(s[i]==' '){
-          flag =true;
-          i+=9;
-        }
-        if(!flag) str+=s[i];
-        else type+=s[i];
-      }
-      token+=token_from_lex_to_grammar(str,type);
-    }
-    file.close();
-    // è¯»ä¸€è¡Œæœ‰å¤šå°‘ä¸ªtoken
-    file.open(ROW_FILE_PATH);
-    int row_count;
-    while(file>>row_count){
-      row.push_back(row_count);
-    }
-    file.close();
+    token += token_from_lex_to_grammar(str, type);
+  }
+  file.close();
+  // ¶ÁÒ»ĞĞÓĞ¶àÉÙ¸ötoken
+  file.open(ROW_FILE_PATH);
+  int row_count;
+  while (file >> row_count) {
+    row.push_back(row_count);
+  }
+  file.close();
 }
 
+/* ****************** Óï·¨·ÖÎö*********************/
+// Çó·ÇÖÕ½á·ûµÄFirst¼¯
+void getFirstVT() {
+  int before_sum = -1;
+  int next_sum = 0;
+  while (next_sum != before_sum) {
+    for (int i = 0; i < grammar.size(); i++) {
+      string str = grammar[i].right;
+      int size = str.size();
 
-/* ****************** è¯­æ³•åˆ†æ*********************/
-// æ±‚éç»ˆç»“ç¬¦çš„Firsté›†
-void getFirstVT(){
-  int before_sum=-1;
-  int next_sum=0;
-  while(next_sum!=before_sum){
-    for(int i=0;i<grammar.size();i++){
-      string str=grammar[i].right;
-      int size=str.size();
-
-      if(size==1){
-        // ç»ˆç»“ç¬¦ æˆ–epsilon
-        if(str[0]=='$'|| VT.find(str[0])!=VT.end()){
+      if (size == 1) {
+        // ÖÕ½á·û »òepsilon
+        if (str[0] == '$' || VT.find(str[0]) != VT.end()) {
           FirstVT[grammar[i].left].insert(str[0]);
-        }else{
+        } else {
           // A -> B
-          set<char> temp =FirstVT[str[0]];
-          FirstVT[grammar[i].left].insert(temp.begin(),temp.end());
+          set<char> temp = FirstVT[str[0]];
+          FirstVT[grammar[i].left].insert(temp.begin(), temp.end());
         }
-      }else{
-        for(int j=0;j<str.size();j++){
-          if(str[j]=='$') continue;
-          else if(VT.find(str[j])!=VT.end()){
+      } else {
+        for (int j = 0; j < str.size(); j++) {
+          if (str[j] == '$')
+            continue;
+          else if (VT.find(str[j]) != VT.end()) {
             // A->aB....
             FirstVT[grammar[i].left].insert(str[j]);
             break;
-          }else{
+          } else {
             // A->BCD
-						set<char> temp = FirstVT[str[j]];
-						set<char>::iterator it = temp.find('$');
-						if(it != temp.end()){
-							//å¦‚æœBå¯ä»¥æ¨åˆ°epsilon 
-							if(j != str.size()-1) temp.erase(it);
-							FirstVT[grammar[i].left].insert(temp.begin(),temp.end());
-						}else{
-							//å¦‚æœBä¸èƒ½æ¨åˆ°epsilon
-							FirstVT[grammar[i].left].insert(temp.begin(),temp.end());
-							break; 
-						}
+            set<char> temp = FirstVT[str[j]];
+            set<char>::iterator it = temp.find('$');
+            if (it != temp.end()) {
+              //Èç¹ûB¿ÉÒÔÍÆµ½epsilon
+              if (j != str.size() - 1) temp.erase(it);
+              FirstVT[grammar[i].left].insert(temp.begin(), temp.end());
+            } else {
+              //Èç¹ûB²»ÄÜÍÆµ½epsilon
+              FirstVT[grammar[i].left].insert(temp.begin(), temp.end());
+              break;
+            }
           }
         }
-
       }
-
     }
-    // æ¯è½®ç»Ÿè®¡FirstVTçš„é›†åˆæ€»ä¸ªæ•°ï¼Œå¦‚æœä¸å†æ”¹å˜æ—¶æ”¶æ•›
-    int sum=0;
-    for(map<char,set<char> >::iterator it=FirstVT.begin();it!=FirstVT.end();it++){
-      sum+=(*it).second.size();
+    // Ã¿ÂÖÍ³¼ÆFirstVTµÄ¼¯ºÏ×Ü¸öÊı£¬Èç¹û²»ÔÙ¸Ä±äÊ±ÊÕÁ²
+    int sum = 0;
+    for (map<char, set<char> >::iterator it = FirstVT.begin();
+         it != FirstVT.end(); it++) {
+      sum += (*it).second.size();
     }
-    before_sum=next_sum;
-    next_sum=sum;
+    before_sum = next_sum;
+    next_sum = sum;
   }
 }
 
-// å‘å‰æœç´¢ç¬¦é›†åˆ
-set<char> getForward(char c,set<char> forward){
+// ÏòÇ°ËÑË÷·û¼¯ºÏ
+set<char> getForward(char c, set<char> forward) {
   set<char> s;
-	if(c == '$'){
-		//S->.S, # 
-		return forward;
-	}else if(VT.find(c) != VT.end()){
-		//S->.Sa,#
-		s.insert(c);
-		return s;
-	}else{
-		//æ˜¯å¦æŒ‰ç…§toEpsilonæ¥åˆ¤æ–­æ— åŒºåˆ« 
-		if(FirstVT[c].find('$') != FirstVT[c].end()){
-			//S->.SB,#      (epsilon belongs to B)
-			set<char> temp = FirstVT[c];
-			temp.erase(temp.find('$'));
-			temp.insert(forward.begin(),forward.end());
-			return temp;
-		}else{
-			//S->.SB,#     (epsilon doesn't belong to B)
-			return FirstVT[c];
+  if (c == '$') {
+    // S->.S, #
+    return forward;
+  } else if (VT.find(c) != VT.end()) {
+    // S->.Sa,#
+    s.insert(c);
+    return s;
+  } else {
+    //ÊÇ·ñ°´ÕÕtoEpsilonÀ´ÅĞ¶ÏÎŞÇø±ğ
+    if (FirstVT[c].find('$') != FirstVT[c].end()) {
+      // S->.SB,#      (epsilon belongs to B)
+      set<char> temp = FirstVT[c];
+      temp.erase(temp.find('$'));
+      temp.insert(forward.begin(), forward.end());
+      return temp;
+    } else {
+      // S->.SB,#     (epsilon doesn't belong to B)
+      return FirstVT[c];
+    }
+  }
+}
+
+// ÇóÏîÄ¿¼¯itemSetµÄ±Õ°ü
+set<Item> e_closure(set<Item> itemSet) {
+  if (itemSet.empty()) return itemSet;
+  bool flag = true;
+  //Èç¹ûÏîÄ¿¼¯ÈÔÓĞĞÂÏîÄ¿½øÈë»òÕßÏîÄ¿¼¯ÖĞÈÔÓĞÏòÇ°ËÑË÷·ûÔÚ·¢Éú±ä»¯¼ÌĞøµü´ú 
+  while (flag) {
+    flag=false;
+    for(set<Item>::iterator it=itemSet.begin();it!=itemSet.end();){
+      bool flag1=false;
+      Item item=*it;
+      //Èç¹ûÔ²µã²»ÔÚ×îºó¿ÉÄÜ¼ÌĞøÀ©³ä 
+      if(item.position!=item.right.size()){
+        //Èç¹ûÔ²µãºó¸úµÄÊÇ·ÇÖÕ½á·û¿ÉÒÔ¼ÌĞøÀ©³ä
+        if(VN.find(item.right[item.position])!=VN.end()){
+          char vn=item.right[item.position];
+          for(int i=0;i<grammar.size();i++){
+            
+            if(grammar[i].left==vn){
+              Item temp;
+              temp.left=vn;
+              temp.right=grammar[i].right;
+              temp.position=0;
+              for(int j=0;j<grammar.size();j++){
+                if(grammar[j].left==temp.left&&grammar[j].right==temp.right){
+                  temp.index=j+1;
+                }
+              }
+              // ÅĞ¶ÏvnºóÃæÊÇ·ñ»¹ÓĞ·ûºÅ
+              if(item.position==item.right.size()-1){
+                //ĞÎÈçS->A@B,# 
+                temp.forward=getForward('$',item.forward);
+              }else{
+                //ĞÎÈçS->A@BC,# 
+                temp.forward=getForward(item.right[item.position+1],item.forward);
+              }
+
+              set<Item>::iterator itt = itemSet.find(temp);
+							//ÒòÎªSTLÖĞfindº¯ÊıÊÇÄ¬ÈÏÓÃ<ºÅ½øĞĞÅĞµÈµÄ£¬ËùÒÔÈÔĞèÒªÅĞ¶Ïforward¼¯ÊÇ·ñÏàµÈ 
+              if(itt!=itemSet.end()){
+                set<char> C;
+                //Èç¹ûitemsetÖĞÓĞitem£¬²»Ò»¶¨Á½ÕßforwardÏàµÈ
+                set_union((itt->forward).begin(),(itt->forward).end(),temp.forward.begin(),temp.forward.end(),inserter( C , C.begin() ));
+                //ÏÈÇó²¢¼¯£¬Èç¹û²¢¼¯µÈÓÚÔ­itemsetÖĞitemµÄforward¼´²»·¢Éú¸Ä±ä 
+                if(C!=itt->forward){
+                  flag1=true;
+                  set<Item>::iterator itt_backup=itt;
+                  flag=true;
+                  Item temp_backup=*itt;
+                  it++;
+                  //ÏÈÉ¾³ıÔÙÌí¼Ó£¬²»È»»á±¨const³ö´í£¬STL setÖĞ²»ÄÜÖ±½Ó¸Ä±äSETÖĞÄÚÈİ£¬ÊÇconstÀàĞÍ 
+                  itemSet.erase(itt_backup);
+                  temp_backup.forward=C;
+                  itemSet.insert(temp_backup);
+                }
+              }else{
+                flag=true;
+                itemSet.insert(temp);
+              }
+
+            }
+          }
+        }
+      }
+      if(!flag1) it++;
+    }
+  }
+  return itemSet;
+}
+// ÇóGOº¯Êı£¬ÊµÏÖ×´Ì¬×ªÒÆ
+set<Item> Go(char c,set<Item> itemset){
+  set<Item> itemset_new;
+	set<Item>::iterator it;
+	for(it = itemset.begin();it != itemset.end();it ++){
+		Item item =  *it;
+		if(item.position != item.right.size()){
+			if(item.right[item.position] == '$'){
+				continue;
+			}else if(item.right[item.position] == c){
+				Item temp;
+				temp = item;
+				temp.position ++;
+				itemset_new.insert(temp);
+			}
+		}
+	}
+	//itemset_new = e_closure(itemset_new);
+	return itemset_new;
+}
+
+// ½¨Á¢DFA£¬´´½¨ACTION¡ªGOTO±í
+void create(char left,string right){
+  //³õÊ¼»¯I0 
+	Item item;
+	item.left = left;
+	item.right = right;
+	item.position = 0;
+	item.index = 0;
+	item.forward.insert('#');
+	Itemset[0].insert(item);
+	Itemset[0] = e_closure(Itemset[0]);
+	totalNodes = 1;
+	//½øĞĞ×´Ì¬×ªÒÆ
+	queue<set<Item> > q;
+	queue<int> q_index; 
+	q.push(Itemset[0]);
+	q_index.push(0);
+	while(!q.empty() && !q_index.empty()){
+		set<Item> s = q.front();
+		q.pop();
+		int index = q_index.front();
+		q_index.pop();
+		
+		set<char>::iterator it;
+		set<char> sum;                           //VTºÍVN 
+		set_union(VT.begin(),VT.end(),VN.begin(),VN.end(),inserter( sum , sum.begin() )); 
+		for(it = sum.begin();it != sum.end();it++){
+			set<Item> s_new = e_closure(Go(*it,s));
+			if(!s_new.empty()){
+				//showItemset(s_new);
+				//Èç¹û²»¿ÕÔòºÍÒÑÓĞµÄÏîÄ¿¼¯½øĞĞ±È½Ï
+				bool flag = false;                    				//±êÖ¾ºÍÒÑÓĞÏîÄ¿¼¯ÎŞÖØ¸´µÄ 
+				for(int i = 0;i < totalNodes;i++){
+					//ÖØÔØºóµÄ== 
+					if(s_new == Itemset[i]){
+						AG[index][*it] = i;
+						flag = true;
+						break;
+					}
+				}
+				//Èç¹ûÃ»ÓĞÏàÍ¬µÄÏîÄ¿¼¯ÔòtotalNodes++ 
+				if(!flag){
+					AG[index][*it] = totalNodes;
+					Itemset[totalNodes++] = s_new;
+					q.push(s_new);
+					q_index.push(totalNodes-1);
+				}
+			}else AG[index][*it] = -2;                          //±íÊ¾Ã»ÓĞ´Ë¹ı³Ì 
+		}		
+	}
+	//×´Ì¬×ªÒÆÔÚ½¨Á¢DFAµÄÊ±ºòÍê³É£¬¹éÔ¼ÔÚ½¨Á¢ÍêÖ®ºóÍ³Ò»±éÀúÍê³É 
+	for(int i = 0;i<totalNodes;i++){
+		set<Item> itemset = Itemset[i];
+		set<Item>::iterator itt;
+		for(itt = itemset.begin();itt != itemset.end();itt++){
+			Item item = *itt;
+			//Èç¹ûÔ²µãÔÚ×îºó»òÕßA->.epsilonÕâÖÖÇé¿ö¾Í¿ÉÒÔ¹éÔ¼ÁË 
+			if(item.right.find('$') != item.right.npos || item.position == item.right.size()){
+				set<char>::iterator it;
+				for(it = item.forward.begin();it != item.forward.end();it++){
+					if(item.index == 0){
+						AG[i][*it] = -1;                       //±êÊ¶acc 
+						//cout << AG[i][*it] << endl;
+					} 
+					else{
+						AG[i][*it] = item.index + 256;                              //ÓÃ+256Çø·ÖÊÇS»¹ÊÇr 
+						//cout << AG[i][*it] << endl; 
+					}
+				}
+			}
 		}
 	}
 }
+/*********************Ô´³ÌĞò´¦Àí****************/
+// Õ¹Ê¾²¿·Ö½á¹û
 
-// æ±‚é¡¹ç›®é›†çš„é—­åŒ…
-// æ±‚GOå‡½æ•°ï¼Œå®ç°çŠ¶æ€è½¬ç§»
-// å»ºç«‹DFAï¼Œåˆ›å»ºACTIONâ€”GOTOè¡¨
+// É¨Ãè´Ê·¨·ÖÎöÆ÷µÄtokenĞòÁĞ½øĞĞ·ÖÎö
+void scan(string str){
+	ofstream output;
+	output.open(ANALYSIS_FILE_PATH);
+	if(is_wrong){
+		cout << "´Ê·¨·ÖÎöÆ÷ÓĞ´í£¬ÇëÏÈĞ£ÕıÔ´³ÌĞòµÄ¹¹´Ê·½Ê½ÔÙ½øĞĞÓï·¨·ÖÎö" << endl;
+		return;
+	}
+	str += '#';                                         //²¹³ä×îºóÒ»¸ö# 
+	stack<int> state;                                   //×´Ì¬Õ» 
+	stack<char> symbol;									//·ûºÅÕ»
+	//³õÊ¼»¯Á½¸öÕ» 
+	state.push(0);
+	symbol.push('#');
+	output << "·ÖÎö¹ı³Ì£º" << endl; 
+	output <<std::left<< setw(10) << "²½Öè" <<std::left<< setw(150) << "×´Ì¬Õ»"<<std::left << setw(150) << "·ûºÅÕ»" <<std::left<< setw(200) <<"ÊäÈë´®" <<std::left<< setw(150)<< "ACTION" <<std::left<< setw(150) << "GOTO" << endl;
+	int count = 1;                   //²½ÖèÊı 
+	int i = 0;					//ÊäÈëtokenµÄÏÂ±ê 
+	output <<std::left<< setw(10) << "1" <<std::left<< setw(150) << "0" <<std::left<< setw(150) << "#"<<std::left << setw(200) << str ; 
+	while(1){
+		count++;
+		int Action = -256;
+		int Goto = -256;
+		string action = "";
+		string goTo = "";
+		
+		int temp_state = state.top();
+		int temp_symbol = symbol.top();
+		if(AG[temp_state][str[i]] == -1){
+			action = "acc";
+			output << setw(150) << action << setw(150) << goTo << endl;;
+			break; 
+		}
+		else if(AG[temp_state][str[i]] == -2){
+			/*
+			if(i < str.length() - 1) output << "ÔÚµÚ"<< i+1 << "¸ötoken·¢Éú´íÎó" << endl;
+			else output << "ÔÚ×îºóÒ»¸ötoken·¢Éú´íÎó" << endl;*/
+			//cout << "µÚ" << i+1 << "¸ötoken³ö´í" << endl;
+			int temp_i = i+1;
+			if(temp_i < str.length() - 1){
+				for(int j = 0;j<row.size();j++){
+					if(temp_i > row[j]) {
+						//cout << "¼õÇ°:" << temp_i << endl;
+						temp_i -= row[j];
+						//cout << "¼õÈ¥" << j+1 <<"ĞĞ" << row[j] << "ºó:" << temp_i << endl; 
+					}
+					else{
+						cout << "ÔÚµÚ" << j+1 << "ĞĞ,µÚ" << temp_i << "¸ötoken:"<< token_from_grammar_to_lex(str[i]) << " ·¢Éú´íÎó" << endl;
+						break;
+					}	 
+				}	
+			}else{
+				cout << "×îºóÒ»¸ötoken·¢Éú´íÎó" << endl;
+			} 
+			cout << "Î´ÄÜÕÒµ½ÆÚ´ıµÄtoken:" << endl;
+			set<char>::iterator it;
+			for(it = VT.begin();it != VT.end();it++){
+				if(AG[temp_state][*it] != -2) cout << token_from_grammar_to_lex(*it) << " ";
+			} 
+			cout << endl;
+			return ;
+		}else if(AG[temp_state][str[i]] < 256){
+			Action = AG[temp_state][str[i]];
+			state.push(Action);
+			symbol.push(str[i]);
+			i++;
+			action = "S" + to_string(Action);
+		}else{
+			Action = AG[temp_state][str[i]] - 256;
+			//×¼±¸½øĞĞ¹éÔ¼
+			char left = grammar[Action-1].left;
+			int right_size = grammar[Action-1].right.size();
+			//Èç¹ûÓÒ±ßÊÇepsilon£¬¾Í²»ĞèÒªÍËÕ»Ö»ĞèÒª½«×ó²¿¼ÓÈëµ½·ûºÅÕ»¼´¿É 
+			if(grammar[Action-1].right != "$"){
+				for(int j = 0;j<right_size;j++){
+					state.pop();
+					symbol.pop();
+				}	 	
+			}
+			symbol.push(left);
+			temp_state = state.top();
+			Goto = AG[temp_state][left];
+			if(Goto > 0 && Goto <= 256){
+				state.push(Goto);
+				goTo = to_string(Goto);
+			}
+			action = "r" + to_string(Action);
+		}
+		
+		
+		//´òÓ¡·ÖÎö¹ı³Ì
+		
+		string state_str = "";
+		string symbol_str = "";
+		vector<int> state_v;
+		vector<char> symbol_v;
+		stack<int> state_temp = state;
+		stack<char> symbol_temp = symbol;
+		while(!state_temp.empty()){
+			state_v.push_back(state_temp.top());
+			state_temp.pop();
+		}
+		while(!symbol_temp.empty()){
+			symbol_v.push_back(symbol_temp.top());
+			symbol_temp.pop();
+		}
+		for(int i = state_v.size()-1;i>=0;i--){
+			state_str += to_string(state_v[i]);
+			if(i) state_str += " ";
+		}
+		for(int i = symbol_v.size()-1;i>=0;i--){
+			symbol_str += symbol_v[i];
+		}
+		string input = str.substr(i,str.length()-i);
+		output <<std::left<<  setw(150) << action <<std::left<< setw(150) << goTo<<endl;	
+		output << setw(10) << count <<std::left<< setw(150) << state_str <<std::left<< setw(150) << symbol_str <<std::left << setw(200) << input ;
+	} 
+	cout << "ÕıÈ·" << endl;
+}
 
+//Õ¹Ê¾²¿·Ö½á¹û 
+void show(){
+	
+	cout << "Grammar:" << endl;
+	for(int i = 0;i< grammar.size();i++){
+		cout << grammar[i].left << "->" << grammar[i].right << endl; 
+	}
+	
+	cout << "toEpsilon:" << endl;
+	set<char>::iterator it;
+	for(it = toEpsilon.begin();it != toEpsilon.end();it++){
+		cout << *it << " ";
+	}
+	cout << endl << "VT:" << endl;
+	for(it = VT.begin();it != VT.end();it++){
+		cout << *it << " ";
+	}
+	cout << endl << "VN:" << endl;
+	for(it = VN.begin();it != VN.end();it++){
+		cout << *it << " " ;
+	}
+	cout << endl << "FirstVT:" << endl;
+	map<char,set<char> >::iterator it_map;
+	for(it_map = FirstVT.begin();it_map != FirstVT.end();it_map++){
+		cout << (*it_map).first << ":" ;
+		set<char> temp = (*it_map).second;
+		for(it = temp.begin();it != temp.end();it++){
+			cout << *it << " ";
+		}
+		cout << endl;
+	}
+	cout << endl;
 
-/*********************æºç¨‹åºå¤„ç†****************/
-// å±•ç¤ºéƒ¨åˆ†ç»“æœ
-// æ‰«æè¯æ³•åˆ†æå™¨çš„tokenåºåˆ—è¿›è¡Œåˆ†æ
-
+	for(int i = 0;i<totalNodes;i++){
+		cout << "I" << i << ":" << endl;
+		set<Item>::iterator it_set;
+		set<Item> itemset = Itemset[i];
+		for(it_set = itemset.begin();it_set != itemset.end();it_set ++){
+			Item item = *it_set;
+			cout << item.left << "->";
+			for(int j = 0;j<item.right.size();j++){
+				if(j == item.position) cout << '@';
+				cout << item.right[j];
+			}
+			if(item.position == item.right.size()) cout << '@';
+			cout << ", ";
+			int count = 0;
+			for(it = item.forward.begin();it != item.forward.end();it++){
+				count ++;
+				if(count != item.forward.size()) cout << *it << "/";
+				else cout << *it;
+			}
+			cout << "    index:" << item.index << endl;
+		}
+		cout << endl;
+	}
+	
+	ofstream output;
+	output.open(AG_PATH);
+	output << "ACTION-GOTO±í:" << endl;
+	output << setw(7) << "";
+	VT.insert('#');
+	for(it = VT.begin();it != VT.end();it++){
+		output <<setw(7)<< *it ;
+	}
+	for(it = VN.begin();it != VN.end();it++){
+		output << setw(7)<< *it ;
+	}
+	output << endl;
+	for(int i = 0;i<totalNodes;i++){
+		output << setw(7)<< i ;	
+		for(it  = VT.begin();it != VT.end();it++){
+			int temp = AG[i][*it];
+			if(temp == -1){
+				output << setw(7)<< "acc" ;
+			}else if(temp < 256 && temp > 0){
+				output <<setw(7)<< "S"+ to_string(temp) ;
+			}else if(temp >= 256){
+				output <<setw(7)<< "r" +to_string(temp - 256)   ;
+			}else{
+				output <<setw(7) << "";
+			}
+		}
+		for(it  = VN.begin();it != VN.end();it++){
+			int temp = AG[i][*it];
+			if(temp == -1){
+				output << setw(7)<< "acc" ;
+			}else if(temp < 256 && temp > 0){
+				output <<setw(7)<< to_string(temp) ;
+			}else if(temp >= 256){
+				output <<setw(7)<< "r" +to_string(temp - 256)   ;
+			}else{
+				output <<setw(7) << "";
+			}
+		}
+		output << endl;
+	}
+	VT.erase('#');
+	output.close();
+}

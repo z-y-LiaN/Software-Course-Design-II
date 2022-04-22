@@ -11,8 +11,7 @@ main         KEYWORDS
 double         KEYWORDS
 a         ID
 =         OPERATOR
-3.141         CONST
-x5         ID
+3.1415         CONST
 +         OPERATOR
 2         CONST
 ;         LIMITER

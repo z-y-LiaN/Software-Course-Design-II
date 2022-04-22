@@ -1,9 +1,15 @@
 #include<iostream>
-#include<string>
+#include<cstring>
+#include<string> 
+#include<stack>
+#include<queue>
 #include<vector>
-#include<fstream>
 #include<set>
 #include<map>
+#include<iomanip>
+#include<fstream>
+#include<string.h>
+#include<algorithm>
 using namespace std;
 
 // 定义文法 产生式的数据结构
@@ -11,7 +17,7 @@ typedef struct Grammar{
     char left;
     string right;
 }Grammar;
-
+// 定义项目集的中的一条 数据结构
 typedef struct Item{
 	char left;               					  //产生式左边 
 	string right;            					 //产生式右边 
@@ -52,10 +58,10 @@ extern set<char> VT;                         //存放文法中的终结符,其�
 extern set<char> VN;                      //存放文法中的非终结符 
 extern set<char> toEpsilon;                  //存放能够推到epsilon的非终结符 
 extern map<char,set<char> > FirstVT;             //存文法中的非终结符对应的First集 
-extern bool is_wrong = false;                          //判断词法分析器是否有错 
-extern string token = "";                       //存放从词法分析器里读来的token序列 
+extern bool is_wrong;                          //判断词法分析器是否有错 
+extern string token;                       //存放从词法分析器里读来的token序列 
 extern vector<int> row;                        //存放每行有多少个token 
-
+extern int AG[300][300];                     //Action-GOTO表
 //预处理 
 char token_from_lex_to_grammar(string str,string type);
 string token_from_grammar_to_lex(char c);
@@ -63,4 +69,9 @@ void readGrammarFile();
 
 // 语法分析
 void getFirstVT();
-set<char> getForward(char c,set<char> forward);
+set<char> getForward(char c,set<char> forward);//前向搜索集
+set<Item> Go(char c,set<Item> itemset);//Go(I,X)
+void create(char left,string right);
+
+void scan(string str);
+void show();
