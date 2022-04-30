@@ -4,10 +4,11 @@
 
 NFA nfa;              //保存正规文法 转换成 的NFA
 char str_file[1000];  //保存文件里读出的内容
-vector<char> inchar;  //保存终结符VT
-vector<string> keywords;
-vector<string> opt;
-vector<string> limiter;
+
+vector<char> INCHAR;  //保存终结符VT
+vector<string> KEYWORDS;
+vector<string> OPT;
+vector<string> LIMITER;
 
 DFA dfa;
 bool Final[MAX_NODES];  //保存DFA状态集中哪些是终结符，便于O(1)查找
@@ -17,14 +18,15 @@ vector<pair<string, string>> token;  //保存扫描源程序后得到的token表
 vector<pair<pair<int, int>, int>> wrong;  //保存错误信息
 vector<int> row;                          //保存每行有多少个token
 
-/************************************  初始化 **********************************/
+/************************************  初始化
+ * **********************************/
 //  1.加载VT终结符
 void load_inchar() {
   fstream file;
   file.open(INCHAR_FILE_PATH);
   char tempChar;
   while (file >> tempChar) {
-    if (tempChar != ',') inchar.push_back(tempChar);
+    if (tempChar != ',') INCHAR.push_back(tempChar);
   }
   file.close();
 }
@@ -39,7 +41,7 @@ void load_keywords() {
     if (tempChar != ',')
       str += tempChar;
     else {
-      keywords.push_back(str);
+      KEYWORDS.push_back(str);
       str = "";
     }
   }
@@ -56,7 +58,7 @@ void load_opt() {
     if (tempChar != ',')
       str += tempChar;
     else {
-      opt.push_back(str);
+      OPT.push_back(str);
       str = "";
     }
   }
@@ -73,7 +75,7 @@ void load_limiter() {
     if (tempChar != ',')
       str += tempChar;
     else {
-      limiter.push_back(str);
+      LIMITER.push_back(str);
       str = "";
     }
   }
@@ -88,26 +90,36 @@ void init() {
   load_limiter();
 }
 
-/************************************  正规文法 → NFA  *****************************/
+/************************************  正规文法 → NFA
+ * *****************************/
+
 // 判断是否是终结符VT
 bool isVT(char a) {
-  for (int i = 0; i < inchar.size(); i++) {
-    if (a == inchar[i]) {
+  for (int i = 0; i < INCHAR.size(); i++) {
+    if (a == INCHAR[i]) {
       return true;
     }
   }
   return false;
 }
 // 根据读入的正规文法创建NFA
+/**
+ * 根据右线性正规文法的转换规则：
+ * 增加一个终态结点，开始符号对应的结点作为初态
+ * 对形如 A→t 的规则，引一条从A到终态结点的弧，标记为t
+ * 对形如 A→tB 的规则，引一条从A到B的弧，标记为t
+ * 注：t 为 VT 或epsilon
+ *
+ */
 void createNFA() {
   fstream file;
   file.open(GRAMMAR_FILE_PATH);  //读入正规文法
   if (!file.is_open()) {
-    cout << "正规文法文件无法打开" << endl;
+    cout << "error: 正规文法文件无法打开" << endl;
     return;
   }
 
-  // 将txt文件里的内容一行一行地读入str_file,对每一个正规文法进行处理
+  // 将txt文件里的内容一行一行地读入str_file,对每一个正规文法进行处理,每个正规文法对应NFA中的一条边
   while (file.getline(str_file, 10)) {
     Triad tempTriad;
     char *s = str_file;
@@ -118,25 +130,26 @@ void createNFA() {
     // 右线性正规文法
     // A->epsilon
     if (*s == '$') {
-      // 增加一个终态结点，开始符号对应的结点作为初态
+      // 加入终态节点结合
       nfa.finalState.push_back(tempTriad.startPoint);
     }
     // A->B
     else if (*s >= 'A' && *s <= 'Z') {
       tempTriad.input = '$';
       tempTriad.endPoint = *s;
-
       nfa.f.push_back(tempTriad);
+
     } else if (isVT(*s)) {
       char tempChar = *s;
       s++;
       // A->a
       if ((int)*s == 0) {
-        // 对形如 A→a 的规则，引一条从A到终态结点的弧，标记为a
+        // 对形如 A→a 的规则，引一条从A到终态结点Y的弧，标记为a
         tempTriad.input = tempChar;
-        tempTriad.endPoint = 'Y';
+        tempTriad.endPoint = 'Y';  // Y是最初最初增加的那个终态节点
         nfa.f.push_back(tempTriad);
-        nfa.finalState.push_back('Y');
+        nfa.finalState.push_back(
+            'Y');  //暂时存在终态Y重复加入的问题，一会儿调整，后续考虑把这个vector改成set
       }
       // A->aB
       else {
@@ -171,16 +184,20 @@ void printNFA() {
 }
 
 /************************************   NFA → DFA  ****************************/
-// 求状态集T的闭包，闭包也是一个集合
-// 闭包，状态集T中的任何状态，经过任意条ε弧所能到达 的状态
-// 采用set，不会有重复元素
+
+//  @brief: 求状态集T的闭包
+//  @param: set<char> T
+//  @ret: 返回状态集T的一个闭包；
+//        闭包：状态集T中的任何状态，及其 经过任意条ε弧所能到达的状态
+//        闭包也是一个集合,所以用set,就不会有重复元素
 set<char> e_closure(set<char> T) {
+  // 闭包首先包含原始状态集的所有状态
   set<char> U = T;
   int previous_size, current_size;
   while (1) {
-    // 遍历T中的每一个状态
     for (set<char>::iterator it = U.begin(); it != U.end(); it++) {
       char tempChar = *it;
+      // 再包含经过任意条ε弧能到达的状态
       for (int k = 0; k < nfa.f.size(); k++) {
         if (nfa.f[k].startPoint == tempChar && nfa.f[k].input == '$') {
           U.insert(nfa.f[k].endPoint);
@@ -189,17 +206,18 @@ set<char> e_closure(set<char> T) {
     }
     previous_size = current_size;
     current_size = U.size();
-    // 当U中状态的数目不再发生变化时结束
+    // 当U中状态的数目不再发生增加时结束
     if (current_size == previous_size) break;
   }
   return U;
 }
 
-// 求move集
-// move集：所有可以从I中的某一状态经一条input弧所能到达的状态
+// @brief: 求move集-所有可以从I中的某一状态 经一条input弧 所能到达的状态
+// @param:  set<char> I
+//          char input
+// @ret:  状态的集合
 set<char> move(set<char> I, char input) {
   set<char> U;
-  // 遍历I中的每一个状态
   for (set<char>::iterator it = I.begin(); it != I.end(); it++) {
     for (int k = 0; k < nfa.f.size(); k++) {
       if (nfa.f[k].startPoint == *it && nfa.f[k].input == input) {
@@ -210,7 +228,7 @@ set<char> move(set<char> I, char input) {
   return U;
 }
 
-// 状态重命名
+// 状态重命名:0-S;1-A,2-B....依次类推
 char change(int a) {
   if (a == 0)
     return 'S';
@@ -218,7 +236,19 @@ char change(int a) {
     return char(a + 64);
 }
 
-// NFA转换为DFA
+// @brief:  子集法，将NFA转换成DFA；
+//            假定所构造的DFA子集族 为 C = (T1, T2,,... Ti)，
+//            其中T1, T2,,... Ti为状态 K 的子集。
+//            1）开始，令ε -closure(K0) 为C中唯一成员，并且它是未被标记的。
+//            2）While(C中存在尚未被标记的子集T) do
+//               {	标记T；
+//                  for(每个 输入字母 a) do
+//                  {	U:= ε-closure(move(T,a))；
+//                  if（U不在C中）  then
+//                  {	将U作为未标记的子集加在C中；}
+//                }
+// @param:  void
+// @ret:    void
 void NFA_TO_DFA() {
   nfa.initialState = 'S';
   dfa.initialState = 'S';
@@ -242,31 +272,31 @@ void NFA_TO_DFA() {
     // 标记
     marked[i] = true;
     // 对于每个输入字母inchar
-    for (int j = 0; j < inchar.size(); j++) {
-      set<char> U = move(C[i], inchar[j]);  //求move集
+    for (int j = 0; j < INCHAR.size(); j++) {
+      set<char> U = move(C[i], INCHAR[j]);  //求move集
       U = e_closure(U);                     //求闭包
 
       bool inC = false;
       if (!U.empty()) {
         for (int k = 0; k < node_count; k++) {
-          // 检查新产生的状态是否再原来的状态集中
+          // 新产生的状态在原来的状态集中
           if (C[k] == U) {
             inC = true;
-            dfa.f[change(i)][inchar[j]] = change(k);
+            dfa.f[change(i)][INCHAR[j]] = change(k);
           }
         }
       }
+      // 新产生的状态不在原来的状态集中
       if (!inC && !U.empty()) {
         C[node_count] = U;
-        // 对DFA的状态重命名
-        dfa.f[change(i)][inchar[j]] = change(node_count);
+        dfa.f[change(i)][INCHAR[j]] = change(node_count);
         node_count++;
       }
     }
     i++;
   }
+  // 添加DFA的终态：包含NFA终态的状态为DFA的终态
   for (int i = 0; i < node_count; i++) {
-    // 添加DFA的终态
     bool isFinalState = false;
     for (int j = 0; j < nfa.finalState.size(); j++) {
       if (C[i].find(nfa.finalState[j]) != C[i].end()) {
@@ -274,7 +304,7 @@ void NFA_TO_DFA() {
         break;
       }
     }
-    // 查重
+    // 查重，vector存的，可能有重复的，其实也可以改成set用
     if (isFinalState) {
       bool inFinal = false;
       for (int j = 0; j < dfa.finalState.size(); j++) {
@@ -288,7 +318,7 @@ void NFA_TO_DFA() {
       }
     }
   }
-  // 将DFA终态保存再数组里面
+  // 将DFA终态保存在数组里面
   memset(Final, false, sizeof Final);
   for (int i = 0; i < dfa.finalState.size(); i++) {
     Final[dfa.finalState[i]] = true;
@@ -316,8 +346,9 @@ void printDFA() {
   cout << endl;
 }
 
-/************************************  扫描识别用户输入的源代码 ****************************/
-// 读入源程序 保存在数组里面
+/************************************  扫描识别用户输入的源代码
+ * ****************************/
+// @brief:  读入源程序 ,过滤原来的空格、tab，保存在数组里面:sourceCode
 void spilitSourceCode() {
   fstream file;
   file.open(SOURCE_FILE_PATH);
@@ -348,44 +379,44 @@ void spilitSourceCode() {
 }
 
 bool isKeywords(string str) {
-  for (int i = 0; i < keywords.size(); i++) {
-    if (str == keywords[i]) return true;
+  for (int i = 0; i < KEYWORDS.size(); i++) {
+    if (str == KEYWORDS[i]) return true;
   }
   return false;
 }
 bool isLimiter(string str) {
-  for (int i = 0; i < limiter.size(); i++) {
-    if (str == limiter[i]) return true;
+  for (int i = 0; i < LIMITER.size(); i++) {
+    if (str == LIMITER[i]) return true;
   }
   return false;
 }
 bool isOperator(string str) {
-  for (int i = 0; i < opt.size(); i++) {
-    if (str == opt[i]) return true;
+  for (int i = 0; i < OPT.size(); i++) {
+    if (str == OPT[i]) return true;
   }
   return false;
 }
-// 扫描源程序
+// @brief:  读入源程序进行分析，生成token序列
 void scanSourceCode() {
   spilitSourceCode();
   for (int i = 0; i < sourceCode.size(); i++) {
     int row_count = 0;
     // 读入一行
     for (int j = 0; j < sourceCode[i].size(); j++) {
-      string str = sourceCode[i][j];  // str:一行当中 一个连续的串
+      string str = sourceCode[i][j];  //第i行的第j个串儿，这个串可能包含多个单词(token)
       // cout<<str<<endl;
       string result = "";  //存放token
       int next = dfa.initialState;
       int now;
       // 存放一个二元组：token内容+类别
       vector<pair<string, string>> token_temp;
-      // 对一个连续的字符串进行token分割
+      // 先对这个串判断错误情况
       for (int k = 0; k < str.length(); k++) {
-        // 处理那些不是非终结符（不是Σ里面的字符）的错误情况
+        // 错误情况：字符本身不属于非终结符集合（即：不是Σ里面的字符）
         if (!isVT(str[k])) {
-          pair<int, int> p = make_pair(i + 1, j + 1);
-          pair<pair<int, int>, int> pp = make_pair(p, int(str[k]));
-          // 对错误情况去重
+          pair<int, int> position = make_pair(i + 1, j + 1);
+          pair<pair<int, int>, int> position_errorChar = make_pair(position, int(str[k]));
+          // vector存的，对错误情况去重
           bool flag = false;
           for (int k = 0; k < wrong.size(); k++) {
             if (wrong[k].first.first == i + 1 &&
@@ -394,13 +425,12 @@ void scanSourceCode() {
               break;
             }
           }
-          if (!flag) wrong.push_back(pp);
+          if (!flag) wrong.push_back(position_errorChar);
           continue;
         }
 
         next = dfa.f[next][str[k]];
-        // 输入str[k]后的状态无法到达或者已经到达终态
-        if (next == -1) {
+        if (next == -1) {//识别出来了一个单词
           token_temp.push_back(make_pair(result, "    "));
           result.clear();
           // 如果是已经到达终态，那么就处理的字符是下一格token的开始
@@ -411,11 +441,13 @@ void scanSourceCode() {
           result += str[k];
         }
       }
-      // 处理每一个单词最后一个可能的token
+
+      // 处理最后一个可能的单词
       if (!result.empty()) {
         token_temp.push_back(make_pair(result, "    "));
       }
-      // 这一行处理出来的 token进行分类
+
+      // 这一行处理出来的 单词进行token分类
       bool flag = false;
       for (int k = 0; k < token_temp.size(); k++) {
         if (isKeywords(token_temp[k].first)) {  // 关键字
@@ -429,19 +461,19 @@ void scanSourceCode() {
           token.push_back(token_temp[k]);
         } else if (token_temp[k].first[0] >= 'a' &&
                    token_temp[k].first[0] <= 'z') {
-          // 错误情况_标识符不合法:首字符是数字
+          // 检查标识符的合法性:首字符是数字——非法
           if (k && token_temp[k - 1].second == "CONST") {
-            pair<int, int> p = make_pair(i + 1, j + 1);
-            pair<pair<int, int>, int> pp = make_pair(p, 0);
-            wrong.push_back(pp);
+            pair<int, int> postion = make_pair(i + 1, j + 1);
+            pair<pair<int, int>, int> position_errorChar = make_pair(postion, 0);
+            wrong.push_back(position_errorChar);
           }
           token_temp[k].second = "ID";
           token.push_back(token_temp[k]);
         } else if (token_temp[k].first[0] >= '0' &&
-                   token_temp[k].first[0] <= '9') {
-          // 当前串以数字开头
+                   token_temp[k].first[0] <= '9') {// 当前串以数字开头
+          
           int index = token.size() - 1;
-          // 复数常量
+          // 复数常量,这里规定复数的形式都是Ai+B的形式
           if ((token[index].first == "+" || token[index].first == "-") &&
               token[index - 1].second == "CONST" &&
               token[index - 1].first.find("i") != token[index - 1].first.npos) {
@@ -460,13 +492,13 @@ void scanSourceCode() {
       else
         row_count += token_temp.size();
     }
-    row.push_back(row_count);
+    row.push_back(row_count);//保存该行的token数量，用于后面的语法分析
   }
   ofstream outfile;
   outfile.open(WRONG_FILE_PATH);
   for (int i = 0; i < wrong.size(); i++) {
     if (wrong[i].second != 0) {
-      cout << "在第" << wrong[i].first.first << "行，第"
+      cout << "词法错误信息：在第" << wrong[i].first.first << "行，第"
            << wrong[i].first.second << "个单词出现未知符号"
            << (char)wrong[i].second << endl;
       outfile << "在第" << wrong[i].first.first << "行，第"
@@ -474,14 +506,14 @@ void scanSourceCode() {
               << (char)wrong[i].second << endl;
     }
     if (wrong[i].second == 0) {
-      cout << "在第" << wrong[i].first.first << "行，第"
+      cout << "词法错误信息：在第" << wrong[i].first.first << "行，第"
            << wrong[i].first.second << "个单词变量命名错误" << endl;
       outfile << "在第" << wrong[i].first.first << "行，第"
               << wrong[i].first.second << "个单词变量命名错误" << endl;
     }
   }
   outfile.close();
-  // 保存token(二元组,用于后续的语法分析)
+  // 保存token(二元组,方便用于后续的语法分析)
   outfile.open(TOKEN_FILE_PATH);
   for (int i = 0; i < token.size(); i++) {
     outfile << token[i].first << "         " << token[i].second << endl;
@@ -500,7 +532,7 @@ void scanSourceCode() {
   }
   outfile.close();
 
-  // 保存源代码每行的token数量,用于后续的语法分析
+  // 保存源代码每行的token数量,方便用于后续的语法分析
   outfile.open(ROW_FILE_PATH);
   for (int i = 0; i < row.size(); i++) {
     outfile << row[i] << endl;

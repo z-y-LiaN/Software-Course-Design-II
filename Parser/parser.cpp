@@ -2,14 +2,13 @@
 
 #include "path.h"
 
-vector<Grammar>
-    grammar;  //存放文法,文法中不得出现空行要不然会出现内存访问越界问题
+vector<Grammar>grammar;  //存放文法,文法中不得出现空行要不然会出现内存访问越界问题
 set<Item> Itemset[1000];  //存放LR(1)的项目集
 int totalNodes;           //最终的状态集的个数
 set<char> VT;  //存放文法中的终结符,其中不包括epsilon，epsilon单独处理
 set<char> VN;                   //存放文法中的非终结符
 set<char> toEpsilon;            //存放能够推到epsilon的非终结符
-map<char, set<char> > FirstVT;  //存文法中的非终结符对应的First集
+map<char, set<char> > FirstSet;  //存文法中的非终结符对应的First集
 
 bool is_wrong = false;  //判断词法分析器是否有错
 string token = "";      //存放从词法分析器里读来的token序列
@@ -176,48 +175,48 @@ string token_from_grammar_to_lex(char c) {
     return "=";
 }
 
-// 读取文法文件
+// @brief:读取文法文件
+//        存终结符、非终结符、推出epsilon的终结符、映射后的token
+//        判断词法分析器的结果是否有有误
 void readGrammarFile() {
-  // 暂存文法，便于多次遍历
   vector<string> temp;
   fstream file;
   file.open(GRAMMAR_FILE_PATH);
   char str_file[100];
-  ;
   while (file.getline(str_file, 100)) {
     string str(str_file);
     temp.push_back(str);
   }
   for (int i = 0; i < temp.size(); i++) {
-    VN.insert(temp[i][0]);  //左边第一个字符为非终结符
+    VN.insert(temp[i][0]);  //存非终结符
     Grammar g;
     g.left = temp[i][0];
     g.right = temp[i].substr(3, temp[i].size() - 3);
     grammar.push_back(g);
     if (g.right == "$") toEpsilon.insert(g.left);
-    // 读终结符
+    // 存终结符
     for (int j = 3; j < temp[i].size(); j++) {
       if ((temp[i][j] < 'A' || temp[i][j] > 'Z') && temp[i][j] != '$')
         VT.insert(temp[i][j]);
     }
   }
   // 补充完toEpsilon的集合
-  int before_count = -1;
-  int next_count = toEpsilon.size();
-  while (next_count != before_count) {
+  int last_cnt = -1;
+  int VT_toEpsilon_cnt = toEpsilon.size();
+  while (VT_toEpsilon_cnt != last_cnt) {
     for (int i = 0; i < grammar.size(); i++) {
-      bool flag = true;
+      bool flag_isToEpsilon = true;
       for (int j = 0; j < grammar[i].right.size(); j++) {
         if (grammar[i].right[j] == '$' ||
             toEpsilon.find(grammar[i].right[j]) != toEpsilon.end())
           continue;
         else
-          flag = false;
+          flag_isToEpsilon = false;
       }
-      if (flag) toEpsilon.insert(grammar[i].left);
+      if (flag_isToEpsilon) toEpsilon.insert(grammar[i].left);
     }
-    before_count = next_count;
-    next_count = toEpsilon.size();
+    last_cnt = VT_toEpsilon_cnt;
+    VT_toEpsilon_cnt = toEpsilon.size();
   }
   file.close();
   // 分析词法分析器里是否有错误信息
@@ -231,21 +230,21 @@ void readGrammarFile() {
   file.open(TOKEN_FILE_PATH);
   while (file.getline(str_file, 100)) {
     string s = str_file;
-    string str = "";
-    string type = "";
+    string word = "";
+    string type_of_word = "";
     int i = 0;
     bool flag = false;
     for (int i = 0; i < s.length(); i++) {
       if (s[i] == ' ') {
         flag = true;
-        i += 9;
+        i += 9;//原token中word和type之间9个空格
       }
       if (!flag)
-        str += s[i];
+        word += s[i];
       else
-        type += s[i];
+        type_of_word += s[i];
     }
-    token += token_from_lex_to_grammar(str, type);
+    token += token_from_lex_to_grammar(word, type_of_word);
   }
   file.close();
   // 读一行有多少个token
@@ -258,53 +257,53 @@ void readGrammarFile() {
 }
 
 /* ****************** 语法分析*********************/
-// 求非终结符的First集
-void getFirstVT() {
+// @brief:  求First集（非终结符）
+void getFirstSet() {
   int before_sum = -1;
   int next_sum = 0;
   while (next_sum != before_sum) {
     for (int i = 0; i < grammar.size(); i++) {
-      string str = grammar[i].right;
-      int size = str.size();
+      string grammar_of_right = grammar[i].right;
+      int size = grammar_of_right.size();
 
       if (size == 1) {
-        // 终结符 或epsilon
-        if (str[0] == '$' || VT.find(str[0]) != VT.end()) {
-          FirstVT[grammar[i].left].insert(str[0]);
+        // A->a 或 A->epsilon：a和epsilon是A的First集的元素
+        if (grammar_of_right[0] == '$' || VT.find(grammar_of_right[0]) != VT.end()) {
+          FirstSet[grammar[i].left].insert(grammar_of_right[0]);
         } else {
-          // A -> B
-          set<char> temp = FirstVT[str[0]];
-          FirstVT[grammar[i].left].insert(temp.begin(), temp.end());
+          // A -> B：B的First集 属于 A的First集
+          set<char> temp = FirstSet[grammar_of_right[0]];
+          FirstSet[grammar[i].left].insert(temp.begin(), temp.end());
         }
       } else {
-        for (int j = 0; j < str.size(); j++) {
-          if (str[j] == '$')
+        for (int j = 0; j < grammar_of_right.size(); j++) {
+          if (grammar_of_right[j] == '$')
             continue;
-          else if (VT.find(str[j]) != VT.end()) {
-            // A->aB....
-            FirstVT[grammar[i].left].insert(str[j]);
+          else if (VT.find(grammar_of_right[j]) != VT.end()) {
+            // A->aB..或A->ab....：a是A的First集的元素
+            FirstSet[grammar[i].left].insert(grammar_of_right[j]);
             break;
           } else {
-            // A->BCD
-            set<char> temp = FirstVT[str[j]];
+            // A->BCX... 或A->BcX..
+            set<char> temp = FirstSet[grammar_of_right[j]];
             set<char>::iterator it = temp.find('$');
             if (it != temp.end()) {
-              //如果B可以推到epsilon
-              if (j != str.size() - 1) temp.erase(it);
-              FirstVT[grammar[i].left].insert(temp.begin(), temp.end());
+              //如果存在B->epsilon
+              if (j != grammar_of_right.size() - 1) temp.erase(it);
+              FirstSet[grammar[i].left].insert(temp.begin(), temp.end());
             } else {
-              //如果B不能推到epsilon
-              FirstVT[grammar[i].left].insert(temp.begin(), temp.end());
+              //如果不存在B->epsilon
+              FirstSet[grammar[i].left].insert(temp.begin(), temp.end());
               break;
             }
           }
         }
       }
     }
-    // 每轮统计FirstVT的集合总个数，如果不再改变时收敛
+    // 每轮统计First的集合中的元素总个数，如果不再改变时收敛
     int sum = 0;
-    for (map<char, set<char> >::iterator it = FirstVT.begin();
-         it != FirstVT.end(); it++) {
+    for (map<char, set<char> >::iterator it = FirstSet.begin();
+         it != FirstSet.end(); it++) {
       sum += (*it).second.size();
     }
     before_sum = next_sum;
@@ -324,15 +323,15 @@ set<char> getForward(char c, set<char> forward) {
     return s;
   } else {
     //是否按照toEpsilon来判断无区别
-    if (FirstVT[c].find('$') != FirstVT[c].end()) {
+    if (FirstSet[c].find('$') != FirstSet[c].end()) {
       // S->.SB,#      (epsilon belongs to B)
-      set<char> temp = FirstVT[c];
+      set<char> temp = FirstSet[c];
       temp.erase(temp.find('$'));
       temp.insert(forward.begin(), forward.end());
       return temp;
     } else {
       // S->.SB,#     (epsilon doesn't belong to B)
-      return FirstVT[c];
+      return FirstSet[c];
     }
   }
 }
@@ -645,7 +644,7 @@ void show(){
 	}
 	cout << endl << "FirstVT:" << endl;
 	map<char,set<char> >::iterator it_map;
-	for(it_map = FirstVT.begin();it_map != FirstVT.end();it_map++){
+	for(it_map = FirstSet.begin();it_map != FirstSet.end();it_map++){
 		cout << (*it_map).first << ":" ;
 		set<char> temp = (*it_map).second;
 		for(it = temp.begin();it != temp.end();it++){

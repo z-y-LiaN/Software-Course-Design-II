@@ -2,7 +2,7 @@
 int main(){
     memset(AG,0,sizeof(AG));
 	readGrammarFile();
-	getFirstVT();
+	getFirstSet();
 	create('Z',"S");
 	show();
 	scan(token);

@@ -51,13 +51,13 @@ typedef struct Item{
 
 
 
-extern vector<Grammar> grammar;//存放文法,文法中不得出现空行要不然会出现内存访问越界问题 
+extern vector<Grammar> grammar;                //存放文法,文法中不得出现空行要不然会出现内存访问越界问题 
 extern set<Item> Itemset[1000];               //存放LR(1)的项目集 
 extern int totalNodes;                       //最终的状态集的个数 
 extern set<char> VT;                         //存放文法中的终结符,其中不包括epsilon，epsilon单独处理 
 extern set<char> VN;                      //存放文法中的非终结符 
 extern set<char> toEpsilon;                  //存放能够推到epsilon的非终结符 
-extern map<char,set<char> > FirstVT;             //存文法中的非终结符对应的First集 
+extern map<char,set<char> > FirstSet;             //存文法中的First集 
 extern bool is_wrong;                          //判断词法分析器是否有错 
 extern string token;                       //存放从词法分析器里读来的token序列 
 extern vector<int> row;                        //存放每行有多少个token 
@@ -68,7 +68,7 @@ string token_from_grammar_to_lex(char c);
 void readGrammarFile();
 
 // 语法分析
-void getFirstVT();
+void getFirstSet();
 set<char> getForward(char c,set<char> forward);//前向搜索集
 set<Item> Go(char c,set<Item> itemset);//Go(I,X)
 void create(char left,string right);

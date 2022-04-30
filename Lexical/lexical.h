@@ -9,20 +9,20 @@
 #define MAX_NODES 255
 
 using namespace std;
+
 // 定义三元组保存NFA的一条的信息
 typedef struct Triad {
-  // 边的起点，边的输入（权重），边的终点
-  char startPoint, input, endPoint;
+  char startPoint, input, endPoint;// 边的起点，边的输入（权重），边的终点
 } Triad;
 
-// 定义NFA的结构体
+// 定义NFA的结构体：初态、终态、边的集合
 typedef struct NFA {
-  // 初态、终态、边
   char initialState;
   vector<char> finalState;
   vector<Triad> f;
 } NFA;
 
+// 定义DFA的结构体：初态，终态，边的结合
 typedef struct DFA {
   char initialState;
   vector<char> finalState;
@@ -32,10 +32,10 @@ typedef struct DFA {
 
 extern NFA nfa;                  //保存正规文法 转换成 的NFA
 extern char str_file[1000];      //保存文件里读出的内容
-extern vector<char> inchar;      //保存终结符VT
-extern vector<string> keywords;  //保存关键字
-extern vector<string> opt;       //保存操作符
-extern vector<string> limiter;   //保存界符
+extern vector<char> INCHAR;      //保存终结符VT
+extern vector<string> KEYWORDS;  //保存关键字
+extern vector<string> OPT;       //保存操作符
+extern vector<string> LIMITER;   //保存界符
 
 extern DFA dfa;
 extern bool Final[MAX_NODES];  //保存DFA状态集中哪些是终结符，便于O(1)查找

@@ -1,4 +1,4 @@
-ACTION-GOTO??:
+ACTION-GOTO±í:
              !      #      (      )      *      +      -      /      :      ;      <      =      >      a      b      c      d      e      f      g      h      i      j      k      l      m      n      p      r      s      t      u      v      w      x      {      }      A      B      C      D      E      F      G      H      I      O      S      W
       0     S1                                                                                                                                                                                                                                                                                                                                        2       
       1                                                                                                S3                                                                                                                                                                                                                                                     
