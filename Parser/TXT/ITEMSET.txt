@@ -1,0 +1,2000 @@
+ItemSet-0:
+S->!a<b>de(){A}, #     point position:0    index:1
+Z->S, #     point position:0    index:0
+
+ItemSet-1:
+S->!a<b>de(){A}, #     point position:1    index:1
+
+ItemSet-2:
+Z->S, #     point position:1    index:0
+
+ItemSet-3:
+S->!a<b>de(){A}, #     point position:2    index:1
+
+ItemSet-4:
+S->!a<b>de(){A}, #     point position:3    index:1
+
+ItemSet-5:
+S->!a<b>de(){A}, #     point position:4    index:1
+
+ItemSet-6:
+S->!a<b>de(){A}, #     point position:5    index:1
+
+ItemSet-7:
+S->!a<b>de(){A}, #     point position:6    index:1
+
+ItemSet-8:
+S->!a<b>de(){A}, #     point position:7    index:1
+
+ItemSet-9:
+S->!a<b>de(){A}, #     point position:8    index:1
+
+ItemSet-10:
+S->!a<b>de(){A}, #     point position:9    index:1
+
+ItemSet-11:
+A->$, }     point position:0    index:51
+A->;, }     point position:0    index:52
+A->DA, }     point position:0    index:57
+A->FA, }     point position:0    index:53
+A->HA, }     point position:0    index:56
+A->IA, }     point position:0    index:55
+A->WA, }     point position:0    index:54
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:24
+D->B;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:23
+D->C;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:25
+D->C;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:22
+D->di;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:30
+D->di;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:26
+D->fi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:31
+D->fi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:27
+D->gi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:32
+D->gi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:28
+D->hi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:33
+D->hi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:29
+F->p(E;C;E){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:37
+H->r(C){G}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:50
+I->m(C)E;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:41
+I->m(C)E;nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:43
+I->m(C)E;n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:42
+I->m(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:44
+I->m(C){A}nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:46
+I->m(C){A}n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:45
+S->!a<b>de(){A}, #     point position:10    index:1
+W->k{A}s(B);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:40
+W->k{A}s(C);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:39
+W->s(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:38
+
+ItemSet-12:
+A->;, }     point position:1    index:52
+
+ItemSet-13:
+S->!a<b>de(){A}, #     point position:11    index:1
+
+ItemSet-14:
+D->B;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:1    index:24
+D->B;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:1    index:23
+
+ItemSet-15:
+D->C;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:1    index:25
+D->C;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:1    index:22
+
+ItemSet-16:
+A->$, }     point position:0    index:51
+A->;, }     point position:0    index:52
+A->DA, }     point position:0    index:57
+A->DA, }     point position:1    index:57
+A->FA, }     point position:0    index:53
+A->HA, }     point position:0    index:56
+A->IA, }     point position:0    index:55
+A->WA, }     point position:0    index:54
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:24
+D->B;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:23
+D->C;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:25
+D->C;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:22
+D->di;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:30
+D->di;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:26
+D->fi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:31
+D->fi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:27
+D->gi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:32
+D->gi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:28
+D->hi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:33
+D->hi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:29
+F->p(E;C;E){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:37
+H->r(C){G}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:50
+I->m(C)E;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:41
+I->m(C)E;nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:43
+I->m(C)E;n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:42
+I->m(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:44
+I->m(C){A}nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:46
+I->m(C){A}n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:45
+W->k{A}s(B);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:40
+W->k{A}s(C);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:39
+W->s(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:38
+
+ItemSet-17:
+A->$, }     point position:0    index:51
+A->;, }     point position:0    index:52
+A->DA, }     point position:0    index:57
+A->FA, }     point position:0    index:53
+A->FA, }     point position:1    index:53
+A->HA, }     point position:0    index:56
+A->IA, }     point position:0    index:55
+A->WA, }     point position:0    index:54
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:24
+D->B;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:23
+D->C;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:25
+D->C;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:22
+D->di;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:30
+D->di;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:26
+D->fi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:31
+D->fi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:27
+D->gi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:32
+D->gi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:28
+D->hi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:33
+D->hi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:29
+F->p(E;C;E){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:37
+H->r(C){G}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:50
+I->m(C)E;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:41
+I->m(C)E;nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:43
+I->m(C)E;n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:42
+I->m(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:44
+I->m(C){A}nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:46
+I->m(C){A}n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:45
+W->k{A}s(B);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:40
+W->k{A}s(C);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:39
+W->s(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:38
+
+ItemSet-18:
+A->$, }     point position:0    index:51
+A->;, }     point position:0    index:52
+A->DA, }     point position:0    index:57
+A->FA, }     point position:0    index:53
+A->HA, }     point position:0    index:56
+A->HA, }     point position:1    index:56
+A->IA, }     point position:0    index:55
+A->WA, }     point position:0    index:54
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:24
+D->B;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:23
+D->C;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:25
+D->C;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:22
+D->di;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:30
+D->di;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:26
+D->fi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:31
+D->fi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:27
+D->gi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:32
+D->gi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:28
+D->hi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:33
+D->hi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:29
+F->p(E;C;E){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:37
+H->r(C){G}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:50
+I->m(C)E;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:41
+I->m(C)E;nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:43
+I->m(C)E;n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:42
+I->m(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:44
+I->m(C){A}nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:46
+I->m(C){A}n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:45
+W->k{A}s(B);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:40
+W->k{A}s(C);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:39
+W->s(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:38
+
+ItemSet-19:
+A->$, }     point position:0    index:51
+A->;, }     point position:0    index:52
+A->DA, }     point position:0    index:57
+A->FA, }     point position:0    index:53
+A->HA, }     point position:0    index:56
+A->IA, }     point position:0    index:55
+A->IA, }     point position:1    index:55
+A->WA, }     point position:0    index:54
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:24
+D->B;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:23
+D->C;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:25
+D->C;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:22
+D->di;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:30
+D->di;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:26
+D->fi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:31
+D->fi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:27
+D->gi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:32
+D->gi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:28
+D->hi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:33
+D->hi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:29
+F->p(E;C;E){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:37
+H->r(C){G}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:50
+I->m(C)E;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:41
+I->m(C)E;nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:43
+I->m(C)E;n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:42
+I->m(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:44
+I->m(C){A}nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:46
+I->m(C){A}n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:45
+W->k{A}s(B);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:40
+W->k{A}s(C);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:39
+W->s(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:38
+
+ItemSet-20:
+A->$, }     point position:0    index:51
+A->;, }     point position:0    index:52
+A->DA, }     point position:0    index:57
+A->FA, }     point position:0    index:53
+A->HA, }     point position:0    index:56
+A->IA, }     point position:0    index:55
+A->WA, }     point position:0    index:54
+A->WA, }     point position:1    index:54
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:24
+D->B;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:23
+D->C;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:25
+D->C;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:22
+D->di;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:30
+D->di;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:26
+D->fi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:31
+D->fi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:27
+D->gi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:32
+D->gi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:28
+D->hi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:33
+D->hi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:29
+F->p(E;C;E){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:37
+H->r(C){G}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:50
+I->m(C)E;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:41
+I->m(C)E;nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:43
+I->m(C)E;n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:42
+I->m(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:44
+I->m(C){A}nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:46
+I->m(C){A}n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:45
+W->k{A}s(B);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:40
+W->k{A}s(C);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:39
+W->s(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:38
+
+ItemSet-21:
+C->c, ;     point position:1    index:10
+C->cOC, ;     point position:1    index:8
+O->*, c/i     point position:0    index:15
+O->+, c/i     point position:0    index:13
+O->-, c/i     point position:0    index:14
+O->/, c/i     point position:0    index:16
+O-><, c/i     point position:0    index:18
+O->>, c/i     point position:0    index:17
+O->v, c/i     point position:0    index:19
+O->w, c/i     point position:0    index:20
+O->x, c/i     point position:0    index:21
+
+ItemSet-22:
+B->di=C, ;     point position:1    index:3
+D->di;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:1    index:30
+D->di;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:1    index:26
+
+ItemSet-23:
+B->fi=C, ;     point position:1    index:4
+D->fi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:1    index:31
+D->fi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:1    index:27
+
+ItemSet-24:
+B->gi=C, ;     point position:1    index:5
+D->gi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:1    index:32
+D->gi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:1    index:28
+
+ItemSet-25:
+B->hi=C, ;     point position:1    index:6
+D->hi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:1    index:33
+D->hi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:1    index:29
+
+ItemSet-26:
+B->i=C, ;     point position:1    index:2
+C->i, ;     point position:1    index:9
+C->iOC, ;     point position:1    index:7
+C->it, ;     point position:1    index:11
+C->iu, ;     point position:1    index:12
+O->*, c/i     point position:0    index:15
+O->+, c/i     point position:0    index:13
+O->-, c/i     point position:0    index:14
+O->/, c/i     point position:0    index:16
+O-><, c/i     point position:0    index:18
+O->>, c/i     point position:0    index:17
+O->v, c/i     point position:0    index:19
+O->w, c/i     point position:0    index:20
+O->x, c/i     point position:0    index:21
+
+ItemSet-27:
+W->k{A}s(B);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:1    index:40
+W->k{A}s(C);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:1    index:39
+
+ItemSet-28:
+I->m(C)E;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:1    index:41
+I->m(C)E;nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:1    index:43
+I->m(C)E;n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:1    index:42
+I->m(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:1    index:44
+I->m(C){A}nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:1    index:46
+I->m(C){A}n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:1    index:45
+
+ItemSet-29:
+F->p(E;C;E){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:1    index:37
+
+ItemSet-30:
+H->r(C){G}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:1    index:50
+
+ItemSet-31:
+W->s(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:1    index:38
+
+ItemSet-32:
+S->!a<b>de(){A}, #     point position:12    index:1
+
+ItemSet-33:
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:24
+D->B;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:2    index:24
+D->B;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:23
+D->B;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:2    index:23
+D->C;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:25
+D->C;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:22
+D->di;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:30
+D->di;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:26
+D->fi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:31
+D->fi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:27
+D->gi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:32
+D->gi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:28
+D->hi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:33
+D->hi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:29
+
+ItemSet-34:
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:24
+D->B;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:23
+D->C;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:25
+D->C;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:2    index:25
+D->C;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:22
+D->C;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:2    index:22
+D->di;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:30
+D->di;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:26
+D->fi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:31
+D->fi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:27
+D->gi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:32
+D->gi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:28
+D->hi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:33
+D->hi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:29
+
+ItemSet-35:
+A->DA, }     point position:2    index:57
+
+ItemSet-36:
+A->FA, }     point position:2    index:53
+
+ItemSet-37:
+A->HA, }     point position:2    index:56
+
+ItemSet-38:
+A->IA, }     point position:2    index:55
+
+ItemSet-39:
+A->WA, }     point position:2    index:54
+
+ItemSet-40:
+O->*, c/i     point position:1    index:15
+
+ItemSet-41:
+O->+, c/i     point position:1    index:13
+
+ItemSet-42:
+O->-, c/i     point position:1    index:14
+
+ItemSet-43:
+O->/, c/i     point position:1    index:16
+
+ItemSet-44:
+O-><, c/i     point position:1    index:18
+
+ItemSet-45:
+O->>, c/i     point position:1    index:17
+
+ItemSet-46:
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->cOC, ;     point position:2    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+
+ItemSet-47:
+O->v, c/i     point position:1    index:19
+
+ItemSet-48:
+O->w, c/i     point position:1    index:20
+
+ItemSet-49:
+O->x, c/i     point position:1    index:21
+
+ItemSet-50:
+B->di=C, ;     point position:2    index:3
+D->di;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:2    index:30
+D->di;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:2    index:26
+
+ItemSet-51:
+B->fi=C, ;     point position:2    index:4
+D->fi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:2    index:31
+D->fi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:2    index:27
+
+ItemSet-52:
+B->gi=C, ;     point position:2    index:5
+D->gi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:2    index:32
+D->gi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:2    index:28
+
+ItemSet-53:
+B->hi=C, ;     point position:2    index:6
+D->hi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:2    index:33
+D->hi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:2    index:29
+
+ItemSet-54:
+B->i=C, ;     point position:2    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+
+ItemSet-55:
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->iOC, ;     point position:2    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+
+ItemSet-56:
+C->it, ;     point position:2    index:11
+
+ItemSet-57:
+C->iu, ;     point position:2    index:12
+
+ItemSet-58:
+A->$, }     point position:0    index:51
+A->;, }     point position:0    index:52
+A->DA, }     point position:0    index:57
+A->FA, }     point position:0    index:53
+A->HA, }     point position:0    index:56
+A->IA, }     point position:0    index:55
+A->WA, }     point position:0    index:54
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:24
+D->B;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:23
+D->C;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:25
+D->C;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:22
+D->di;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:30
+D->di;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:26
+D->fi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:31
+D->fi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:27
+D->gi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:32
+D->gi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:28
+D->hi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:33
+D->hi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:29
+F->p(E;C;E){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:37
+H->r(C){G}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:50
+I->m(C)E;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:41
+I->m(C)E;nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:43
+I->m(C)E;n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:42
+I->m(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:44
+I->m(C){A}nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:46
+I->m(C){A}n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:45
+W->k{A}s(B);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:40
+W->k{A}s(B);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:2    index:40
+W->k{A}s(C);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:39
+W->k{A}s(C);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:2    index:39
+W->s(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:38
+
+ItemSet-59:
+C->c, )     point position:0    index:10
+C->cOC, )     point position:0    index:8
+C->i, )     point position:0    index:9
+C->iOC, )     point position:0    index:7
+C->it, )     point position:0    index:11
+C->iu, )     point position:0    index:12
+I->m(C)E;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:2    index:41
+I->m(C)E;nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:2    index:43
+I->m(C)E;n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:2    index:42
+I->m(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:2    index:44
+I->m(C){A}nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:2    index:46
+I->m(C){A}n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:2    index:45
+
+ItemSet-60:
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+E->$, ;     point position:0    index:36
+E->B, ;     point position:0    index:34
+E->C, ;     point position:0    index:35
+F->p(E;C;E){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:2    index:37
+
+ItemSet-61:
+C->c, )     point position:0    index:10
+C->cOC, )     point position:0    index:8
+C->i, )     point position:0    index:9
+C->iOC, )     point position:0    index:7
+C->it, )     point position:0    index:11
+C->iu, )     point position:0    index:12
+H->r(C){G}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:2    index:50
+
+ItemSet-62:
+C->c, )     point position:0    index:10
+C->cOC, )     point position:0    index:8
+C->i, )     point position:0    index:9
+C->iOC, )     point position:0    index:7
+C->it, )     point position:0    index:11
+C->iu, )     point position:0    index:12
+W->s(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:2    index:38
+
+ItemSet-63:
+D->B;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:3    index:23
+
+ItemSet-64:
+D->C;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:3    index:22
+
+ItemSet-65:
+C->cOC, ;     point position:3    index:8
+
+ItemSet-66:
+C->i, ;     point position:1    index:9
+C->iOC, ;     point position:1    index:7
+C->it, ;     point position:1    index:11
+C->iu, ;     point position:1    index:12
+O->*, c/i     point position:0    index:15
+O->+, c/i     point position:0    index:13
+O->-, c/i     point position:0    index:14
+O->/, c/i     point position:0    index:16
+O-><, c/i     point position:0    index:18
+O->>, c/i     point position:0    index:17
+O->v, c/i     point position:0    index:19
+O->w, c/i     point position:0    index:20
+O->x, c/i     point position:0    index:21
+
+ItemSet-67:
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:24
+D->B;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:23
+D->C;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:25
+D->C;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:22
+D->di;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:30
+D->di;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:3    index:30
+D->di;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:26
+D->di;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:3    index:26
+D->fi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:31
+D->fi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:27
+D->gi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:32
+D->gi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:28
+D->hi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:33
+D->hi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:29
+
+ItemSet-68:
+B->di=C, ;     point position:3    index:3
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+
+ItemSet-69:
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:24
+D->B;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:23
+D->C;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:25
+D->C;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:22
+D->di;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:30
+D->di;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:26
+D->fi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:31
+D->fi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:3    index:31
+D->fi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:27
+D->fi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:3    index:27
+D->gi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:32
+D->gi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:28
+D->hi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:33
+D->hi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:29
+
+ItemSet-70:
+B->fi=C, ;     point position:3    index:4
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+
+ItemSet-71:
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:24
+D->B;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:23
+D->C;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:25
+D->C;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:22
+D->di;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:30
+D->di;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:26
+D->fi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:31
+D->fi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:27
+D->gi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:32
+D->gi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:3    index:32
+D->gi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:28
+D->gi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:3    index:28
+D->hi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:33
+D->hi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:29
+
+ItemSet-72:
+B->gi=C, ;     point position:3    index:5
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+
+ItemSet-73:
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:24
+D->B;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:23
+D->C;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:25
+D->C;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:22
+D->di;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:30
+D->di;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:26
+D->fi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:31
+D->fi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:27
+D->gi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:32
+D->gi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:28
+D->hi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:33
+D->hi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:3    index:33
+D->hi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:29
+D->hi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:3    index:29
+
+ItemSet-74:
+B->hi=C, ;     point position:3    index:6
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+
+ItemSet-75:
+B->i=C, ;     point position:3    index:2
+
+ItemSet-76:
+C->iOC, ;     point position:3    index:7
+
+ItemSet-77:
+W->k{A}s(B);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:3    index:40
+W->k{A}s(C);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:3    index:39
+
+ItemSet-78:
+I->m(C)E;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:3    index:41
+I->m(C)E;nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:3    index:43
+I->m(C)E;n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:3    index:42
+I->m(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:3    index:44
+I->m(C){A}nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:3    index:46
+I->m(C){A}n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:3    index:45
+
+ItemSet-79:
+C->c, )     point position:1    index:10
+C->cOC, )     point position:1    index:8
+O->*, c/i     point position:0    index:15
+O->+, c/i     point position:0    index:13
+O->-, c/i     point position:0    index:14
+O->/, c/i     point position:0    index:16
+O-><, c/i     point position:0    index:18
+O->>, c/i     point position:0    index:17
+O->v, c/i     point position:0    index:19
+O->w, c/i     point position:0    index:20
+O->x, c/i     point position:0    index:21
+
+ItemSet-80:
+C->i, )     point position:1    index:9
+C->iOC, )     point position:1    index:7
+C->it, )     point position:1    index:11
+C->iu, )     point position:1    index:12
+O->*, c/i     point position:0    index:15
+O->+, c/i     point position:0    index:13
+O->-, c/i     point position:0    index:14
+O->/, c/i     point position:0    index:16
+O-><, c/i     point position:0    index:18
+O->>, c/i     point position:0    index:17
+O->v, c/i     point position:0    index:19
+O->w, c/i     point position:0    index:20
+O->x, c/i     point position:0    index:21
+
+ItemSet-81:
+E->B, ;     point position:1    index:34
+
+ItemSet-82:
+E->C, ;     point position:1    index:35
+
+ItemSet-83:
+F->p(E;C;E){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:3    index:37
+
+ItemSet-84:
+B->di=C, ;     point position:1    index:3
+
+ItemSet-85:
+B->fi=C, ;     point position:1    index:4
+
+ItemSet-86:
+B->gi=C, ;     point position:1    index:5
+
+ItemSet-87:
+B->hi=C, ;     point position:1    index:6
+
+ItemSet-88:
+H->r(C){G}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:3    index:50
+
+ItemSet-89:
+W->s(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:3    index:38
+
+ItemSet-90:
+D->di;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:4    index:26
+
+ItemSet-91:
+B->di=C, ;     point position:4    index:3
+
+ItemSet-92:
+D->fi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:4    index:27
+
+ItemSet-93:
+B->fi=C, ;     point position:4    index:4
+
+ItemSet-94:
+D->gi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:4    index:28
+
+ItemSet-95:
+B->gi=C, ;     point position:4    index:5
+
+ItemSet-96:
+D->hi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:4    index:29
+
+ItemSet-97:
+B->hi=C, ;     point position:4    index:6
+
+ItemSet-98:
+W->k{A}s(B);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:4    index:40
+W->k{A}s(C);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:4    index:39
+
+ItemSet-99:
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+E->$, ;     point position:0    index:36
+E->B, ;     point position:0    index:34
+E->C, ;     point position:0    index:35
+I->m(C)E;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:4    index:41
+I->m(C)E;nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:4    index:43
+I->m(C)E;n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:4    index:42
+I->m(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:4    index:44
+I->m(C){A}nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:4    index:46
+I->m(C){A}n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:4    index:45
+
+ItemSet-100:
+C->c, )     point position:0    index:10
+C->cOC, )     point position:0    index:8
+C->cOC, )     point position:2    index:8
+C->i, )     point position:0    index:9
+C->iOC, )     point position:0    index:7
+C->it, )     point position:0    index:11
+C->iu, )     point position:0    index:12
+
+ItemSet-101:
+C->c, )     point position:0    index:10
+C->cOC, )     point position:0    index:8
+C->i, )     point position:0    index:9
+C->iOC, )     point position:0    index:7
+C->iOC, )     point position:2    index:7
+C->it, )     point position:0    index:11
+C->iu, )     point position:0    index:12
+
+ItemSet-102:
+C->it, )     point position:2    index:11
+
+ItemSet-103:
+C->iu, )     point position:2    index:12
+
+ItemSet-104:
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+F->p(E;C;E){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:4    index:37
+
+ItemSet-105:
+B->di=C, ;     point position:2    index:3
+
+ItemSet-106:
+B->fi=C, ;     point position:2    index:4
+
+ItemSet-107:
+B->gi=C, ;     point position:2    index:5
+
+ItemSet-108:
+B->hi=C, ;     point position:2    index:6
+
+ItemSet-109:
+H->r(C){G}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:4    index:50
+
+ItemSet-110:
+W->s(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:4    index:38
+
+ItemSet-111:
+W->k{A}s(B);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:5    index:40
+W->k{A}s(C);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:5    index:39
+
+ItemSet-112:
+I->m(C)E;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:5    index:41
+I->m(C)E;nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:5    index:43
+I->m(C)E;n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:5    index:42
+
+ItemSet-113:
+A->$, }     point position:0    index:51
+A->;, }     point position:0    index:52
+A->DA, }     point position:0    index:57
+A->FA, }     point position:0    index:53
+A->HA, }     point position:0    index:56
+A->IA, }     point position:0    index:55
+A->WA, }     point position:0    index:54
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:24
+D->B;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:23
+D->C;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:25
+D->C;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:22
+D->di;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:30
+D->di;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:26
+D->fi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:31
+D->fi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:27
+D->gi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:32
+D->gi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:28
+D->hi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:33
+D->hi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:29
+F->p(E;C;E){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:37
+H->r(C){G}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:50
+I->m(C)E;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:41
+I->m(C)E;nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:43
+I->m(C)E;n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:42
+I->m(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:44
+I->m(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:5    index:44
+I->m(C){A}nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:46
+I->m(C){A}nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:5    index:46
+I->m(C){A}n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:45
+I->m(C){A}n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:5    index:45
+W->k{A}s(B);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:40
+W->k{A}s(C);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:39
+W->s(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:38
+
+ItemSet-114:
+C->cOC, )     point position:3    index:8
+
+ItemSet-115:
+C->iOC, )     point position:3    index:7
+
+ItemSet-116:
+F->p(E;C;E){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:5    index:37
+
+ItemSet-117:
+G->$, }     point position:0    index:49
+G->jc:DG, }     point position:0    index:47
+G->l:D, }     point position:0    index:48
+H->r(C){G}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:5    index:50
+
+ItemSet-118:
+A->$, }     point position:0    index:51
+A->;, }     point position:0    index:52
+A->DA, }     point position:0    index:57
+A->FA, }     point position:0    index:53
+A->HA, }     point position:0    index:56
+A->IA, }     point position:0    index:55
+A->WA, }     point position:0    index:54
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:24
+D->B;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:23
+D->C;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:25
+D->C;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:22
+D->di;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:30
+D->di;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:26
+D->fi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:31
+D->fi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:27
+D->gi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:32
+D->gi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:28
+D->hi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:33
+D->hi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:29
+F->p(E;C;E){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:37
+H->r(C){G}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:50
+I->m(C)E;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:41
+I->m(C)E;nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:43
+I->m(C)E;n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:42
+I->m(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:44
+I->m(C){A}nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:46
+I->m(C){A}n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:45
+W->k{A}s(B);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:40
+W->k{A}s(C);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:39
+W->s(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:38
+W->s(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:5    index:38
+
+ItemSet-119:
+B->di=C, )     point position:0    index:3
+B->fi=C, )     point position:0    index:4
+B->gi=C, )     point position:0    index:5
+B->hi=C, )     point position:0    index:6
+B->i=C, )     point position:0    index:2
+C->c, )     point position:0    index:10
+C->cOC, )     point position:0    index:8
+C->i, )     point position:0    index:9
+C->iOC, )     point position:0    index:7
+C->it, )     point position:0    index:11
+C->iu, )     point position:0    index:12
+W->k{A}s(B);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:6    index:40
+W->k{A}s(C);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:6    index:39
+
+ItemSet-120:
+I->m(C)E;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:6    index:41
+I->m(C)E;nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:6    index:43
+I->m(C)E;n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:6    index:42
+
+ItemSet-121:
+I->m(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:6    index:44
+I->m(C){A}nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:6    index:46
+I->m(C){A}n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:6    index:45
+
+ItemSet-122:
+B->di=C, )     point position:0    index:3
+B->fi=C, )     point position:0    index:4
+B->gi=C, )     point position:0    index:5
+B->hi=C, )     point position:0    index:6
+B->i=C, )     point position:0    index:2
+C->c, )     point position:0    index:10
+C->cOC, )     point position:0    index:8
+C->i, )     point position:0    index:9
+C->iOC, )     point position:0    index:7
+C->it, )     point position:0    index:11
+C->iu, )     point position:0    index:12
+E->$, )     point position:0    index:36
+E->B, )     point position:0    index:34
+E->C, )     point position:0    index:35
+F->p(E;C;E){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:6    index:37
+
+ItemSet-123:
+H->r(C){G}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:6    index:50
+
+ItemSet-124:
+G->jc:DG, }     point position:1    index:47
+
+ItemSet-125:
+G->l:D, }     point position:1    index:48
+
+ItemSet-126:
+W->s(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:6    index:38
+
+ItemSet-127:
+W->k{A}s(B);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:7    index:40
+
+ItemSet-128:
+W->k{A}s(C);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:7    index:39
+
+ItemSet-129:
+B->di=C, )     point position:1    index:3
+
+ItemSet-130:
+B->fi=C, )     point position:1    index:4
+
+ItemSet-131:
+B->gi=C, )     point position:1    index:5
+
+ItemSet-132:
+B->hi=C, )     point position:1    index:6
+
+ItemSet-133:
+B->i=C, )     point position:1    index:2
+C->i, )     point position:1    index:9
+C->iOC, )     point position:1    index:7
+C->it, )     point position:1    index:11
+C->iu, )     point position:1    index:12
+O->*, c/i     point position:0    index:15
+O->+, c/i     point position:0    index:13
+O->-, c/i     point position:0    index:14
+O->/, c/i     point position:0    index:16
+O-><, c/i     point position:0    index:18
+O->>, c/i     point position:0    index:17
+O->v, c/i     point position:0    index:19
+O->w, c/i     point position:0    index:20
+O->x, c/i     point position:0    index:21
+
+ItemSet-134:
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+E->$, ;     point position:0    index:36
+E->B, ;     point position:0    index:34
+E->C, ;     point position:0    index:35
+I->m(C)E;nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:7    index:43
+I->m(C)E;n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:7    index:42
+
+ItemSet-135:
+I->m(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:7    index:44
+I->m(C){A}nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:7    index:46
+I->m(C){A}n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:7    index:45
+
+ItemSet-136:
+E->B, )     point position:1    index:34
+
+ItemSet-137:
+E->C, )     point position:1    index:35
+
+ItemSet-138:
+F->p(E;C;E){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:7    index:37
+
+ItemSet-139:
+H->r(C){G}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:7    index:50
+
+ItemSet-140:
+G->jc:DG, }     point position:2    index:47
+
+ItemSet-141:
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, }     point position:0    index:24
+D->B;D, }     point position:0    index:23
+D->C;, }     point position:0    index:25
+D->C;D, }     point position:0    index:22
+D->di;, }     point position:0    index:30
+D->di;D, }     point position:0    index:26
+D->fi;, }     point position:0    index:31
+D->fi;D, }     point position:0    index:27
+D->gi;, }     point position:0    index:32
+D->gi;D, }     point position:0    index:28
+D->hi;, }     point position:0    index:33
+D->hi;D, }     point position:0    index:29
+G->l:D, }     point position:2    index:48
+
+ItemSet-142:
+W->s(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:7    index:38
+
+ItemSet-143:
+W->k{A}s(B);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:8    index:40
+
+ItemSet-144:
+W->k{A}s(C);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:8    index:39
+
+ItemSet-145:
+B->di=C, )     point position:2    index:3
+
+ItemSet-146:
+B->fi=C, )     point position:2    index:4
+
+ItemSet-147:
+B->gi=C, )     point position:2    index:5
+
+ItemSet-148:
+B->hi=C, )     point position:2    index:6
+
+ItemSet-149:
+B->i=C, )     point position:2    index:2
+C->c, )     point position:0    index:10
+C->cOC, )     point position:0    index:8
+C->i, )     point position:0    index:9
+C->iOC, )     point position:0    index:7
+C->it, )     point position:0    index:11
+C->iu, )     point position:0    index:12
+
+ItemSet-150:
+I->m(C)E;nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:8    index:43
+
+ItemSet-151:
+A->$, }     point position:0    index:51
+A->;, }     point position:0    index:52
+A->DA, }     point position:0    index:57
+A->FA, }     point position:0    index:53
+A->HA, }     point position:0    index:56
+A->IA, }     point position:0    index:55
+A->WA, }     point position:0    index:54
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:24
+D->B;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:23
+D->C;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:25
+D->C;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:22
+D->di;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:30
+D->di;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:26
+D->fi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:31
+D->fi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:27
+D->gi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:32
+D->gi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:28
+D->hi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:33
+D->hi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:29
+F->p(E;C;E){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:37
+H->r(C){G}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:50
+I->m(C)E;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:41
+I->m(C)E;nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:43
+I->m(C)E;n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:42
+I->m(C)E;n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:8    index:42
+I->m(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:44
+I->m(C){A}nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:46
+I->m(C){A}n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:45
+W->k{A}s(B);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:40
+W->k{A}s(C);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:39
+W->s(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:38
+
+ItemSet-152:
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+E->$, ;     point position:0    index:36
+E->B, ;     point position:0    index:34
+E->C, ;     point position:0    index:35
+I->m(C){A}nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:8    index:46
+I->m(C){A}n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:8    index:45
+
+ItemSet-153:
+F->p(E;C;E){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:8    index:37
+
+ItemSet-154:
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, j/l/}     point position:0    index:24
+D->B;D, j/l/}     point position:0    index:23
+D->C;, j/l/}     point position:0    index:25
+D->C;D, j/l/}     point position:0    index:22
+D->di;, j/l/}     point position:0    index:30
+D->di;D, j/l/}     point position:0    index:26
+D->fi;, j/l/}     point position:0    index:31
+D->fi;D, j/l/}     point position:0    index:27
+D->gi;, j/l/}     point position:0    index:32
+D->gi;D, j/l/}     point position:0    index:28
+D->hi;, j/l/}     point position:0    index:33
+D->hi;D, j/l/}     point position:0    index:29
+G->jc:DG, }     point position:3    index:47
+
+ItemSet-155:
+D->B;, }     point position:1    index:24
+D->B;D, }     point position:1    index:23
+
+ItemSet-156:
+D->C;, }     point position:1    index:25
+D->C;D, }     point position:1    index:22
+
+ItemSet-157:
+G->l:D, }     point position:3    index:48
+
+ItemSet-158:
+B->di=C, ;     point position:1    index:3
+D->di;, }     point position:1    index:30
+D->di;D, }     point position:1    index:26
+
+ItemSet-159:
+B->fi=C, ;     point position:1    index:4
+D->fi;, }     point position:1    index:31
+D->fi;D, }     point position:1    index:27
+
+ItemSet-160:
+B->gi=C, ;     point position:1    index:5
+D->gi;, }     point position:1    index:32
+D->gi;D, }     point position:1    index:28
+
+ItemSet-161:
+B->hi=C, ;     point position:1    index:6
+D->hi;, }     point position:1    index:33
+D->hi;D, }     point position:1    index:29
+
+ItemSet-162:
+W->k{A}s(B);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:9    index:40
+
+ItemSet-163:
+W->k{A}s(C);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:9    index:39
+
+ItemSet-164:
+B->di=C, )     point position:3    index:3
+C->c, )     point position:0    index:10
+C->cOC, )     point position:0    index:8
+C->i, )     point position:0    index:9
+C->iOC, )     point position:0    index:7
+C->it, )     point position:0    index:11
+C->iu, )     point position:0    index:12
+
+ItemSet-165:
+B->fi=C, )     point position:3    index:4
+C->c, )     point position:0    index:10
+C->cOC, )     point position:0    index:8
+C->i, )     point position:0    index:9
+C->iOC, )     point position:0    index:7
+C->it, )     point position:0    index:11
+C->iu, )     point position:0    index:12
+
+ItemSet-166:
+B->gi=C, )     point position:3    index:5
+C->c, )     point position:0    index:10
+C->cOC, )     point position:0    index:8
+C->i, )     point position:0    index:9
+C->iOC, )     point position:0    index:7
+C->it, )     point position:0    index:11
+C->iu, )     point position:0    index:12
+
+ItemSet-167:
+B->hi=C, )     point position:3    index:6
+C->c, )     point position:0    index:10
+C->cOC, )     point position:0    index:8
+C->i, )     point position:0    index:9
+C->iOC, )     point position:0    index:7
+C->it, )     point position:0    index:11
+C->iu, )     point position:0    index:12
+
+ItemSet-168:
+B->i=C, )     point position:3    index:2
+
+ItemSet-169:
+I->m(C)E;nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:9    index:43
+
+ItemSet-170:
+I->m(C)E;n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:9    index:42
+
+ItemSet-171:
+I->m(C){A}nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:9    index:46
+
+ItemSet-172:
+A->$, }     point position:0    index:51
+A->;, }     point position:0    index:52
+A->DA, }     point position:0    index:57
+A->FA, }     point position:0    index:53
+A->HA, }     point position:0    index:56
+A->IA, }     point position:0    index:55
+A->WA, }     point position:0    index:54
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:24
+D->B;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:23
+D->C;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:25
+D->C;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:22
+D->di;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:30
+D->di;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:26
+D->fi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:31
+D->fi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:27
+D->gi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:32
+D->gi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:28
+D->hi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:33
+D->hi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:29
+F->p(E;C;E){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:37
+H->r(C){G}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:50
+I->m(C)E;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:41
+I->m(C)E;nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:43
+I->m(C)E;n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:42
+I->m(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:44
+I->m(C){A}nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:46
+I->m(C){A}n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:45
+I->m(C){A}n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:9    index:45
+W->k{A}s(B);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:40
+W->k{A}s(C);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:39
+W->s(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:38
+
+ItemSet-173:
+A->$, }     point position:0    index:51
+A->;, }     point position:0    index:52
+A->DA, }     point position:0    index:57
+A->FA, }     point position:0    index:53
+A->HA, }     point position:0    index:56
+A->IA, }     point position:0    index:55
+A->WA, }     point position:0    index:54
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:24
+D->B;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:23
+D->C;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:25
+D->C;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:22
+D->di;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:30
+D->di;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:26
+D->fi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:31
+D->fi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:27
+D->gi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:32
+D->gi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:28
+D->hi;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:33
+D->hi;D, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:29
+F->p(E;C;E){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:37
+F->p(E;C;E){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:9    index:37
+H->r(C){G}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:50
+I->m(C)E;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:41
+I->m(C)E;nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:43
+I->m(C)E;n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:42
+I->m(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:44
+I->m(C){A}nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:46
+I->m(C){A}n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:45
+W->k{A}s(B);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:40
+W->k{A}s(C);, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:39
+W->s(C){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:0    index:38
+
+ItemSet-174:
+D->B;, j/l/}     point position:1    index:24
+D->B;D, j/l/}     point position:1    index:23
+
+ItemSet-175:
+D->C;, j/l/}     point position:1    index:25
+D->C;D, j/l/}     point position:1    index:22
+
+ItemSet-176:
+G->$, }     point position:0    index:49
+G->jc:DG, }     point position:0    index:47
+G->jc:DG, }     point position:4    index:47
+G->l:D, }     point position:0    index:48
+
+ItemSet-177:
+B->di=C, ;     point position:1    index:3
+D->di;, j/l/}     point position:1    index:30
+D->di;D, j/l/}     point position:1    index:26
+
+ItemSet-178:
+B->fi=C, ;     point position:1    index:4
+D->fi;, j/l/}     point position:1    index:31
+D->fi;D, j/l/}     point position:1    index:27
+
+ItemSet-179:
+B->gi=C, ;     point position:1    index:5
+D->gi;, j/l/}     point position:1    index:32
+D->gi;D, j/l/}     point position:1    index:28
+
+ItemSet-180:
+B->hi=C, ;     point position:1    index:6
+D->hi;, j/l/}     point position:1    index:33
+D->hi;D, j/l/}     point position:1    index:29
+
+ItemSet-181:
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, }     point position:0    index:24
+D->B;, }     point position:2    index:24
+D->B;D, }     point position:0    index:23
+D->B;D, }     point position:2    index:23
+D->C;, }     point position:0    index:25
+D->C;D, }     point position:0    index:22
+D->di;, }     point position:0    index:30
+D->di;D, }     point position:0    index:26
+D->fi;, }     point position:0    index:31
+D->fi;D, }     point position:0    index:27
+D->gi;, }     point position:0    index:32
+D->gi;D, }     point position:0    index:28
+D->hi;, }     point position:0    index:33
+D->hi;D, }     point position:0    index:29
+
+ItemSet-182:
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, }     point position:0    index:24
+D->B;D, }     point position:0    index:23
+D->C;, }     point position:0    index:25
+D->C;, }     point position:2    index:25
+D->C;D, }     point position:0    index:22
+D->C;D, }     point position:2    index:22
+D->di;, }     point position:0    index:30
+D->di;D, }     point position:0    index:26
+D->fi;, }     point position:0    index:31
+D->fi;D, }     point position:0    index:27
+D->gi;, }     point position:0    index:32
+D->gi;D, }     point position:0    index:28
+D->hi;, }     point position:0    index:33
+D->hi;D, }     point position:0    index:29
+
+ItemSet-183:
+B->di=C, ;     point position:2    index:3
+D->di;, }     point position:2    index:30
+D->di;D, }     point position:2    index:26
+
+ItemSet-184:
+B->fi=C, ;     point position:2    index:4
+D->fi;, }     point position:2    index:31
+D->fi;D, }     point position:2    index:27
+
+ItemSet-185:
+B->gi=C, ;     point position:2    index:5
+D->gi;, }     point position:2    index:32
+D->gi;D, }     point position:2    index:28
+
+ItemSet-186:
+B->hi=C, ;     point position:2    index:6
+D->hi;, }     point position:2    index:33
+D->hi;D, }     point position:2    index:29
+
+ItemSet-187:
+B->di=C, )     point position:4    index:3
+
+ItemSet-188:
+B->fi=C, )     point position:4    index:4
+
+ItemSet-189:
+B->gi=C, )     point position:4    index:5
+
+ItemSet-190:
+B->hi=C, )     point position:4    index:6
+
+ItemSet-191:
+I->m(C)E;n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:10    index:42
+
+ItemSet-192:
+I->m(C){A}nE;, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:10    index:46
+
+ItemSet-193:
+I->m(C){A}n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:10    index:45
+
+ItemSet-194:
+F->p(E;C;E){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:10    index:37
+
+ItemSet-195:
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, j/l/}     point position:0    index:24
+D->B;, j/l/}     point position:2    index:24
+D->B;D, j/l/}     point position:0    index:23
+D->B;D, j/l/}     point position:2    index:23
+D->C;, j/l/}     point position:0    index:25
+D->C;D, j/l/}     point position:0    index:22
+D->di;, j/l/}     point position:0    index:30
+D->di;D, j/l/}     point position:0    index:26
+D->fi;, j/l/}     point position:0    index:31
+D->fi;D, j/l/}     point position:0    index:27
+D->gi;, j/l/}     point position:0    index:32
+D->gi;D, j/l/}     point position:0    index:28
+D->hi;, j/l/}     point position:0    index:33
+D->hi;D, j/l/}     point position:0    index:29
+
+ItemSet-196:
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, j/l/}     point position:0    index:24
+D->B;D, j/l/}     point position:0    index:23
+D->C;, j/l/}     point position:0    index:25
+D->C;, j/l/}     point position:2    index:25
+D->C;D, j/l/}     point position:0    index:22
+D->C;D, j/l/}     point position:2    index:22
+D->di;, j/l/}     point position:0    index:30
+D->di;D, j/l/}     point position:0    index:26
+D->fi;, j/l/}     point position:0    index:31
+D->fi;D, j/l/}     point position:0    index:27
+D->gi;, j/l/}     point position:0    index:32
+D->gi;D, j/l/}     point position:0    index:28
+D->hi;, j/l/}     point position:0    index:33
+D->hi;D, j/l/}     point position:0    index:29
+
+ItemSet-197:
+G->jc:DG, }     point position:5    index:47
+
+ItemSet-198:
+B->di=C, ;     point position:2    index:3
+D->di;, j/l/}     point position:2    index:30
+D->di;D, j/l/}     point position:2    index:26
+
+ItemSet-199:
+B->fi=C, ;     point position:2    index:4
+D->fi;, j/l/}     point position:2    index:31
+D->fi;D, j/l/}     point position:2    index:27
+
+ItemSet-200:
+B->gi=C, ;     point position:2    index:5
+D->gi;, j/l/}     point position:2    index:32
+D->gi;D, j/l/}     point position:2    index:28
+
+ItemSet-201:
+B->hi=C, ;     point position:2    index:6
+D->hi;, j/l/}     point position:2    index:33
+D->hi;D, j/l/}     point position:2    index:29
+
+ItemSet-202:
+D->B;D, }     point position:3    index:23
+
+ItemSet-203:
+D->C;D, }     point position:3    index:22
+
+ItemSet-204:
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, }     point position:0    index:24
+D->B;D, }     point position:0    index:23
+D->C;, }     point position:0    index:25
+D->C;D, }     point position:0    index:22
+D->di;, }     point position:0    index:30
+D->di;, }     point position:3    index:30
+D->di;D, }     point position:0    index:26
+D->di;D, }     point position:3    index:26
+D->fi;, }     point position:0    index:31
+D->fi;D, }     point position:0    index:27
+D->gi;, }     point position:0    index:32
+D->gi;D, }     point position:0    index:28
+D->hi;, }     point position:0    index:33
+D->hi;D, }     point position:0    index:29
+
+ItemSet-205:
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, }     point position:0    index:24
+D->B;D, }     point position:0    index:23
+D->C;, }     point position:0    index:25
+D->C;D, }     point position:0    index:22
+D->di;, }     point position:0    index:30
+D->di;D, }     point position:0    index:26
+D->fi;, }     point position:0    index:31
+D->fi;, }     point position:3    index:31
+D->fi;D, }     point position:0    index:27
+D->fi;D, }     point position:3    index:27
+D->gi;, }     point position:0    index:32
+D->gi;D, }     point position:0    index:28
+D->hi;, }     point position:0    index:33
+D->hi;D, }     point position:0    index:29
+
+ItemSet-206:
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, }     point position:0    index:24
+D->B;D, }     point position:0    index:23
+D->C;, }     point position:0    index:25
+D->C;D, }     point position:0    index:22
+D->di;, }     point position:0    index:30
+D->di;D, }     point position:0    index:26
+D->fi;, }     point position:0    index:31
+D->fi;D, }     point position:0    index:27
+D->gi;, }     point position:0    index:32
+D->gi;, }     point position:3    index:32
+D->gi;D, }     point position:0    index:28
+D->gi;D, }     point position:3    index:28
+D->hi;, }     point position:0    index:33
+D->hi;D, }     point position:0    index:29
+
+ItemSet-207:
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, }     point position:0    index:24
+D->B;D, }     point position:0    index:23
+D->C;, }     point position:0    index:25
+D->C;D, }     point position:0    index:22
+D->di;, }     point position:0    index:30
+D->di;D, }     point position:0    index:26
+D->fi;, }     point position:0    index:31
+D->fi;D, }     point position:0    index:27
+D->gi;, }     point position:0    index:32
+D->gi;D, }     point position:0    index:28
+D->hi;, }     point position:0    index:33
+D->hi;, }     point position:3    index:33
+D->hi;D, }     point position:0    index:29
+D->hi;D, }     point position:3    index:29
+
+ItemSet-208:
+I->m(C){A}n{A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:11    index:45
+
+ItemSet-209:
+F->p(E;C;E){A}, ;/c/d/f/g/h/i/k/m/p/r/s/}     point position:11    index:37
+
+ItemSet-210:
+D->B;D, j/l/}     point position:3    index:23
+
+ItemSet-211:
+D->C;D, j/l/}     point position:3    index:22
+
+ItemSet-212:
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, j/l/}     point position:0    index:24
+D->B;D, j/l/}     point position:0    index:23
+D->C;, j/l/}     point position:0    index:25
+D->C;D, j/l/}     point position:0    index:22
+D->di;, j/l/}     point position:0    index:30
+D->di;, j/l/}     point position:3    index:30
+D->di;D, j/l/}     point position:0    index:26
+D->di;D, j/l/}     point position:3    index:26
+D->fi;, j/l/}     point position:0    index:31
+D->fi;D, j/l/}     point position:0    index:27
+D->gi;, j/l/}     point position:0    index:32
+D->gi;D, j/l/}     point position:0    index:28
+D->hi;, j/l/}     point position:0    index:33
+D->hi;D, j/l/}     point position:0    index:29
+
+ItemSet-213:
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, j/l/}     point position:0    index:24
+D->B;D, j/l/}     point position:0    index:23
+D->C;, j/l/}     point position:0    index:25
+D->C;D, j/l/}     point position:0    index:22
+D->di;, j/l/}     point position:0    index:30
+D->di;D, j/l/}     point position:0    index:26
+D->fi;, j/l/}     point position:0    index:31
+D->fi;, j/l/}     point position:3    index:31
+D->fi;D, j/l/}     point position:0    index:27
+D->fi;D, j/l/}     point position:3    index:27
+D->gi;, j/l/}     point position:0    index:32
+D->gi;D, j/l/}     point position:0    index:28
+D->hi;, j/l/}     point position:0    index:33
+D->hi;D, j/l/}     point position:0    index:29
+
+ItemSet-214:
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, j/l/}     point position:0    index:24
+D->B;D, j/l/}     point position:0    index:23
+D->C;, j/l/}     point position:0    index:25
+D->C;D, j/l/}     point position:0    index:22
+D->di;, j/l/}     point position:0    index:30
+D->di;D, j/l/}     point position:0    index:26
+D->fi;, j/l/}     point position:0    index:31
+D->fi;D, j/l/}     point position:0    index:27
+D->gi;, j/l/}     point position:0    index:32
+D->gi;, j/l/}     point position:3    index:32
+D->gi;D, j/l/}     point position:0    index:28
+D->gi;D, j/l/}     point position:3    index:28
+D->hi;, j/l/}     point position:0    index:33
+D->hi;D, j/l/}     point position:0    index:29
+
+ItemSet-215:
+B->di=C, ;     point position:0    index:3
+B->fi=C, ;     point position:0    index:4
+B->gi=C, ;     point position:0    index:5
+B->hi=C, ;     point position:0    index:6
+B->i=C, ;     point position:0    index:2
+C->c, ;     point position:0    index:10
+C->cOC, ;     point position:0    index:8
+C->i, ;     point position:0    index:9
+C->iOC, ;     point position:0    index:7
+C->it, ;     point position:0    index:11
+C->iu, ;     point position:0    index:12
+D->B;, j/l/}     point position:0    index:24
+D->B;D, j/l/}     point position:0    index:23
+D->C;, j/l/}     point position:0    index:25
+D->C;D, j/l/}     point position:0    index:22
+D->di;, j/l/}     point position:0    index:30
+D->di;D, j/l/}     point position:0    index:26
+D->fi;, j/l/}     point position:0    index:31
+D->fi;D, j/l/}     point position:0    index:27
+D->gi;, j/l/}     point position:0    index:32
+D->gi;D, j/l/}     point position:0    index:28
+D->hi;, j/l/}     point position:0    index:33
+D->hi;, j/l/}     point position:3    index:33
+D->hi;D, j/l/}     point position:0    index:29
+D->hi;D, j/l/}     point position:3    index:29
+
+ItemSet-216:
+D->di;D, }     point position:4    index:26
+
+ItemSet-217:
+D->fi;D, }     point position:4    index:27
+
+ItemSet-218:
+D->gi;D, }     point position:4    index:28
+
+ItemSet-219:
+D->hi;D, }     point position:4    index:29
+
+ItemSet-220:
+D->di;D, j/l/}     point position:4    index:26
+
+ItemSet-221:
+D->fi;D, j/l/}     point position:4    index:27
+
+ItemSet-222:
+D->gi;D, j/l/}     point position:4    index:28
+
+ItemSet-223:
+D->hi;D, j/l/}     point position:4    index:29
+

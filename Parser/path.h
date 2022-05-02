@@ -4,3 +4,4 @@
 #define TOKEN_FILE_PATH "../Lexical/TXT/TOKEN.txt"
 #define ANALYSIS_FILE_PATH "./TXT/ANALYSIS.txt"
 #define AG_PATH "./TXT/ACTION_GOTO.txt"
+#define ITEMSET_PATH "./TXT/ITEMSET.txt"

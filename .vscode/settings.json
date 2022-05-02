@@ -4,6 +4,10 @@
         "iostream": "cpp",
         "iosfwd": "cpp",
         "*.tcc": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "unordered_map": "cpp",
+        "streambuf": "cpp",
+        "string_view": "cpp",
+        "ostream": "cpp"
     }
 }
