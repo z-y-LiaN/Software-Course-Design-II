@@ -2,25 +2,25 @@
 
 #include "path.h"
 
-NFA nfa;              //±£´æÕı¹æÎÄ·¨ ×ª»»³É µÄNFA
-char str_file[1000];  //±£´æÎÄ¼şÀï¶Á³öµÄÄÚÈİ
+NFA nfa;              //ä¿å­˜æ­£è§„æ–‡æ³• è½¬æ¢æˆ çš„NFA
+char str_file[1000];  //ä¿å­˜æ–‡ä»¶é‡Œè¯»å‡ºçš„å†…å®¹
 
-vector<char> INCHAR;  //±£´æÖÕ½á·ûVT
+vector<char> INCHAR;  //ä¿å­˜ç»ˆç»“ç¬¦VT
 vector<string> KEYWORDS;
 vector<string> OPT;
 vector<string> LIMITER;
 
 DFA dfa;
-bool Final[MAX_NODES];  //±£´æDFA×´Ì¬¼¯ÖĞÄÄĞ©ÊÇÖÕ½á·û£¬±ãÓÚO(1)²éÕÒ
+bool Final[MAX_NODES];  //ä¿å­˜DFAçŠ¶æ€é›†ä¸­å“ªäº›æ˜¯ç»ˆç»“ç¬¦ï¼Œä¾¿äºO(1)æŸ¥æ‰¾
 
-vector<vector<string>> sourceCode;   //±£´æÔ´³ÌĞò
-vector<pair<string, string>> token;  //±£´æÉ¨ÃèÔ´³ÌĞòºóµÃµ½µÄtoken±í
-vector<pair<pair<int, int>, int>> wrong;  //±£´æ´íÎóĞÅÏ¢
-vector<int> row;                          //±£´æÃ¿ĞĞÓĞ¶àÉÙ¸ötoken
+vector<vector<string>> sourceCode;   //ä¿å­˜æºç¨‹åº
+vector<pair<string, string>> token;  //ä¿å­˜æ‰«ææºç¨‹åºåå¾—åˆ°çš„tokenè¡¨
+vector<pair<pair<int, int>, int>> wrong;  //ä¿å­˜é”™è¯¯ä¿¡æ¯
+vector<int> row;                          //ä¿å­˜æ¯è¡Œæœ‰å¤šå°‘ä¸ªtoken
 
-/************************************  ³õÊ¼»¯
- * **********************************/
-//  1.¼ÓÔØVTÖÕ½á·û
+/**
+ *  @brief   åŠ è½½ç»ˆç»“ç¬¦
+ */
 void load_inchar() {
   fstream file;
   file.open(INCHAR_FILE_PATH);
@@ -31,7 +31,9 @@ void load_inchar() {
   file.close();
 }
 
-//  2.¼ÓÔØ¹Ø¼ü×Ö
+/**
+ *  @brief   åŠ è½½å…³é”®å­—
+ */
 void load_keywords() {
   fstream file;
   file.open(KEYWORDS_FILE_PATH);
@@ -48,7 +50,9 @@ void load_keywords() {
   file.close();
 }
 
-//  3.¼ÓÔØ²Ù×÷·û
+/**
+ *  @brief   åŠ è½½æ“ä½œç¬¦
+ */
 void load_opt() {
   fstream file;
   file.open(OPERATOR_FILE_PATH);
@@ -65,7 +69,9 @@ void load_opt() {
   file.close();
 }
 
-//  4.¼ÓÔØ½ç·û
+/**
+ *  @brief   åŠ è½½ç•Œç¬¦
+ */
 void load_limiter() {
   fstream file;
   file.open(LIMITER_FILE_PATH);
@@ -82,7 +88,9 @@ void load_limiter() {
   file.close();
 }
 
-//  5.³õÊ¼»¯
+/**
+ *  @brief   åˆå§‹åŒ–æ‰€æœ‰åŠ è½½é¡¹
+ */
 void init() {
   load_inchar();
   load_keywords();
@@ -90,10 +98,11 @@ void init() {
   load_limiter();
 }
 
-/************************************  Õı¹æÎÄ·¨ ¡ú NFA
- * *****************************/
-
-// ÅĞ¶ÏÊÇ·ñÊÇÖÕ½á·ûVT
+/**
+ * @brief  åˆ¤æ–­æ˜¯å¦æ˜¯ç»ˆç»“ç¬¦
+ * @param   char-a è¾“å…¥å­—ç¬¦
+ * @return  bool
+ */
 bool isVT(char a) {
   for (int i = 0; i < INCHAR.size(); i++) {
     if (a == INCHAR[i]) {
@@ -102,35 +111,31 @@ bool isVT(char a) {
   }
   return false;
 }
-// ¸ù¾İ¶ÁÈëµÄÕı¹æÎÄ·¨´´½¨NFA
+
 /**
- * ¸ù¾İÓÒÏßĞÔÕı¹æÎÄ·¨µÄ×ª»»¹æÔò£º
- * Ôö¼ÓÒ»¸öÖÕÌ¬½áµã£¬¿ªÊ¼·ûºÅ¶ÔÓ¦µÄ½áµã×÷Îª³õÌ¬
- * ¶ÔĞÎÈç A¡út µÄ¹æÔò£¬ÒıÒ»Ìõ´ÓAµ½ÖÕÌ¬½áµãµÄ»¡£¬±ê¼ÇÎªt
- * ¶ÔĞÎÈç A¡útB µÄ¹æÔò£¬ÒıÒ»Ìõ´ÓAµ½BµÄ»¡£¬±ê¼ÇÎªt
- * ×¢£ºt Îª VT »òepsilon
- *
+ *  @brief  æ ¹æ®è¯»å…¥çš„æ­£è§„æ–‡æ³•åˆ›å»ºNFA
+ *  @details
+ * æ ¹æ®å³çº¿æ€§æ­£è§„æ–‡æ³•çš„è½¬æ¢è§„åˆ™ï¼Œå¯¹æ¯ä¸€ä¸ªæ­£è§„æ–‡æ³•è¿›è¡Œå¤„ç†,æ¯ä¸ªæ­£è§„æ–‡æ³•å¯¹åº”NFAä¸­çš„ä¸€æ¡è¾¹
+ * å¢åŠ ä¸€ä¸ªç»ˆæ€ç»“ç‚¹Yï¼Œå¼€å§‹ç¬¦å·å¯¹åº”çš„ç»“ç‚¹ä½œä¸ºåˆæ€
+ * å¯¹å½¢å¦‚ Aâ†’t çš„è§„åˆ™ï¼Œå¼•ä¸€æ¡ä»Aåˆ°ç»ˆæ€ç»“ç‚¹çš„å¼§ï¼Œæ ‡è®°ä¸ºt
+ * å¯¹å½¢å¦‚ Aâ†’tB çš„è§„åˆ™ï¼Œå¼•ä¸€æ¡ä»Aåˆ°Bçš„å¼§ï¼Œæ ‡è®°ä¸ºt
+ * æ³¨ï¼št ä¸º VT æˆ–epsilon
  */
 void createNFA() {
   fstream file;
-  file.open(GRAMMAR_FILE_PATH);  //¶ÁÈëÕı¹æÎÄ·¨
+  file.open(GRAMMAR_FILE_PATH);
   if (!file.is_open()) {
-    cout << "error: Õı¹æÎÄ·¨ÎÄ¼şÎŞ·¨´ò¿ª" << endl;
+    cout << "error: æ­£è§„æ–‡æ³•æ–‡ä»¶æ— æ³•æ‰“å¼€" << endl;
     return;
   }
-
-  // ½«txtÎÄ¼şÀïµÄÄÚÈİÒ»ĞĞÒ»ĞĞµØ¶ÁÈëstr_file,¶ÔÃ¿Ò»¸öÕı¹æÎÄ·¨½øĞĞ´¦Àí,Ã¿¸öÕı¹æÎÄ·¨¶ÔÓ¦NFAÖĞµÄÒ»Ìõ±ß
   while (file.getline(str_file, 10)) {
     Triad tempTriad;
     char *s = str_file;
     tempTriad.startPoint = *s++;
-    // sÒÆ¶¯,Ê¹ÆäÖ¸Ïò->ºóµÄµÚÒ»¸ö×Ö·û
     s++;
-    s++;
-    // ÓÒÏßĞÔÕı¹æÎÄ·¨
-    // A->epsilon
+    s++;  // sæŒ‡å‘->åçš„ç¬¬ä¸€ä¸ªå­—ç¬¦
+    // A->epsilon,åŠ å…¥ç»ˆæ€é›†
     if (*s == '$') {
-      // ¼ÓÈëÖÕÌ¬½Úµã½áºÏ
       nfa.finalState.push_back(tempTriad.startPoint);
     }
     // A->B
@@ -144,16 +149,19 @@ void createNFA() {
       s++;
       // A->a
       if ((int)*s == 0) {
-        // ¶ÔĞÎÈç A¡úa µÄ¹æÔò£¬ÒıÒ»Ìõ´ÓAµ½ÖÕÌ¬½áµãYµÄ»¡£¬±ê¼ÇÎªa
+        // å¯¹å½¢å¦‚ Aâ†’a çš„è§„åˆ™ï¼Œå¼•ä¸€æ¡ä»Aåˆ°ç»ˆæ€ç»“ç‚¹Yçš„å¼§ï¼Œæ ‡è®°ä¸ºa
         tempTriad.input = tempChar;
-        tempTriad.endPoint = 'Y';  // YÊÇ×î³õ×î³õÔö¼ÓµÄÄÇ¸öÖÕÌ¬½Úµã
+        tempTriad.endPoint = 'Y'; 
         nfa.f.push_back(tempTriad);
-        nfa.finalState.push_back(
-            'Y');  //ÔİÊ±´æÔÚÖÕÌ¬YÖØ¸´¼ÓÈëµÄÎÊÌâ£¬Ò»»á¶ùµ÷Õû£¬ºóĞø¿¼ÂÇ°ÑÕâ¸övector¸Ä³Éset
+        int flag_exits=false;
+        for(int i=0;i<nfa.finalState.size();i++){
+          if(nfa.finalState[i]=='Y') flag_exits=true;
+        }
+        if(!flag_exits) nfa.finalState.push_back('Y'); 
       }
       // A->aB
       else {
-        // ¶ÔĞÎÈç A¡úaB µÄ¹æÔò£¬ÒıÒ»Ìõ´ÓAµ½BµÄ»¡£¬±ê¼ÇÎªa
+        // å¯¹å½¢å¦‚ Aâ†’aB çš„è§„åˆ™ï¼Œå¼•ä¸€æ¡ä»Aåˆ°Bçš„å¼§ï¼Œæ ‡è®°ä¸ºa
         tempTriad.input = tempChar;
         tempTriad.endPoint = *s;
         nfa.f.push_back(tempTriad);
@@ -163,18 +171,18 @@ void createNFA() {
   file.close();
 }
 
-// ÏÔÊ¾NFA
+// æ˜¾ç¤ºNFA
 void printNFA() {
   cout << "****************NFA Show Start*******************" << endl;
-  cout << "Õı¹æÎÄ·¨×ª»»ºóµÄNFA:" << endl;
-  cout << "³õÌ¬£º" << nfa.initialState << endl;
-  cout << "ÖÕÌ¬£º";
+  cout << "æ­£è§„æ–‡æ³•è½¬æ¢åçš„NFA:" << endl;
+  cout << "åˆæ€ï¼š" << nfa.initialState << endl;
+  cout << "ç»ˆæ€ï¼š";
   for (int i = 0; i < nfa.finalState.size(); i++) {
     cout << nfa.finalState[i] << " ";
   }
   cout << endl;
-  cout << "NFA±ßµÄÊı¾İ: " << nfa.f.size() << endl;
-  cout << "±ß£º" << endl;
+  cout << "NFAè¾¹çš„æ•°æ®: " << nfa.f.size() << endl;
+  cout << "è¾¹ï¼š" << endl;
   for (int i = 0; i < nfa.f.size(); i++) {
     cout << nfa.f[i].startPoint << " -> " << nfa.f[i].input << " -> "
          << nfa.f[i].endPoint << endl;
@@ -183,21 +191,21 @@ void printNFA() {
   cout << endl;
 }
 
-/************************************   NFA ¡ú DFA  ****************************/
+/************************************   NFA â†’ DFA  ****************************/
 
-//  @brief: Çó×´Ì¬¼¯TµÄ±Õ°ü
+//  @brief: æ±‚çŠ¶æ€é›†Tçš„é—­åŒ…
 //  @param: set<char> T
-//  @ret: ·µ»Ø×´Ì¬¼¯TµÄÒ»¸ö±Õ°ü£»
-//        ±Õ°ü£º×´Ì¬¼¯TÖĞµÄÈÎºÎ×´Ì¬£¬¼°Æä ¾­¹ıÈÎÒâÌõ¦Å»¡ËùÄÜµ½´ïµÄ×´Ì¬
-//        ±Õ°üÒ²ÊÇÒ»¸ö¼¯ºÏ,ËùÒÔÓÃset,¾Í²»»áÓĞÖØ¸´ÔªËØ
+//  @ret: è¿”å›çŠ¶æ€é›†Tçš„ä¸€ä¸ªé—­åŒ…ï¼›
+//        é—­åŒ…ï¼šçŠ¶æ€é›†Tä¸­çš„ä»»ä½•çŠ¶æ€ï¼ŒåŠå…¶ ç»è¿‡ä»»æ„æ¡Îµå¼§æ‰€èƒ½åˆ°è¾¾çš„çŠ¶æ€
+//        é—­åŒ…ä¹Ÿæ˜¯ä¸€ä¸ªé›†åˆ,æ‰€ä»¥ç”¨set,å°±ä¸ä¼šæœ‰é‡å¤å…ƒç´ 
 set<char> e_closure(set<char> T) {
-  // ±Õ°üÊ×ÏÈ°üº¬Ô­Ê¼×´Ì¬¼¯µÄËùÓĞ×´Ì¬
+  // é—­åŒ…é¦–å…ˆåŒ…å«åŸå§‹çŠ¶æ€é›†çš„æ‰€æœ‰çŠ¶æ€
   set<char> U = T;
   int previous_size, current_size;
   while (1) {
     for (set<char>::iterator it = U.begin(); it != U.end(); it++) {
       char tempChar = *it;
-      // ÔÙ°üº¬¾­¹ıÈÎÒâÌõ¦Å»¡ÄÜµ½´ïµÄ×´Ì¬
+      // å†åŒ…å«ç»è¿‡ä»»æ„æ¡Îµå¼§èƒ½åˆ°è¾¾çš„çŠ¶æ€
       for (int k = 0; k < nfa.f.size(); k++) {
         if (nfa.f[k].startPoint == tempChar && nfa.f[k].input == '$') {
           U.insert(nfa.f[k].endPoint);
@@ -206,16 +214,16 @@ set<char> e_closure(set<char> T) {
     }
     previous_size = current_size;
     current_size = U.size();
-    // µ±UÖĞ×´Ì¬µÄÊıÄ¿²»ÔÙ·¢ÉúÔö¼ÓÊ±½áÊø
+    // å½“Uä¸­çŠ¶æ€çš„æ•°ç›®ä¸å†å‘ç”Ÿå¢åŠ æ—¶ç»“æŸ
     if (current_size == previous_size) break;
   }
   return U;
 }
 
-// @brief: Çómove¼¯-ËùÓĞ¿ÉÒÔ´ÓIÖĞµÄÄ³Ò»×´Ì¬ ¾­Ò»Ìõinput»¡ ËùÄÜµ½´ïµÄ×´Ì¬
+// @brief: æ±‚moveé›†-æ‰€æœ‰å¯ä»¥ä»Iä¸­çš„æŸä¸€çŠ¶æ€ ç»ä¸€æ¡inputå¼§ æ‰€èƒ½åˆ°è¾¾çš„çŠ¶æ€
 // @param:  set<char> I
 //          char input
-// @ret:  ×´Ì¬µÄ¼¯ºÏ
+// @ret:  çŠ¶æ€çš„é›†åˆ
 set<char> move(set<char> I, char input) {
   set<char> U;
   for (set<char>::iterator it = I.begin(); it != I.end(); it++) {
@@ -228,7 +236,7 @@ set<char> move(set<char> I, char input) {
   return U;
 }
 
-// ×´Ì¬ÖØÃüÃû:0-S;1-A,2-B....ÒÀ´ÎÀàÍÆ
+// çŠ¶æ€é‡å‘½å:0-S;1-A,2-B....ä¾æ¬¡ç±»æ¨
 char change(int a) {
   if (a == 0)
     return 'S';
@@ -236,16 +244,16 @@ char change(int a) {
     return char(a + 64);
 }
 
-// @brief:  ×Ó¼¯·¨£¬½«NFA×ª»»³ÉDFA£»
-//            ¼Ù¶¨Ëù¹¹ÔìµÄDFA×Ó¼¯×å Îª C = (T1, T2,,... Ti)£¬
-//            ÆäÖĞT1, T2,,... TiÎª×´Ì¬ K µÄ×Ó¼¯¡£
-//            1£©¿ªÊ¼£¬Áî¦Å -closure(K0) ÎªCÖĞÎ¨Ò»³ÉÔ±£¬²¢ÇÒËüÊÇÎ´±»±ê¼ÇµÄ¡£
-//            2£©While(CÖĞ´æÔÚÉĞÎ´±»±ê¼ÇµÄ×Ó¼¯T) do
-//               {	±ê¼ÇT£»
-//                  for(Ã¿¸ö ÊäÈë×ÖÄ¸ a) do
-//                  {	U:= ¦Å-closure(move(T,a))£»
-//                  if£¨U²»ÔÚCÖĞ£©  then
-//                  {	½«U×÷ÎªÎ´±ê¼ÇµÄ×Ó¼¯¼ÓÔÚCÖĞ£»}
+// @brief:  å­é›†æ³•ï¼Œå°†NFAè½¬æ¢æˆDFAï¼›
+//            å‡å®šæ‰€æ„é€ çš„DFAå­é›†æ— ä¸º C = (T1, T2,,... Ti)ï¼Œ
+//            å…¶ä¸­T1, T2,,... Tiä¸ºçŠ¶æ€ K çš„å­é›†ã€‚
+//            1ï¼‰å¼€å§‹ï¼Œä»¤Îµ -closure(K0) ä¸ºCä¸­å”¯ä¸€æˆå‘˜ï¼Œå¹¶ä¸”å®ƒæ˜¯æœªè¢«æ ‡è®°çš„ã€‚
+//            2ï¼‰While(Cä¸­å­˜åœ¨å°šæœªè¢«æ ‡è®°çš„å­é›†T) do
+//               {	æ ‡è®°Tï¼›
+//                  for(æ¯ä¸ª è¾“å…¥å­—æ¯ a) do
+//                  {	U:= Îµ-closure(move(T,a))ï¼›
+//                  ifï¼ˆUä¸åœ¨Cä¸­ï¼‰  then
+//                  {	å°†Uä½œä¸ºæœªæ ‡è®°çš„å­é›†åŠ åœ¨Cä¸­ï¼›}
 //                }
 // @param:  void
 // @ret:    void
@@ -253,40 +261,40 @@ void NFA_TO_DFA() {
   nfa.initialState = 'S';
   dfa.initialState = 'S';
 
-  set<char> C[MAX_NODES];  // DFAµÄ×´Ì¬¼¯
-  bool marked[MAX_NODES];  //±ê¼Ç×´Ì¬£¬ÓÃÓÚ¼ÇÂ¼ÊÇ·ñÒÑ¾­Çó³ö¸Ã×´Ì¬µÄ±Õ°ü
+  set<char> C[MAX_NODES];  // DFAçš„çŠ¶æ€é›†
+  bool marked[MAX_NODES];  //æ ‡è®°çŠ¶æ€ï¼Œç”¨äºè®°å½•æ˜¯å¦å·²ç»æ±‚å‡ºè¯¥çŠ¶æ€çš„é—­åŒ…
 
   memset(dfa.f, -1, sizeof dfa.f);
   memset(marked, false, sizeof marked);
 
   set<char> T0;
-  // 1£©¿ªÊ¼£¬Áî¦Å -closure(T0) ÎªCÖĞÎ¨Ò»³ÉÔ±£¬²¢ÇÒËüÊÇÎ´±»±ê¼ÇµÄ¡£
+  // 1ï¼‰å¼€å§‹ï¼Œä»¤Îµ -closure(T0) ä¸ºCä¸­å”¯ä¸€æˆå‘˜ï¼Œå¹¶ä¸”å®ƒæ˜¯æœªè¢«æ ‡è®°çš„ã€‚
   T0.insert(nfa.initialState);
   T0 = e_closure(T0);
 
   C[0] = T0;
-  int node_count = 1;  //³õÊ¼»¯DFA×´Ì¬ÊıÁ¿
+  int node_count = 1;  //åˆå§‹åŒ–DFAçŠ¶æ€æ•°é‡
   int i = 0;
-  // µ±CÖĞ´æÔÚÉĞÎ´±»±ê¼ÇµÄ×Ó¼¯T
+  // å½“Cä¸­å­˜åœ¨å°šæœªè¢«æ ‡è®°çš„å­é›†T
   while (!marked[i] && i < node_count) {
-    // ±ê¼Ç
+    // æ ‡è®°
     marked[i] = true;
-    // ¶ÔÓÚÃ¿¸öÊäÈë×ÖÄ¸inchar
+    // å¯¹äºæ¯ä¸ªè¾“å…¥å­—æ¯inchar
     for (int j = 0; j < INCHAR.size(); j++) {
-      set<char> U = move(C[i], INCHAR[j]);  //Çómove¼¯
-      U = e_closure(U);                     //Çó±Õ°ü
+      set<char> U = move(C[i], INCHAR[j]);  //æ±‚moveé›†
+      U = e_closure(U);                     //æ±‚é—­åŒ…
 
       bool inC = false;
       if (!U.empty()) {
         for (int k = 0; k < node_count; k++) {
-          // ĞÂ²úÉúµÄ×´Ì¬ÔÚÔ­À´µÄ×´Ì¬¼¯ÖĞ
+          // æ–°äº§ç”Ÿçš„çŠ¶æ€åœ¨åŸæ¥çš„çŠ¶æ€é›†ä¸­
           if (C[k] == U) {
             inC = true;
             dfa.f[change(i)][INCHAR[j]] = change(k);
           }
         }
       }
-      // ĞÂ²úÉúµÄ×´Ì¬²»ÔÚÔ­À´µÄ×´Ì¬¼¯ÖĞ
+      // æ–°äº§ç”Ÿçš„çŠ¶æ€ä¸åœ¨åŸæ¥çš„çŠ¶æ€é›†ä¸­
       if (!inC && !U.empty()) {
         C[node_count] = U;
         dfa.f[change(i)][INCHAR[j]] = change(node_count);
@@ -295,7 +303,7 @@ void NFA_TO_DFA() {
     }
     i++;
   }
-  // Ìí¼ÓDFAµÄÖÕÌ¬£º°üº¬NFAÖÕÌ¬µÄ×´Ì¬ÎªDFAµÄÖÕÌ¬
+  // æ·»åŠ DFAçš„ç»ˆæ€ï¼šåŒ…å«NFAç»ˆæ€çš„çŠ¶æ€ä¸ºDFAçš„ç»ˆæ€
   for (int i = 0; i < node_count; i++) {
     bool isFinalState = false;
     for (int j = 0; j < nfa.finalState.size(); j++) {
@@ -304,7 +312,7 @@ void NFA_TO_DFA() {
         break;
       }
     }
-    // ²éÖØ£¬vector´æµÄ£¬¿ÉÄÜÓĞÖØ¸´µÄ£¬ÆäÊµÒ²¿ÉÒÔ¸Ä³ÉsetÓÃ
+    // æŸ¥é‡ï¼Œvectorå­˜çš„ï¼Œå¯èƒ½æœ‰é‡å¤çš„ï¼Œå…¶å®ä¹Ÿå¯ä»¥æ”¹æˆsetç”¨
     if (isFinalState) {
       bool inFinal = false;
       for (int j = 0; j < dfa.finalState.size(); j++) {
@@ -318,24 +326,24 @@ void NFA_TO_DFA() {
       }
     }
   }
-  // ½«DFAÖÕÌ¬±£´æÔÚÊı×éÀïÃæ
+  // å°†DFAç»ˆæ€ä¿å­˜åœ¨æ•°ç»„é‡Œé¢
   memset(Final, false, sizeof Final);
   for (int i = 0; i < dfa.finalState.size(); i++) {
     Final[dfa.finalState[i]] = true;
   }
 }
 
-// ´òÓ¡DFA
+// æ‰“å°DFA
 void printDFA() {
   cout << "****************DFA Show Start*******************" << endl;
 
-  cout << "³õÊ¼×´Ì¬£º" << dfa.initialState << endl;
-  cout << "ÖÕÖ¹×´Ì¬£º";
+  cout << "åˆå§‹çŠ¶æ€ï¼š" << dfa.initialState << endl;
+  cout << "ç»ˆæ­¢çŠ¶æ€ï¼š";
   for (int i = 0; i < dfa.finalState.size(); i++) {
     cout << dfa.finalState[i] << " ";
   }
   cout << endl;
-  cout << "×´Ì¬×ªÒÆº¯Êı£º" << endl;
+  cout << "çŠ¶æ€è½¬ç§»å‡½æ•°ï¼š" << endl;
   for (int i = 0; i < MAX_NODES; i++) {
     for (int j = 0; j < MAX_NODES; j++) {
       if (dfa.f[i][j] != -1)
@@ -346,9 +354,9 @@ void printDFA() {
   cout << endl;
 }
 
-/************************************  É¨ÃèÊ¶±ğÓÃ»§ÊäÈëµÄÔ´´úÂë
+/************************************  æ‰«æè¯†åˆ«ç”¨æˆ·è¾“å…¥çš„æºä»£ç 
  * ****************************/
-// @brief:  ¶ÁÈëÔ´³ÌĞò ,¹ıÂËÔ­À´µÄ¿Õ¸ñ¡¢tab£¬±£´æÔÚÊı×éÀïÃæ:sourceCode
+// @brief:  è¯»å…¥æºç¨‹åº ,è¿‡æ»¤åŸæ¥çš„ç©ºæ ¼ã€tabï¼Œä¿å­˜åœ¨æ•°ç»„é‡Œé¢:sourceCode
 void spilitSourceCode() {
   fstream file;
   file.open(SOURCE_FILE_PATH);
@@ -396,27 +404,29 @@ bool isOperator(string str) {
   }
   return false;
 }
-// @brief:  ¶ÁÈëÔ´³ÌĞò½øĞĞ·ÖÎö£¬Éú³ÉtokenĞòÁĞ
+// @brief:  è¯»å…¥æºç¨‹åºè¿›è¡Œåˆ†æï¼Œç”Ÿæˆtokenåºåˆ—
 void scanSourceCode() {
   spilitSourceCode();
   for (int i = 0; i < sourceCode.size(); i++) {
     int row_count = 0;
-    // ¶ÁÈëÒ»ĞĞ
+    // è¯»å…¥ä¸€è¡Œ
     for (int j = 0; j < sourceCode[i].size(); j++) {
-      string str = sourceCode[i][j];  //µÚiĞĞµÄµÚj¸ö´®¶ù£¬Õâ¸ö´®¿ÉÄÜ°üº¬¶à¸öµ¥´Ê(token)
+      string str =
+          sourceCode[i][j];  //ç¬¬iè¡Œçš„ç¬¬jä¸ªä¸²å„¿ï¼Œè¿™ä¸ªä¸²å¯èƒ½åŒ…å«å¤šä¸ªå•è¯(token)
       // cout<<str<<endl;
-      string result = "";  //´æ·Åtoken
+      string result = "";  //å­˜æ”¾token
       int next = dfa.initialState;
       int now;
-      // ´æ·ÅÒ»¸ö¶şÔª×é£ºtokenÄÚÈİ+Àà±ğ
+      // å­˜æ”¾ä¸€ä¸ªäºŒå…ƒç»„ï¼štokenå†…å®¹+ç±»åˆ«
       vector<pair<string, string>> token_temp;
-      // ÏÈ¶ÔÕâ¸ö´®ÅĞ¶Ï´íÎóÇé¿ö
+      // å…ˆå¯¹è¿™ä¸ªä¸²åˆ¤æ–­é”™è¯¯æƒ…å†µ
       for (int k = 0; k < str.length(); k++) {
-        // ´íÎóÇé¿ö£º×Ö·û±¾Éí²»ÊôÓÚ·ÇÖÕ½á·û¼¯ºÏ£¨¼´£º²»ÊÇ¦²ÀïÃæµÄ×Ö·û£©
+        // é”™è¯¯æƒ…å†µï¼šå­—ç¬¦æœ¬èº«ä¸å±äºéç»ˆç»“ç¬¦é›†åˆï¼ˆå³ï¼šä¸æ˜¯Î£é‡Œé¢çš„å­—ç¬¦ï¼‰
         if (!isVT(str[k])) {
           pair<int, int> position = make_pair(i + 1, j + 1);
-          pair<pair<int, int>, int> position_errorChar = make_pair(position, int(str[k]));
-          // vector´æµÄ£¬¶Ô´íÎóÇé¿öÈ¥ÖØ
+          pair<pair<int, int>, int> position_errorChar =
+              make_pair(position, int(str[k]));
+          // vectorå­˜çš„ï¼Œå¯¹é”™è¯¯æƒ…å†µå»é‡
           bool flag = false;
           for (int k = 0; k < wrong.size(); k++) {
             if (wrong[k].first.first == i + 1 &&
@@ -430,50 +440,51 @@ void scanSourceCode() {
         }
 
         next = dfa.f[next][str[k]];
-        if (next == -1) {//Ê¶±ğ³öÀ´ÁËÒ»¸öµ¥´Ê
+        if (next == -1) {  //è¯†åˆ«å‡ºæ¥äº†ä¸€ä¸ªå•è¯
           token_temp.push_back(make_pair(result, "    "));
           result.clear();
-          // Èç¹ûÊÇÒÑ¾­µ½´ïÖÕÌ¬£¬ÄÇÃ´¾Í´¦ÀíµÄ×Ö·ûÊÇÏÂÒ»¸ñtokenµÄ¿ªÊ¼
+          // å¦‚æœæ˜¯å·²ç»åˆ°è¾¾ç»ˆæ€ï¼Œé‚£ä¹ˆå°±å¤„ç†çš„å­—ç¬¦æ˜¯ä¸‹ä¸€æ ¼tokençš„å¼€å§‹
           result += str[k];
           next = dfa.f[dfa.initialState][str[k]];
         } else {
-          // ÏÂÒ»¸ö×´Ì¬ºÏ·¨£¬ÔòÌí¼Óµ½resultÖĞ
+          // ä¸‹ä¸€ä¸ªçŠ¶æ€åˆæ³•ï¼Œåˆ™æ·»åŠ åˆ°resultä¸­
           result += str[k];
         }
       }
 
-      // ´¦Àí×îºóÒ»¸ö¿ÉÄÜµÄµ¥´Ê
+      // å¤„ç†æœ€åä¸€ä¸ªå¯èƒ½çš„å•è¯
       if (!result.empty()) {
         token_temp.push_back(make_pair(result, "    "));
       }
 
-      // ÕâÒ»ĞĞ´¦Àí³öÀ´µÄ µ¥´Ê½øĞĞtoken·ÖÀà
+      // è¿™ä¸€è¡Œå¤„ç†å‡ºæ¥çš„ å•è¯è¿›è¡Œtokenåˆ†ç±»
       bool flag = false;
       for (int k = 0; k < token_temp.size(); k++) {
-        if (isKeywords(token_temp[k].first)) {  // ¹Ø¼ü×Ö
+        if (isKeywords(token_temp[k].first)) {  // å…³é”®å­—
           token_temp[k].second = "KEYWORDS";
           token.push_back(token_temp[k]);
-        } else if (isLimiter(token_temp[k].first)) {  // ½ç·û
+        } else if (isLimiter(token_temp[k].first)) {  // ç•Œç¬¦
           token_temp[k].second = "LIMITER";
           token.push_back(token_temp[k]);
-        } else if (isOperator(token_temp[k].first)) {  // ²Ù×÷·û
+        } else if (isOperator(token_temp[k].first)) {  // æ“ä½œç¬¦
           token_temp[k].second = "OPERATOR";
           token.push_back(token_temp[k]);
         } else if (token_temp[k].first[0] >= 'a' &&
                    token_temp[k].first[0] <= 'z') {
-          // ¼ì²é±êÊ¶·ûµÄºÏ·¨ĞÔ:Ê××Ö·ûÊÇÊı×Ö¡ª¡ª·Ç·¨
+          // æ£€æŸ¥æ ‡è¯†ç¬¦çš„åˆæ³•æ€§:é¦–å­—ç¬¦æ˜¯æ•°å­—â€”â€”éæ³•
           if (k && token_temp[k - 1].second == "CONST") {
             pair<int, int> postion = make_pair(i + 1, j + 1);
-            pair<pair<int, int>, int> position_errorChar = make_pair(postion, 0);
+            pair<pair<int, int>, int> position_errorChar =
+                make_pair(postion, 0);
             wrong.push_back(position_errorChar);
           }
           token_temp[k].second = "ID";
           token.push_back(token_temp[k]);
         } else if (token_temp[k].first[0] >= '0' &&
-                   token_temp[k].first[0] <= '9') {// µ±Ç°´®ÒÔÊı×Ö¿ªÍ·
-          
+                   token_temp[k].first[0] <= '9') {  // å½“å‰ä¸²ä»¥æ•°å­—å¼€å¤´
+
           int index = token.size() - 1;
-          // ¸´Êı³£Á¿,ÕâÀï¹æ¶¨¸´ÊıµÄĞÎÊ½¶¼ÊÇAi+BµÄĞÎÊ½
+          // å¤æ•°å¸¸é‡,è¿™é‡Œè§„å®šå¤æ•°çš„å½¢å¼éƒ½æ˜¯Ai+Bçš„å½¢å¼
           if ((token[index].first == "+" || token[index].first == "-") &&
               token[index - 1].second == "CONST" &&
               token[index - 1].first.find("i") != token[index - 1].first.npos) {
@@ -492,35 +503,35 @@ void scanSourceCode() {
       else
         row_count += token_temp.size();
     }
-    row.push_back(row_count);//±£´æ¸ÃĞĞµÄtokenÊıÁ¿£¬ÓÃÓÚºóÃæµÄÓï·¨·ÖÎö
+    row.push_back(row_count);  //ä¿å­˜è¯¥è¡Œçš„tokenæ•°é‡ï¼Œç”¨äºåé¢çš„è¯­æ³•åˆ†æ
   }
   ofstream outfile;
   outfile.open(WRONG_FILE_PATH);
   for (int i = 0; i < wrong.size(); i++) {
     if (wrong[i].second != 0) {
-      cout << "´Ê·¨´íÎóĞÅÏ¢£ºÔÚµÚ" << wrong[i].first.first << "ĞĞ£¬µÚ"
-           << wrong[i].first.second << "¸öµ¥´Ê³öÏÖÎ´Öª·ûºÅ"
+      cout << "è¯æ³•é”™è¯¯ä¿¡æ¯ï¼šåœ¨ç¬¬" << wrong[i].first.first << "è¡Œï¼Œç¬¬"
+           << wrong[i].first.second << "ä¸ªå•è¯å‡ºç°æœªçŸ¥ç¬¦å·"
            << (char)wrong[i].second << endl;
-      outfile << "ÔÚµÚ" << wrong[i].first.first << "ĞĞ£¬µÚ"
-              << wrong[i].first.second << "¸öµ¥´Ê³öÏÖÎ´Öª·ûºÅ"
+      outfile << "åœ¨ç¬¬" << wrong[i].first.first << "è¡Œï¼Œç¬¬"
+              << wrong[i].first.second << "ä¸ªå•è¯å‡ºç°æœªçŸ¥ç¬¦å·"
               << (char)wrong[i].second << endl;
     }
     if (wrong[i].second == 0) {
-      cout << "´Ê·¨´íÎóĞÅÏ¢£ºÔÚµÚ" << wrong[i].first.first << "ĞĞ£¬µÚ"
-           << wrong[i].first.second << "¸öµ¥´Ê±äÁ¿ÃüÃû´íÎó" << endl;
-      outfile << "ÔÚµÚ" << wrong[i].first.first << "ĞĞ£¬µÚ"
-              << wrong[i].first.second << "¸öµ¥´Ê±äÁ¿ÃüÃû´íÎó" << endl;
+      cout << "è¯æ³•é”™è¯¯ä¿¡æ¯ï¼šåœ¨ç¬¬" << wrong[i].first.first << "è¡Œï¼Œç¬¬"
+           << wrong[i].first.second << "ä¸ªå•è¯å˜é‡å‘½åé”™è¯¯" << endl;
+      outfile << "åœ¨ç¬¬" << wrong[i].first.first << "è¡Œï¼Œç¬¬"
+              << wrong[i].first.second << "ä¸ªå•è¯å˜é‡å‘½åé”™è¯¯" << endl;
     }
   }
   outfile.close();
-  // ±£´ætoken(¶şÔª×é,·½±ãÓÃÓÚºóĞøµÄÓï·¨·ÖÎö)
+  // ä¿å­˜token(äºŒå…ƒç»„,æ–¹ä¾¿ç”¨äºåç»­çš„è¯­æ³•åˆ†æ)
   outfile.open(TOKEN_FILE_PATH);
   for (int i = 0; i < token.size(); i++) {
     outfile << token[i].first << "         " << token[i].second << endl;
   }
   outfile.close();
 
-  // ±£´ætokenÈıÔª×é(ĞĞºÅ,µ¥´Ê,ÀàĞÍ);ĞĞºÅ´Ó1¿ªÊ¼¼ÆÊı
+  // ä¿å­˜tokenä¸‰å…ƒç»„(è¡Œå·,å•è¯,ç±»å‹);è¡Œå·ä»1å¼€å§‹è®¡æ•°
   outfile.open(TOKEN_TRIAD_FILE_PATH);
   int counter = 0;
   for (int i = 0; i < row.size(); i++) {
@@ -532,13 +543,13 @@ void scanSourceCode() {
   }
   outfile.close();
 
-  // ±£´æÔ´´úÂëÃ¿ĞĞµÄtokenÊıÁ¿,·½±ãÓÃÓÚºóĞøµÄÓï·¨·ÖÎö
+  // ä¿å­˜æºä»£ç æ¯è¡Œçš„tokenæ•°é‡,æ–¹ä¾¿ç”¨äºåç»­çš„è¯­æ³•åˆ†æ
   outfile.open(ROW_FILE_PATH);
   for (int i = 0; i < row.size(); i++) {
     outfile << row[i] << endl;
   }
 
   if (wrong.size() == 0) {
-    cout << "´Ê·¨·ÖÎöÍê³É£¬Ã»ÓĞ´íÎó" << endl;
+    cout << "è¯æ³•åˆ†æå®Œæˆï¼Œæ²¡æœ‰é”™è¯¯" << endl;
   }
 }
