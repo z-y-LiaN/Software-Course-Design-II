@@ -1,25 +1,24 @@
 #include<iostream>
 int main(){
-    double a = 3.1415 + 2;
-	for(int i = 1;i<3;i++){
-		if(i > 2(){
-			i --;
-			int  c = 2i + 3;
+    double zyl = 9191.0684 + 212;
+	int a=0;
+	for(int i = 1;i<99;i++){
+		if(i > 23(){
+			int  why = 2i + 3;
 		}else{
-			i=i + 0.2e+2 ;;
+			i=i + 0.2e+2 ;
+			a+=1;
 		}
-		if(i < 3) i += 1;
-		else i -= 2;
 		switch(a){
 			case 2.3:
-				int c = 2 + 2;
+				int njust = 5*2;
 			case 3i+4:
-				c = c +1;
+				a = a/1;
 			default:
-				b = c - a;
+				why = 5 - a;
 		}
 		do{
-			int a = 1;
-		}while(b = 3);
+			b--;
+		}while(b == 3);
 	}
 }

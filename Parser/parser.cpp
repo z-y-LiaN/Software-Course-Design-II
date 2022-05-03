@@ -555,8 +555,9 @@ void scanSourceToken(string token_str) {
           if (temp_index > row[j]) {
             temp_index -= row[j];
           } else {
+            cout << "=======ERROR_INFO！！！！======="<<endl;
             cout << "在第" << j + 1 << "行,第" << temp_index
-                 << "个token:" << token_from_grammar_to_lex(token_str[token_index])
+                 << "个单词:" << token_from_grammar_to_lex(token_str[token_index])
                  << " 发生错误" << endl;
             break;
           }
@@ -564,7 +565,7 @@ void scanSourceToken(string token_str) {
       } else {
         cout << "最后一个token发生错误" << endl;
       }
-      cout << "原因是: 未能找到下列所期待的token:" << endl;
+      cout << "出错原因: 未能找到下列所期待的符号:" << endl;
       for (set<char>::iterator it = VT.begin(); it != VT.end(); it++) {
         if (ActionGoto[temp_state][*it] != -2)
           cout << token_from_grammar_to_lex(*it) << " ";
@@ -627,7 +628,11 @@ void scanSourceToken(string token_str) {
            << std::left << setw(150) << symbol_str << std::left << setw(200)
            << input;
   }
-  cout << "正确" << endl;
+  cout<<"****************************************************************"<<endl;
+  cout<<"*                                                              *"<<endl;
+  cout <<"*              恭喜!  语法分析完成，没有错误！                 *" << endl;
+  cout<<"*                                                              *"<<endl;
+  cout<<"****************************************************************"<<endl;
 }
 
 /**

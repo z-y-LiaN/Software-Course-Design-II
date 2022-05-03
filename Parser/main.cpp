@@ -4,6 +4,6 @@ int main() {
   readGrammarFile();
   getFirstSet();
   create('Z', "S");
-  show();
-  scan(token);
+  showProccessing();
+  scanSourceToken(token);
 }

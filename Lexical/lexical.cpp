@@ -495,9 +495,9 @@ void scanSourceCode() {
   for (int i = 0; i < wrong.size(); i++) {
     if (wrong[i].second != 0) {
       cout<<endl;
-      cout << "ERROR_INFO:"<<endl;
-      cout<<" In line: " << wrong[i].first.first << " , in word "
-           << wrong[i].first.second << "  : Unknown Symbol Appears"
+      cout << "=======ERROR_INFO！！！！======="<<endl;
+      cout<<" 程序第 " << wrong[i].first.first << " 行, 第 "
+           << wrong[i].first.second << "  个单词出错，出错原因：出现未知符号"
            << (char)wrong[i].second << endl;
       cout<<endl;
       outfile << "error-info: in line: " << wrong[i].first.first << " , in word "
@@ -506,9 +506,9 @@ void scanSourceCode() {
     }
     if (wrong[i].second == 0) {
       cout<<endl;
-      cout << "ERROR_INFO:"<<endl;
-      cout<<" In line " << wrong[i].first.first << " , in word "
-           << wrong[i].first.second << " : Variable Naming Error" << endl;
+      cout << "=======ERROR_INFO！！！！======="<<endl;
+      cout<<" 程序第 " << wrong[i].first.first <<  " 行, 第 "
+           << wrong[i].first.second << "  个单词出错，出错原因：变量命名错误" << endl;
       cout<<endl;
       outfile << "error-info: in line" << wrong[i].first.first << " , in word "
               << wrong[i].first.second << " : variable naming error"<< endl;
@@ -541,7 +541,7 @@ void scanSourceCode() {
   if (wrong.size() == 0) {
     cout<<"****************************************************************"<<endl;
     cout<<"*                                                              *"<<endl;
-    cout <<"* CONGRATULATIONS!  Lexical analysis completed WITHOUT errors! *" << endl;
+    cout <<"*              恭喜!  词法分析完成，没有错误！                 *" << endl;
     cout<<"*                                                              *"<<endl;
     cout<<"****************************************************************"<<endl;
   }
