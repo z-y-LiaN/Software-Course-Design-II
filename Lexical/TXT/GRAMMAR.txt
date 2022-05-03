@@ -8,7 +8,6 @@ S->6A
 S->7A
 S->8A
 S->9A
-
 S->+G
 S->-G
 S->*G
@@ -18,7 +17,6 @@ S->+I
 S->-J
 S->=K
 K->=
-
 A->0A
 A->1A
 A->2A
@@ -29,12 +27,10 @@ A->6A
 A->7A
 A->8A
 A->9A
-
 A->$
 A->.B
 A->eD
 A->i
-
 B->0B
 B->1B
 B->2B
@@ -56,7 +52,6 @@ B->7
 B->8
 B->9
 B->i
-
 B->0C
 B->1C
 B->2C
@@ -67,7 +62,6 @@ B->6C
 B->7C
 B->8C
 B->9C
-
 B->0F
 B->1F
 B->2F
@@ -78,13 +72,10 @@ B->6F
 B->7F
 B->8F
 B->9F
-
 C->eD
-
 D->+E
 D->-E
 D->E
-
 E->0E
 E->1E
 E->2E
@@ -105,20 +96,17 @@ E->6
 E->7
 E->8
 E->9
-
 G->$
 I->+G
 I->=G
 J->-G
 J->=G
-
 S->&G
 S->%G
 S->~G
 S->|G
 S->^G
 S->=G
-
 S->(G
 S->)G
 S->{G
@@ -128,7 +116,6 @@ S->;G
 S-><G
 S->>G
 S->#G
-
 S->aH
 S->bH
 S->cH
@@ -155,7 +142,6 @@ S->wH
 S->xH
 S->yH
 S->zH
-
 H->aH
 H->bH
 H->cH
@@ -182,7 +168,6 @@ H->wH
 H->xH
 H->yH
 H->zH
-
 H->_H
 H->0H
 H->1H

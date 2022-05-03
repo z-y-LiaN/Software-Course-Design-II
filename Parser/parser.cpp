@@ -3,26 +3,26 @@
 #include "path.h"
 
 vector<Grammar>
-    grammar;  //´æ·ÅÎÄ·¨,ÎÄ·¨ÖĞ²»µÃ³öÏÖ¿ÕĞĞÒª²»È»»á³öÏÖÄÚ´æ·ÃÎÊÔ½½çÎÊÌâ
-set<Item> Itemset[1000];  //´æ·ÅLR(1)µÄÏîÄ¿¼¯
-int itemSet_counter;      //×îÖÕµÄ×´Ì¬¼¯µÄ¸öÊı
-set<char> VT;  //´æ·ÅÎÄ·¨ÖĞµÄÖÕ½á·û,ÆäÖĞ²»°üÀ¨epsilon£¬epsilonµ¥¶À´¦Àí
-set<char> VN;                    //´æ·ÅÎÄ·¨ÖĞµÄ·ÇÖÕ½á·û
-set<char> toEpsilon;             //´æ·ÅÄÜ¹»ÍÆµ½epsilonµÄ·ÇÖÕ½á·û
-map<char, set<char> > FirstSet;  //´æÎÄ·¨ÖĞµÄ·ÇÖÕ½á·û¶ÔÓ¦µÄFirst¼¯
+    grammar;  //å­˜æ”¾æ–‡æ³•,æ–‡æ³•ä¸­ä¸å¾—å‡ºç°ç©ºè¡Œè¦ä¸ç„¶ä¼šå‡ºç°å†…å­˜è®¿é—®è¶Šç•Œé—®é¢˜
+set<Item> Itemset[1000];  //å­˜æ”¾LR(1)çš„é¡¹ç›®é›†
+int itemSet_counter;      //æœ€ç»ˆçš„çŠ¶æ€é›†çš„ä¸ªæ•°
+set<char> VT;  //å­˜æ”¾æ–‡æ³•ä¸­çš„ç»ˆç»“ç¬¦,å…¶ä¸­ä¸åŒ…æ‹¬epsilonï¼Œepsilonå•ç‹¬å¤„ç†
+set<char> VN;                    //å­˜æ”¾æ–‡æ³•ä¸­çš„éç»ˆç»“ç¬¦
+set<char> toEpsilon;             //å­˜æ”¾èƒ½å¤Ÿæ¨åˆ°epsilonçš„éç»ˆç»“ç¬¦
+map<char, set<char> > FirstSet;  //å­˜æ–‡æ³•ä¸­çš„éç»ˆç»“ç¬¦å¯¹åº”çš„Firsté›†
 
-bool is_wrong = false;  //ÅĞ¶Ï´Ê·¨·ÖÎöÆ÷ÊÇ·ñÓĞ´í
-string token = "";      //´æ·Å´Ó´Ê·¨·ÖÎöÆ÷Àï¶ÁÀ´µÄtokenĞòÁĞ
-vector<int> row;        //´æ·ÅÃ¿ĞĞÓĞ¶àÉÙ¸ötoken
+bool is_wrong = false;  //åˆ¤æ–­è¯æ³•åˆ†æå™¨æ˜¯å¦æœ‰é”™
+string token = "";      //å­˜æ”¾ä»è¯æ³•åˆ†æå™¨é‡Œè¯»æ¥çš„tokenåºåˆ—
+vector<int> row;        //å­˜æ”¾æ¯è¡Œæœ‰å¤šå°‘ä¸ªtoken
 
 int ActionGoto[300][300]; 
 
 
 /**
- *  @brief  ½«´Ê·¨·ÖÎöÆ÷µÃµ½µÄtoken£¨´®£©£¬Ó³ÉäÎªÓï·¨·ÖÎöÆ÷ËùĞèµÄtoken£¨×Ö·û£©£¬·½±ãÓï·¨·ÖÎö
- *  @param  string-str ´Ê·¨·ÖÎöÆ÷µÃµ½µÄtoken
- *  @param  string-type ´Ê·¨·ÖÎöÆ÷µÃµ½µÄtokenÀàĞÍ
- *  @return   tokenÀàĞÍÎªtypeµÄtokenµÄÓ³Éäµ¥´Ê·û
+ *  @brief  å°†è¯æ³•åˆ†æå™¨å¾—åˆ°çš„tokenï¼ˆä¸²ï¼‰ï¼Œæ˜ å°„ä¸ºè¯­æ³•åˆ†æå™¨æ‰€éœ€çš„tokenï¼ˆå­—ç¬¦ï¼‰ï¼Œæ–¹ä¾¿è¯­æ³•åˆ†æ
+ *  @param  string-str è¯æ³•åˆ†æå™¨å¾—åˆ°çš„token
+ *  @param  string-type è¯æ³•åˆ†æå™¨å¾—åˆ°çš„tokenç±»å‹
+ *  @return   tokenç±»å‹ä¸ºtypeçš„tokençš„æ˜ å°„å•è¯ç¬¦
  */
 char token_from_lex_to_grammar(string str, string type) {
   if (type == "KEYWORDS") {
@@ -104,9 +104,9 @@ char token_from_lex_to_grammar(string str, string type) {
 }
 
 /**
- *  @brief  ½«Óï·¨·ÖÎöÆ÷µÄtoken£¨×Ö·û£©£¬Ó³ÉäÎª´Ê·¨·ÖÎöÆ÷µÄtoken£¨´®£©
- *  @param char-c Óï·¨·ÖÎöÆ÷µÄtoken
- *  @return   ¸ÃÓï·¨·ÖÎöÆ÷µÄtokenÔÚ ¶ÔÓ¦µÄ´Ê·¨·ÖÎöÖĞµÄtoken
+ *  @brief  å°†è¯­æ³•åˆ†æå™¨çš„tokenï¼ˆå­—ç¬¦ï¼‰ï¼Œæ˜ å°„ä¸ºè¯æ³•åˆ†æå™¨çš„tokenï¼ˆä¸²ï¼‰
+ *  @param char-c è¯­æ³•åˆ†æå™¨çš„token
+ *  @return   è¯¥è¯­æ³•åˆ†æå™¨çš„tokenåœ¨ å¯¹åº”çš„è¯æ³•åˆ†æä¸­çš„token
  */
 string token_from_grammar_to_lex(char c) {
   if (c == 'a')
@@ -187,8 +187,8 @@ string token_from_grammar_to_lex(char c) {
 
      
 /**
- *   @brief   ¶ÁÈ¡ÎÄ·¨ÎÄ¼ş£¬
- *           £¨1£©´æÖÕ½á·û ·ÇÖÕ½á·û¡¢£¨2£©´æ ÍÆ³öepsilonµÄ·ÇÖÕ½á·û¡¢£¨3£©£¨´®µ½×Ö·û£©Ó³ÉäºóµÄtoken£¬£¨4£©ÅĞ¶Ï´Ê·¨·ÖÎöÆ÷µÄ½á¹ûÊÇ·ñÓĞÓĞÎó
+ *   @brief   è¯»å–æ–‡æ³•æ–‡ä»¶ï¼Œ
+ *           ï¼ˆ1ï¼‰å­˜ç»ˆç»“ç¬¦ éç»ˆç»“ç¬¦ã€ï¼ˆ2ï¼‰å­˜ æ¨å‡ºepsilonçš„éç»ˆç»“ç¬¦ã€ï¼ˆ3ï¼‰ï¼ˆä¸²åˆ°å­—ç¬¦ï¼‰æ˜ å°„åçš„tokenï¼Œï¼ˆ4ï¼‰åˆ¤æ–­è¯æ³•åˆ†æå™¨çš„ç»“æœæ˜¯å¦æœ‰æœ‰è¯¯
  */
 void readGrammarFile() {
   vector<string> temp;
@@ -230,14 +230,14 @@ void readGrammarFile() {
     last_cnt = VN_toEpsilon_cnt;
     VN_toEpsilon_cnt = toEpsilon.size();
   }
-  // ÅĞ¶Ï´Ê·¨·ÖÎöÆ÷ÀïÊÇ·ñÓĞ´íÎóĞÅÏ¢
+  // åˆ¤æ–­è¯æ³•åˆ†æå™¨é‡Œæ˜¯å¦æœ‰é”™è¯¯ä¿¡æ¯
   file.open(WRONG_FILE_PATH);
   char c = file.get();
   if (!file.eof()) {
     is_wrong = true;
   }
   file.close();
-  // ¶Átoken±í
+  // è¯»tokenè¡¨
   file.open(TOKEN_FILE_PATH);
   while (file.getline(str_file, 100)) {
     string token_line = str_file;
@@ -266,11 +266,11 @@ void readGrammarFile() {
 }
 
 /**
- *   @brief   ÇóËùÓĞ·ÇÖÕ½á·ûµÄFirst¼¯£¬Ã¿ÂÖÍ³¼ÆFirstSetµÄ¼¯ºÏÖĞµÄËùÓĞÔªËØ×Ü¸öÊı£¬Èç¹û²»ÔÙ¸Ä±äÊ±ÊÕÁ²
- *           (1)A->a »ò A->epsilon£ºaºÍepsilonÊÇAµÄFirst¼¯µÄÔªËØ
- *           (2)A->B£ºBµÄFirst¼¯ÊôÓÚAµÄFirst¼¯
- *           (3)A->aB..»òA->ab....£ºaÊÇAµÄFirst¼¯µÄÔªËØ
- *           (4)A->XBCX...£¬·ÖÇé¿ö ´æÔÚB->epsilonºÍ ²»´æÔÚB->epsilon
+ *   @brief   æ±‚æ‰€æœ‰éç»ˆç»“ç¬¦çš„Firsté›†ï¼Œæ¯è½®ç»Ÿè®¡FirstSetçš„é›†åˆä¸­çš„æ‰€æœ‰å…ƒç´ æ€»ä¸ªæ•°ï¼Œå¦‚æœä¸å†æ”¹å˜æ—¶æ”¶æ•›
+ *           (1)A->a æˆ– A->epsilonï¼šaå’Œepsilonæ˜¯Açš„Firsté›†çš„å…ƒç´ 
+ *           (2)A->Bï¼šBçš„Firsté›†å±äºAçš„Firsté›†
+ *           (3)A->aB..æˆ–A->ab....ï¼šaæ˜¯Açš„Firsté›†çš„å…ƒç´ 
+ *           (4)A->XBCX...ï¼Œåˆ†æƒ…å†µ å­˜åœ¨B->epsilonå’Œ ä¸å­˜åœ¨B->epsilon
  */
 void getFirstSet() {
   int before_sum = -1;
@@ -321,35 +321,35 @@ void getFirstSet() {
 }
 
 /**
- *  @brief   ÇóÏòÇ°ËÑË÷·û¼¯ºÏ
- *  @param char-c c±íÊ¾ÊÇĞÎÈçA->a¡¤BÖĞBºóµÄ·ûºÅ
- *  @param set<char>-forward µ±Ç°ÏòÇ°ËÑË÷¼¯
- *  @return ·µ»ØÏòÇ°ËÑË÷·û¼¯ºÏ
+ *  @brief   æ±‚å‘å‰æœç´¢ç¬¦é›†åˆ
+ *  @param char-c cè¡¨ç¤ºæ˜¯å½¢å¦‚A->aÂ·Bä¸­Båçš„ç¬¦å·
+ *  @param set<char>-forward å½“å‰å‘å‰æœç´¢é›†
+ *  @return è¿”å›å‘å‰æœç´¢ç¬¦é›†åˆ
  */
 set<char> getForward(char c, set<char> forward) {
   set<char> s;
-  if (c == '$') { //A->¦Á¡¤B,forward
+  if (c == '$') { //A->Î±Â·B,forward
     return forward;
-  } else if (VT.find(c) != VT.end()) { //A->¦Á¡¤Bc,forward ,cÊÇÖÕ½á·û
+  } else if (VT.find(c) != VT.end()) { //A->Î±Â·Bc,forward ,cæ˜¯ç»ˆç»“ç¬¦
     s.insert(c);  return s;
-  } else {//A->¦Á¡¤BC,forward ,CÊÇ·ÇÖÕ½á·û
-    if (FirstSet[c].find('$') != FirstSet[c].end()) { //´æÔÚC->¦Å
+  } else {//A->Î±Â·BC,forward ,Cæ˜¯éç»ˆç»“ç¬¦
+    if (FirstSet[c].find('$') != FirstSet[c].end()) { //å­˜åœ¨C->Îµ
       set<char> temp = FirstSet[c];
       temp.erase(temp.find('$'));
       temp.insert(forward.begin(), forward.end());
       return temp;
-    } else {//²»´æÔÚC->¦Å
+    } else {//ä¸å­˜åœ¨C->Îµ
       return FirstSet[c];
     }
   }
 }
 
 /**
- * @brief ÇóÒ»¸öLR(1)ÏîÄ¿¼¯itemSetµÄ±Õ°ü
- *        Ë¼Â·ËµÃ÷£º
- *            Èç¹ûÏîÄ¿¼¯ÈÔÓĞĞÂÏîÄ¿½øÈë »òÕß ÏîÄ¿¼¯ÖĞÈÔÓĞÏòÇ°ËÑË÷·ûÔÚ·¢Éú±ä»¯ ¼ÌĞøµü´ú
- * @param set<Item> itemset £ºÒ»¸öÏîÄ¿¼¯
- * @return ¸ÃÏîÄ¿¼¯µÄ±Õ°ü
+ * @brief æ±‚ä¸€ä¸ªLR(1)é¡¹ç›®é›†itemSetçš„é—­åŒ…
+ *        æ€è·¯è¯´æ˜ï¼š
+ *            å¦‚æœé¡¹ç›®é›†ä»æœ‰æ–°é¡¹ç›®è¿›å…¥ æˆ–è€… é¡¹ç›®é›†ä¸­ä»æœ‰å‘å‰æœç´¢ç¬¦åœ¨å‘ç”Ÿå˜åŒ– ç»§ç»­è¿­ä»£
+ * @param set<Item> itemset ï¼šä¸€ä¸ªé¡¹ç›®é›†
+ * @return è¯¥é¡¹ç›®é›†çš„é—­åŒ…
  */
 set<Item> getClosureOfItemSet(set<Item> itemSet) {
   if (itemSet.empty()) return itemSet;
@@ -360,7 +360,7 @@ set<Item> getClosureOfItemSet(set<Item> itemSet) {
       bool flag1 = false;
       Item item = *it;
       if (item.position != item.right.size()) {
-        if (VN.find(item.right[item.position]) != VN.end()) {  //µ±Ç°itemÎªA-> ¦Á¡¤B¦Â£¬¼ÓÈëËùÓĞB->¡¤¦Ã
+        if (VN.find(item.right[item.position]) != VN.end()) {  //å½“å‰itemä¸ºA-> Î±Â·BÎ²ï¼ŒåŠ å…¥æ‰€æœ‰B->Â·Î³
           char vn = item.right[item.position];
           for (int i = 0; i < grammar.size(); i++) {
             if (grammar[i].left == vn) {
@@ -375,13 +375,13 @@ set<Item> getClosureOfItemSet(set<Item> itemSet) {
               //     newItemAdded.index = j + 1;
               //   }
               // }
-              if (item.position == item.right.size() - 1) {  // A-> ¦Á¡¤B
+              if (item.position == item.right.size() - 1) {  // A-> Î±Â·B
                 newItemAdded.forward = getForward('$', item.forward);
-              } else {  // A-> ¦Á¡¤B¦Â
+              } else {  // A-> Î±Â·BÎ²
                 newItemAdded.forward = getForward(item.right[item.position + 1], item.forward);
               }
               set<Item>::iterator itt = itemSet.find(newItemAdded);
-              //ÒòÎªSTLÖĞfindº¯ÊıÊÇÄ¬ÈÏÓÃ<ºÅ½øĞĞÅĞµÈµÄ£¬ËùÒÔÈÔĞèÒªÅĞ¶Ïforward¼¯ÊÇ·ñÏàµÈ
+              //å› ä¸ºSTLä¸­findå‡½æ•°æ˜¯é»˜è®¤ç”¨<å·è¿›è¡Œåˆ¤ç­‰çš„ï¼Œæ‰€ä»¥ä»éœ€è¦åˆ¤æ–­forwardé›†æ˜¯å¦ç›¸ç­‰
               if (itt != itemSet.end()) {
                 set<char> C;
                 set_union((itt->forward).begin(), (itt->forward).end(),
@@ -412,10 +412,10 @@ set<Item> getClosureOfItemSet(set<Item> itemSet) {
 }
 
 /**
- *   @brief   Çó×ª»»º¯ÊıGo£¬ÊµÏÖ×´Ì¬×ªÒÆ£¬µ±Ç°itemSetÏîÄ¿¼¯£¬ÊäÈëÎÄ·¨·ûºÅc£¬Çó×ªÒÆµ½µÄÄ¿±ê£¨³õÊ¼£©ÏîÄ¿¼¯
- *   @param   char-c ÎÄ·¨·ûºÅ
- *   @param   set<Item>-itemSet  £¨×ªÒÆÇ°£©LR(1)µÄÏîÄ¿¼¯
- *   @return  ×ªÒÆµ½µÄÄÇ¸öÄ¿±êÏîÄ¿¼¯£ºÖ±½ÓÓÉitemSet×ªÒÆ¹ıÀ´£¬ÔİÊ±Ã»ÓĞÇó±Õ°üµÄÏîÄ¿¼¯
+ *   @brief   æ±‚è½¬æ¢å‡½æ•°Goï¼Œå®ç°çŠ¶æ€è½¬ç§»ï¼Œå½“å‰itemSeté¡¹ç›®é›†ï¼Œè¾“å…¥æ–‡æ³•ç¬¦å·cï¼Œæ±‚è½¬ç§»åˆ°çš„ç›®æ ‡ï¼ˆåˆå§‹ï¼‰é¡¹ç›®é›†
+ *   @param   char-c æ–‡æ³•ç¬¦å·
+ *   @param   set<Item>-itemSet  ï¼ˆè½¬ç§»å‰ï¼‰LR(1)çš„é¡¹ç›®é›†
+ *   @return  è½¬ç§»åˆ°çš„é‚£ä¸ªç›®æ ‡é¡¹ç›®é›†ï¼šç›´æ¥ç”±itemSetè½¬ç§»è¿‡æ¥ï¼Œæš‚æ—¶æ²¡æœ‰æ±‚é—­åŒ…çš„é¡¹ç›®é›†
  */
 set<Item> Go(char c, set<Item> itemSet) {
   set<Item> itemSet_Target;
@@ -436,11 +436,11 @@ set<Item> Go(char c, set<Item> itemSet) {
 }
 
 /**
- *   @brief   ½¨Á¢ÏîÄ¿¼¯×å¼°DFAÒÔ¼°Action-Goto±í
- *            Ë¼Â·ËµÃ÷£º³õÊ¼»¯ÏîÄ¿¼¯I0£¬È»ºó½øĞĞ×´Ì¬×ªÒÆ£¬ÇóËùÓĞÏîÄ¿¼¯²¢ÇÒ×´Ì¬×ªÒÆÍ¬Ê±ÇóDFA ²ÉÓÃ¿íËÑµÄ·½Ê½, ×´Ì¬×ªÒÆ±éÀúËùÓĞÖÕ½á·ûºÍ·ÇÖÕ½á·û
- *            £¬¹éÔ¼ÔÚ½¨Á¢ÍêÖ®ºóÍ³Ò»±éÀúÍê³É
- *   @param   char-left Ôö¹ãÎÄ·¨µÄ×ó²¿·ÇÖÕ½á·û£¬Z
- *   @param   string-right Ô­ÎÄ·¨µÄÆğÊ¼·ÇÖÕ½á·û,S£¬ Z->¡¤S,#
+ *   @brief   å»ºç«‹é¡¹ç›®é›†æ—åŠDFAä»¥åŠAction-Gotoè¡¨
+ *            æ€è·¯è¯´æ˜ï¼šåˆå§‹åŒ–é¡¹ç›®é›†I0ï¼Œç„¶åè¿›è¡ŒçŠ¶æ€è½¬ç§»ï¼Œæ±‚æ‰€æœ‰é¡¹ç›®é›†å¹¶ä¸”çŠ¶æ€è½¬ç§»åŒæ—¶æ±‚DFA é‡‡ç”¨å®½æœçš„æ–¹å¼, çŠ¶æ€è½¬ç§»éå†æ‰€æœ‰ç»ˆç»“ç¬¦å’Œéç»ˆç»“ç¬¦
+ *            ï¼Œå½’çº¦åœ¨å»ºç«‹å®Œä¹‹åç»Ÿä¸€éå†å®Œæˆ
+ *   @param   char-left å¢å¹¿æ–‡æ³•çš„å·¦éƒ¨éç»ˆç»“ç¬¦ï¼ŒZ
+ *   @param   string-right åŸæ–‡æ³•çš„èµ·å§‹éç»ˆç»“ç¬¦,Sï¼Œ Z->Â·S,#
  *   @return  void
  */
 void create(char left, string right) {
@@ -452,7 +452,7 @@ void create(char left, string right) {
   initItem.index = 0;
   initItem.forward.insert('#');
   Itemset[0].insert(initItem);
-  Itemset[0] = getClosureOfItemSet(Itemset[0]); // ³õÊ¼ÏîÄ¿¼¯T0
+  Itemset[0] = getClosureOfItemSet(Itemset[0]); // åˆå§‹é¡¹ç›®é›†T0
 
   itemSet_counter = 1;
   queue<set<Item> > itemSet_queue;
@@ -472,7 +472,7 @@ void create(char left, string right) {
       if (!itemSet_target.empty()) { // showItemset(s_new);
         bool alreadyExits = false;
         for (int i = 0; i < itemSet_counter; i++) {
-          if (itemSet_target == Itemset[i]) {  //ÖØÔØºóµÄ==
+          if (itemSet_target == Itemset[i]) {  //é‡è½½åçš„==
             ActionGoto[itemSet_index][*it] = i;
             alreadyExits = true;
             break;
@@ -485,10 +485,10 @@ void create(char left, string right) {
           q_index.push(itemSet_counter - 1);
         }
       } else
-        ActionGoto[itemSet_index][*it] = -2;  //-2 ±êÊ¶Ã»ÓĞ´Ë¹ı³Ì
+        ActionGoto[itemSet_index][*it] = -2;  //-2 æ ‡è¯†æ²¡æœ‰æ­¤è¿‡ç¨‹
     }
   }
-  //¹éÔ¼or½ÓÊÜ
+  //å½’çº¦oræ¥å—
   for (int i = 0; i < itemSet_counter; i++) {
     set<Item> itemset = Itemset[i];
     for (set<Item>::iterator itt = itemset.begin(); itt != itemset.end();itt++) {
@@ -496,9 +496,9 @@ void create(char left, string right) {
       if (item.right.find('$') != item.right.npos || item.position == item.right.size()) {
         for (set<char>::iterator it = item.forward.begin();it != item.forward.end(); it++) {
           if (item.index == 0) {
-            ActionGoto[i][*it] = -1;  //½ÓÊÜ£¬±êÊ¶acc
+            ActionGoto[i][*it] = -1;  //æ¥å—ï¼Œæ ‡è¯†acc
           } else {
-            ActionGoto[i][*it] = item.index + 256;  //ÓÃ+256Çø·ÖÊÇS»¹ÊÇr
+            ActionGoto[i][*it] = item.index + 256;  //ç”¨+256åŒºåˆ†æ˜¯Sè¿˜æ˜¯r
             // cout << AG[i][*it] << endl;
           }
         }
@@ -508,20 +508,20 @@ void create(char left, string right) {
 }
 
 /**
- *  @brief  É¨Ãè´Ê·¨·ÖÎöÆ÷µÄtokenĞòÁĞ½øĞĞLR(1)Óï·¨·ÖÎö
- *          £¨1£©¼ì²é´Ê·¨·ÖÎöÆ÷ÊÇ·ñ±¨´í
+ *  @brief  æ‰«æè¯æ³•åˆ†æå™¨çš„tokenåºåˆ—è¿›è¡ŒLR(1)è¯­æ³•åˆ†æ
+ *          ï¼ˆ1ï¼‰æ£€æŸ¥è¯æ³•åˆ†æå™¨æ˜¯å¦æŠ¥é”™
  *
- *  @param  string-token_str Ö®Ç°´Ê·¨·ÖÎöÆ÷»ñµÃµÄtokenĞòÁĞ
+ *  @param  string-token_str ä¹‹å‰è¯æ³•åˆ†æå™¨è·å¾—çš„tokenåºåˆ—
  */
 void scan(string token_str) {
   ofstream output;
   output.open(ANALYSIS_FILE_PATH);
   if (is_wrong) {
-    cout << "error: ´Ê·¨·ÖÎöÆ÷ÓĞ´í£¬ÇëÏÈĞ£ÕıÔ´³ÌĞòµÄ¹¹´Ê·½Ê½ÔÙ½øĞĞÓï·¨·ÖÎö!!!!"
+    cout << "error: è¯æ³•åˆ†æå™¨æœ‰é”™ï¼Œè¯·å…ˆæ ¡æ­£æºç¨‹åºçš„æ„è¯æ–¹å¼å†è¿›è¡Œè¯­æ³•åˆ†æ!!!!"
          << endl;
     return;
   }
-  token_str += '#';  //²¹³ä×îºóÒ»¸ö#
+  token_str += '#';  //è¡¥å……æœ€åä¸€ä¸ª#
   stack<int> stateStack;
   stack<char> symbolStack;
   stateStack.push(0);
@@ -556,33 +556,33 @@ void scan(string token_str) {
           if (temp_index > row[j]) {
             temp_index -= row[j];
           } else {
-            cout << "ÔÚµÚ" << j + 1 << "ĞĞ,µÚ" << temp_index
-                 << "¸ötoken:" << token_from_grammar_to_lex(token_str[token_index])
-                 << " ·¢Éú´íÎó" << endl;
+            cout << "åœ¨ç¬¬" << j + 1 << "è¡Œ,ç¬¬" << temp_index
+                 << "ä¸ªtoken:" << token_from_grammar_to_lex(token_str[token_index])
+                 << " å‘ç”Ÿé”™è¯¯" << endl;
             break;
           }
         }
       } else {
-        cout << "×îºóÒ»¸ötoken·¢Éú´íÎó" << endl;
+        cout << "æœ€åä¸€ä¸ªtokenå‘ç”Ÿé”™è¯¯" << endl;
       }
-      cout << "Ô­ÒòÊÇ: Î´ÄÜÕÒµ½ÏÂÁĞËùÆÚ´ıµÄtoken:" << endl;
+      cout << "åŸå› æ˜¯: æœªèƒ½æ‰¾åˆ°ä¸‹åˆ—æ‰€æœŸå¾…çš„token:" << endl;
       for (set<char>::iterator it = VT.begin(); it != VT.end(); it++) {
         if (ActionGoto[temp_state][*it] != -2)
           cout << token_from_grammar_to_lex(*it) << " ";
       }
       cout << endl;
       return;
-    } else if (ActionGoto[temp_state][token_str[token_index]] < 256) {//ÒÆ½ø
+    } else if (ActionGoto[temp_state][token_str[token_index]] < 256) {//ç§»è¿›
       Action = ActionGoto[temp_state][token_str[token_index]];
       stateStack.push(Action);
       symbolStack.push(token_str[token_index]);
       token_index++;
       action = "S" + to_string(Action);
     } else {
-      Action = ActionGoto[temp_state][token_str[token_index]] - 256;//¹éÔ¼
+      Action = ActionGoto[temp_state][token_str[token_index]] - 256;//å½’çº¦
       char left = grammar[Action - 1].left;
       int right_size = grammar[Action - 1].right.size();
-      //Èç¹ûÓÒ±ßÊÇepsilon£¬¾Í²»ĞèÒªÍËÕ»Ö»ĞèÒª½«×ó²¿¼ÓÈëµ½·ûºÅÕ»¼´¿É
+      //å¦‚æœå³è¾¹æ˜¯epsilonï¼Œå°±ä¸éœ€è¦é€€æ ˆåªéœ€è¦å°†å·¦éƒ¨åŠ å…¥åˆ°ç¬¦å·æ ˆå³å¯
       if (grammar[Action - 1].right != "$") {
         for (int j = 0; j < right_size; j++) {
           stateStack.pop();
@@ -599,7 +599,7 @@ void scan(string token_str) {
       action = "r" + to_string(Action);
     }
 
-    //´òÓ¡·ÖÎö¹ı³Ì
+    //æ‰“å°åˆ†æè¿‡ç¨‹
 
     string state_str = "";
     string symbol_str = "";
@@ -629,10 +629,10 @@ void scan(string token_str) {
            << std::left << setw(150) << symbol_str << std::left << setw(200)
            << input;
   }
-  cout << "ÕıÈ·" << endl;
+  cout << "æ­£ç¡®" << endl;
 }
 
-//Õ¹Ê¾²¿·Ö½á¹û
+//å±•ç¤ºéƒ¨åˆ†ç»“æœ
 void show() {
   cout << "Grammar:" << endl;
   for (int i = 0; i < grammar.size(); i++) {

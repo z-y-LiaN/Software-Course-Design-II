@@ -1,5 +1,4 @@
 #include "parser.h"
-
 int main() {
   memset(ActionGoto, 0, sizeof(ActionGoto));
   readGrammarFile();
