@@ -149,7 +149,6 @@ void createNFA() {
       s++;
       // A->a
       if ((int)*s == 0) {
-        // 对形如 A→a 的规则，引一条从A到终态结点Y的弧，标记为a
         tempTriad.input = tempChar;
         tempTriad.endPoint = 'Y'; 
         nfa.f.push_back(tempTriad);
@@ -161,13 +160,15 @@ void createNFA() {
       }
       // A->aB
       else {
-        // 对形如 A→aB 的规则，引一条从A到B的弧，标记为a
         tempTriad.input = tempChar;
         tempTriad.endPoint = *s;
         nfa.f.push_back(tempTriad);
       }
     }
   }
+  // 终态去重
+  sort(nfa.finalState.begin(),nfa.finalState.end());
+  nfa.finalState.erase(unique(nfa.finalState.begin(),nfa.finalState.end()),nfa.finalState.end());
   file.close();
 }
 

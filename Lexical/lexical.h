@@ -5,6 +5,7 @@
 #include <iostream>
 #include <set>
 #include <vector>
+#include <algorithm>
 
 #define MAX_NODES 255
 
