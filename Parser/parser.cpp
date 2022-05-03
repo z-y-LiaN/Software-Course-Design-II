@@ -2,27 +2,24 @@
 
 #include "path.h"
 
-vector<Grammar>
-    grammar;  //存放文法,文法中不得出现空行要不然会出现内存访问越界问题
-set<Item> Itemset[1000];  //存放LR(1)的项目集
-int itemSet_counter;      //最终的状态集的个数
-set<char> VT;  //存放文法中的终结符,其中不包括epsilon，epsilon单独处理
-set<char> VN;                    //存放文法中的非终结符
-set<char> toEpsilon;             //存放能够推到epsilon的非终结符
-map<char, set<char> > FirstSet;  //存文法中的非终结符对应的First集
-
-bool is_wrong = false;  //判断词法分析器是否有错
-string token = "";      //存放从词法分析器里读来的token序列
-vector<int> row;        //存放每行有多少个token
-
+vector<Grammar>grammar; 
+set<Item> Itemset[1000];
+int itemSet_counter; 
+set<char> VT; 
+set<char> VN;
+set<char> toEpsilon; 
+map<char, set<char> > FirstSet;
+bool lexical_wrong = false; 
+string token = "";
+vector<int> row; 
 int ActionGoto[300][300]; 
 
 
 /**
- *  @brief  将词法分析器得到的token（串），映射为语法分析器所需的token（字符），方便语法分析
- *  @param  string-str 词法分析器得到的token
- *  @param  string-type 词法分析器得到的token类型
- *  @return   token类型为type的token的映射单词符
+ * @brief  将词法分析器得到的token（串），映射为语法分析器所需的token（字符），方便语法分析
+ * @param  string-str 词法分析的token
+ * @param  string-type 词法分析的token类型
+ * @return  类型为type的token的映射单词 符
  */
 char token_from_lex_to_grammar(string str, string type) {
   if (type == "KEYWORDS") {
@@ -104,9 +101,9 @@ char token_from_lex_to_grammar(string str, string type) {
 }
 
 /**
- *  @brief  将语法分析器的token（字符），映射为词法分析器的token（串）
- *  @param char-c 语法分析器的token
- *  @return   该语法分析器的token在 对应的词法分析中的token
+ * @brief  将语法分析器的token（字符），映射为词法分析器的token（串）
+ * @param char-c 语法分析器的token
+ * @return   该语法分析器的token在 对应的词法分析中的token
  */
 string token_from_grammar_to_lex(char c) {
   if (c == 'a')
@@ -187,29 +184,29 @@ string token_from_grammar_to_lex(char c) {
 
      
 /**
- *   @brief   读取文法文件，
- *           （1）存终结符 非终结符、（2）存 推出epsilon的非终结符、（3）（串到字符）映射后的token，（4）判断词法分析器的结果是否有有误
+ *  @brief   读取给定的文法文件
+ *  @details 存非终结符、推出epsilon的非终结符、串到字符）映射后的token、判断词法分析器的结果是否有误
  */
 void readGrammarFile() {
-  vector<string> temp;
+  vector<string> allGrammars;
   fstream file;
   file.open(GRAMMAR_FILE_PATH);
   char str_file[100];
   while (file.getline(str_file, 100)) {
     string str(str_file);
-    temp.push_back(str);
+    allGrammars.push_back(str);
   }
   file.close();
-  for (int i = 0; i < temp.size(); i++) {
-    VN.insert(temp[i][0]);
+  for (int i = 0; i < allGrammars.size(); i++) {
+    VN.insert(allGrammars[i][0]);
     Grammar g;
-    g.left = temp[i][0];
-    g.right = temp[i].substr(3, temp[i].size() - 3);
+    g.left = allGrammars[i][0];
+    g.right = allGrammars[i].substr(3, allGrammars[i].size() - 3);
     grammar.push_back(g);
     if (g.right == "$") toEpsilon.insert(g.left);
-    for (int j = 3; j < temp[i].size(); j++) {
-      if ((temp[i][j] < 'A' || temp[i][j] > 'Z') && temp[i][j] != '$')
-        VT.insert(temp[i][j]);
+    for (int j = 3; j < allGrammars[i].size(); j++) {
+      if ((allGrammars[i][j] < 'A' || allGrammars[i][j] > 'Z') && allGrammars[i][j] != '$')
+        VT.insert(allGrammars[i][j]);
     }
   }
   
@@ -219,8 +216,7 @@ void readGrammarFile() {
     for (int i = 0; i < grammar.size(); i++) {
       bool flag_isToEpsilon = true;
       for (int j = 0; j < grammar[i].right.size(); j++) {
-        if (grammar[i].right[j] == '$' ||
-            toEpsilon.find(grammar[i].right[j]) != toEpsilon.end())
+        if (grammar[i].right[j] == '$' || toEpsilon.find(grammar[i].right[j]) != toEpsilon.end())
           continue;
         else
           flag_isToEpsilon = false;
@@ -234,7 +230,7 @@ void readGrammarFile() {
   file.open(WRONG_FILE_PATH);
   char c = file.get();
   if (!file.eof()) {
-    is_wrong = true;
+    lexical_wrong = true;
   }
   file.close();
   // 读token表
@@ -254,7 +250,7 @@ void readGrammarFile() {
       else
         type_of_word += token_line[i];
     }
-    token += token_from_lex_to_grammar(word, type_of_word);
+    token += token_from_lex_to_grammar(word, type_of_word);//映射
   }
   file.close();
   file.open(ROW_FILE_PATH);
@@ -266,7 +262,7 @@ void readGrammarFile() {
 }
 
 /**
- *   @brief   求所有非终结符的First集，每轮统计FirstSet的集合中的所有元素总个数，如果不再改变时收敛
+ *  @brief   求所有非终结符的First集，每轮统计FirstSet的集合中的所有元素总个数，如果不再改变时收敛
  *           (1)A->a 或 A->epsilon：a和epsilon是A的First集的元素
  *           (2)A->B：B的First集属于A的First集
  *           (3)A->aB..或A->ab....：a是A的First集的元素
@@ -345,19 +341,17 @@ set<char> getForward(char c, set<char> forward) {
 }
 
 /**
- * @brief 求一个LR(1)项目集itemSet的闭包
- *        思路说明：
- *            如果项目集仍有新项目进入 或者 项目集中仍有向前搜索符在发生变化 继续迭代
+ * @brief 求一个LR(1)项目集itemSet的闭包，如果项目集仍有新项目进入 则继续迭代，直至没有新项目进入
  * @param set<Item> itemset ：一个项目集
  * @return 该项目集的闭包
  */
-set<Item> getClosureOfItemSet(set<Item> itemSet) {
+set<Item> getClosure(set<Item> itemSet) {
+   int XX=0,YY=0;
   if (itemSet.empty()) return itemSet;
   bool isChanging = true;
   while (isChanging) {
     isChanging = false;
-    for (set<Item>::iterator it = itemSet.begin(); it != itemSet.end();) {
-      bool flag1 = false;
+    for (set<Item>::iterator it = itemSet.begin(); it != itemSet.end();it++) {
       Item item = *it;
       if (item.position != item.right.size()) {
         if (VN.find(item.right[item.position]) != VN.end()) {  //当前item为A-> α·Bβ，加入所有B->·γ
@@ -379,45 +373,48 @@ set<Item> getClosureOfItemSet(set<Item> itemSet) {
                 newItemAdded.forward = getForward('$', item.forward);
               } else {  // A-> α·Bβ
                 newItemAdded.forward = getForward(item.right[item.position + 1], item.forward);
-              }
-              set<Item>::iterator itt = itemSet.find(newItemAdded);
-              //因为STL中find函数是默认用<号进行判等的，所以仍需要判断forward集是否相等
-              if (itt != itemSet.end()) {
-                set<char> C;
-                set_union((itt->forward).begin(), (itt->forward).end(),
-                          newItemAdded.forward.begin(),
-                          newItemAdded.forward.end(), inserter(C, C.begin()));
-                if (C != itt->forward) {
-                  flag1 = true;
-                  set<Item>::iterator itt_backup = itt;
-                  isChanging = true;
-                  Item temp_backup = *itt;
-                  it++;
-                  itemSet.erase(itt_backup);
-                  temp_backup.forward = C;
-                  itemSet.insert(temp_backup);
-                }
-              } else {
+              }                
+              if(itemSet.find(newItemAdded)==itemSet.end()){
                 isChanging = true;
                 itemSet.insert(newItemAdded);
-              }
+              }       
+              // set<Item>::iterator itt = itemSet.find(newItemAdded);    
+              // if (itt != itemSet.end()) {
+              //   set<char> C;
+              //   set_union((itt->forward).begin(), (itt->forward).end(),newItemAdded.forward.begin(),newItemAdded.forward.end(), inserter(C, C.begin()));
+              //   if (C != itt->forward) {
+              //     XX++;
+              //     flag1 = true;
+              //     set<Item>::iterator itt_backup = itt;
+              //     isChanging = true;
+              //     Item temp_backup = *itt;
+              //     it++;
+              //     itemSet.erase(itt_backup);
+              //     temp_backup.forward = C;
+              //     itemSet.insert(temp_backup);
+              //   }
+              // } else {         
+              //   YY++;     
+              //   isChanging = true;
+              //   itemSet.insert(newItemAdded);
+              // }
             }
           }
         }
       }
-      if (!flag1) it++;
     }
   }
   return itemSet;
 }
 
 /**
- *   @brief   求转换函数Go，实现状态转移，当前itemSet项目集，输入文法符号c，求转移到的目标（初始）项目集
- *   @param   char-c 文法符号
- *   @param   set<Item>-itemSet  （转移前）LR(1)的项目集
- *   @return  转移到的那个目标项目集：直接由itemSet转移过来，暂时没有求闭包的项目集
+ *  @brief   求核的集合，当前itemSet项目集，输入文法符号c 转移
+ *  @details 核：新状态的初始项目，即圆点移动后的项目
+ *  @param   char-c 文法符号
+ *  @param   set<Item>-itemSet  （转移前）LR(1)的项目集
+ *  @return  由itemSet经c转移过来的核的集合
  */
-set<Item> Go(char c, set<Item> itemSet) {
+set<Item> getKernel(char c, set<Item> itemSet) {
   set<Item> itemSet_Target;
   for (set<Item>::iterator it = itemSet.begin(); it != itemSet.end(); it++) {
     Item item = *it;
@@ -436,8 +433,8 @@ set<Item> Go(char c, set<Item> itemSet) {
 }
 
 /**
- *   @brief   建立项目集族及DFA以及Action-Goto表
- *            思路说明：初始化项目集I0，然后进行状态转移，求所有项目集并且状态转移同时求DFA 采用宽搜的方式, 状态转移遍历所有终结符和非终结符
+ *   @brief   建立DFA项目集族以及Action-Goto表
+ *   @details 初始化项目集I0，然后进行状态转移，求所有项目集并且状态转移 采用宽搜的方式,遍历所有终结符和非终结符
  *            ，归约在建立完之后统一遍历完成
  *   @param   char-left 增广文法的左部非终结符，Z
  *   @param   string-right 原文法的起始非终结符,S， Z->·S,#
@@ -452,24 +449,27 @@ void create(char left, string right) {
   initItem.index = 0;
   initItem.forward.insert('#');
   Itemset[0].insert(initItem);
-  Itemset[0] = getClosureOfItemSet(Itemset[0]); // 初始项目集T0
+  Itemset[0] = getClosure(Itemset[0]); // 初始项目集T0
 
   itemSet_counter = 1;
   queue<set<Item> > itemSet_queue;
   queue<int> q_index;
   itemSet_queue.push(Itemset[0]);
   q_index.push(0);
+
   while (!itemSet_queue.empty() && !q_index.empty()) {
 
-    set<Item> itemSet_source = itemSet_queue.front();  itemSet_queue.pop();
-    int itemSet_index = q_index.front();  q_index.pop();
+    set<Item> itemSet_source = itemSet_queue.front();  
+    itemSet_queue.pop();
+    int itemSet_index = q_index.front();  
+    q_index.pop();
 
     set<char> all_VN_VT;  
     set_union(VT.begin(), VT.end(), VN.begin(), VN.end(),inserter(all_VN_VT, all_VN_VT.begin()));
 
     for (set<char>::iterator it = all_VN_VT.begin(); it != all_VN_VT.end();it++) {
-      set<Item> itemSet_target = getClosureOfItemSet(Go(*it, itemSet_source));
-      if (!itemSet_target.empty()) { // showItemset(s_new);
+      set<Item> itemSet_target = getClosure(getKernel(*it, itemSet_source));
+      if (!itemSet_target.empty()) {
         bool alreadyExits = false;
         for (int i = 0; i < itemSet_counter; i++) {
           if (itemSet_target == Itemset[i]) {  //重载后的==
@@ -513,27 +513,26 @@ void create(char left, string right) {
  *
  *  @param  string-token_str 之前词法分析器获得的token序列
  */
-void scan(string token_str) {
-  ofstream output;
-  output.open(ANALYSIS_FILE_PATH);
-  if (is_wrong) {
-    cout << "error: 词法分析器有错，请先校正源程序的构词方式再进行语法分析!!!!"
-         << endl;
+void scanSourceToken(string token_str) {
+  ofstream outputAnalysis;
+  outputAnalysis.open(ANALYSIS_FILE_PATH);
+  if (lexical_wrong) {
+    cout << "ERROR_INFO: 词法分析有误，请先检查源程序!"<< endl;
     return;
   }
-  token_str += '#';  //补充最后一个#
+  token_str += '#'; 
   stack<int> stateStack;
   stack<char> symbolStack;
   stateStack.push(0);
   symbolStack.push('#');
-  output << "Analysis Proccess Below:" << endl;
-  output << std::left << setw(10) << "step" << std::left << setw(150)
+  outputAnalysis << "Analysis Proccess Below:" << endl;
+  outputAnalysis << std::left << setw(10) << "step" << std::left << setw(150)
          << "stateStack" << std::left << setw(150) << "symbolStack" << std::left
          << setw(200) << "inputString" << std::left << setw(150) << "ACTION"
          << std::left << setw(150) << "GOTO" << endl;
   int step_counter = 1;
   int token_index = 0;
-  output << std::left << setw(10) << "1" << std::left << setw(150) << "0"
+  outputAnalysis << std::left << setw(10) << "1" << std::left << setw(150) << "0"
          << std::left << setw(150) << "#" << std::left << setw(200)
          << token_str;
   while (1) {
@@ -547,7 +546,7 @@ void scan(string token_str) {
     int temp_symbol = symbolStack.top();
     if (ActionGoto[temp_state][token_str[token_index]] == -1) {
       action = "acc";
-      output << setw(150) << action << setw(150) << goTo << endl;
+      outputAnalysis << setw(150) << action << setw(150) << goTo << endl;
       break;
     } else if (ActionGoto[temp_state][token_str[token_index]] == -2) {
       int temp_index = token_index + 1;
@@ -600,7 +599,6 @@ void scan(string token_str) {
     }
 
     //打印分析过程
-
     string state_str = "";
     string symbol_str = "";
     vector<int> state_v;
@@ -623,17 +621,19 @@ void scan(string token_str) {
       symbol_str += symbol_v[i];
     }
     string input = token_str.substr(token_index, token_str.length() - token_index);
-    output << std::left << setw(150) << action << std::left << setw(150) << goTo
+    outputAnalysis << std::left << setw(150) << action << std::left << setw(150) << goTo
            << endl;
-    output << setw(10) << step_counter << std::left << setw(150) << state_str
+    outputAnalysis << setw(10) << step_counter << std::left << setw(150) << state_str
            << std::left << setw(150) << symbol_str << std::left << setw(200)
            << input;
   }
   cout << "正确" << endl;
 }
 
-//展示部分结果
-void show() {
+/**
+ * @brief 展示部分结果
+ */
+void showProccessing() {
   cout << "Grammar:" << endl;
   for (int i = 0; i < grammar.size(); i++) {
     cout << grammar[i].left << "->" << grammar[i].right << endl;
