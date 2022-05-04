@@ -134,7 +134,7 @@ void createNFA() {
     if (*s == '$') {
       nfa.finalState.push_back(tempTriad.startPoint);
     }
-    // A->B
+    // A->B,引一条A到B的弧，标记为空
     else if (*s >= 'A' && *s <= 'Z') {
       tempTriad.input = '$';
       tempTriad.endPoint = *s;
@@ -143,7 +143,7 @@ void createNFA() {
     } else if (isVT(*s)) {
       char tempChar = *s;
       s++;
-      // A->a
+      // A->a，引一条A到Y的弧，标记为a
       if ((int)*s == 0) {
         tempTriad.input = tempChar;
         tempTriad.endPoint = 'Y'; 
@@ -154,7 +154,7 @@ void createNFA() {
         }
         if(!flag_exits) nfa.finalState.push_back('Y'); 
       }
-      // A->aB
+      // A->aB，引一条A到B的弧，标记为a
       else {
         tempTriad.input = tempChar;
         tempTriad.endPoint = *s;
@@ -219,7 +219,7 @@ set<char> e_closure(set<char> T) {
 }
 
 /**
- * @brief 求move集-所有可以从I中的某一状态 经一条input弧 所能到达的状态
+ * @brief 求move集-所有可以从状态集I中的某一状态 经一条input弧 所能到达的状态
  * @param set<char>-I 一个状态集
  * @param char-input 一条弧的标记
  * @return 状态集合
@@ -267,7 +267,7 @@ void NFA_TO_DFA() {
   T0 = e_closure(T0);
 
   C[0] = T0;
-  int node_counter = 1;  //初始化DFA状态数量
+  int node_counter = 1;  
   int state_index = 0;
   // 当C中存在尚未被标记的子集T
   while (!marked[state_index] && state_index < node_counter) {
@@ -409,7 +409,7 @@ void scanSourceCode() {
     int token_counter = 0;
     for (int j = 0; j < sourceCode[i].size(); j++) {
       string str = sourceCode[i][j]; // cout<<str<<endl;
-      string result = "";  //存放单个word
+      string word_str = ""; 
       int next = dfa.initialState;
       int now;
       vector<pair<string, string>> token_temp; //word+type
@@ -432,16 +432,16 @@ void scanSourceCode() {
 
         next = dfa.f[next][str[k]];
         if (next == -1) {  
-          token_temp.push_back(make_pair(result, "    "));
-          result.clear();
-          result += str[k];
+          token_temp.push_back(make_pair(word_str, "    "));
+          word_str.clear();
+          word_str += str[k];
           next = dfa.f[dfa.initialState][str[k]];
         } else {
-          result += str[k];
+          word_str += str[k];
         }
       }
-      if (!result.empty()) {
-        token_temp.push_back(make_pair(result, "    "));
+      if (!word_str.empty()) {
+        token_temp.push_back(make_pair(word_str, "    "));
       }
 
       // 该行word分类
@@ -456,8 +456,8 @@ void scanSourceCode() {
         } else if (isOperator(token_temp[token_index].first)) {
           token_temp[token_index].second = "OPERATOR";
           token.push_back(token_temp[token_index]);
-        } else if (token_temp[token_index].first[0] >= 'a' &&
-                   token_temp[token_index].first[0] <= 'z') {
+        } else if ((token_temp[token_index].first[0] >= 'a' &&
+                   token_temp[token_index].first[0] <= 'z')||token_temp[token_index].first[0] =='_') {
           // 检查标识符的合法性
           if (token_index && token_temp[token_index - 1].second == "CONST") {
             pair<int, int> postion = make_pair(i + 1, j + 1);

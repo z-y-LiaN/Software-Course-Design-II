@@ -142,6 +142,7 @@ S->wH
 S->xH
 S->yH
 S->zH
+S->_H
 H->aH
 H->bH
 H->cH

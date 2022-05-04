@@ -1,7 +1,6 @@
 #include<iostream>
 int main(){
-    double zyl = 9191.0684 + 212;
-	int a=0;
+    double _zyl = 9191.0684 + 212;
 	for(int i = 1;i<99;i++){
 		if(i > 23(){
 			int  why = 2i + 3;
@@ -13,7 +12,7 @@ int main(){
 			case 2.3:
 				int njust = 5*2;
 			case 3i+4:
-				a = a/1;
+				float a=3.2;
 			default:
 				why = 5 - a;
 		}
